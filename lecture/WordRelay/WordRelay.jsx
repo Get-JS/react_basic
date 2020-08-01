@@ -22,11 +22,15 @@ const WordRelay = () => {
     }
   };
 
+  const onChangeInput = (e) => {
+    setValue(e.currentTarget.value)
+  }
+
   return (
     <>
       <div>{word}</div>
       <form onSubmit={onSubmitForm}>
-        <input ref={inputEl} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
+        <input ref={inputEl} value={value} onChange={onChangeInput} />
         <button>start!!!</button>
       </form>
       <div>{result}</div>

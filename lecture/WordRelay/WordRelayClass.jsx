@@ -1,6 +1,5 @@
 // const React = require('react');
-import React from 'react';
-const { Component } = React;
+import React, { Component } from 'react';
 
 class WordRelay extends Component {
   state = { // class field
@@ -8,14 +7,16 @@ class WordRelay extends Component {
     value: '',
     result: ''
   };
-  input; // this.input을 생성
+
+  input = null; // this.input을 생성
 
   onSubmitForm = (e) => {
+    const {word, value} = this.state;
     e.preventDefault();
-    if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
+    if (word[word.length - 1] === value[0]) {
       this.setState({
         result: 'success',
-        word: this.state.value,
+        word: value,
         value: ''
       });
       this.input.focus();
@@ -37,14 +38,16 @@ class WordRelay extends Component {
   };
 
   render() {
+    const { onSubmitForm, onRefInput, onChangeInput } = this;
+    const { word, value, result } = this.state;
     return (
       <>
-        <div>{this.state.word}</div>
-        <form onSubmit={this.onSubmitForm}>
-          <input ref={this.onRefInput} value={this.state.value} onChange={this.onChangeInput} />
+        <div>{word}</div>
+        <form onSubmit={onSubmitForm}>
+          <input ref={onRefInput} value={value} onChange={onChangeInput} />
           <button>check!!!</button>
         </form>
-        <div>{this.state.result}</div>
+        <div>{result}</div>
       </>
     );
   }

@@ -13,11 +13,11 @@ module.exports = {
   },
   module: { // * 모듈 관리
     rules: [{
-      test: /\.jsx?$/, // * js, jsx 파일 rule 관리
+      test: /\.jsx?$/, // * js, jsx (정규 표현식) 파일 규칙 관리
       loader: 'babel-loader', // * (babel rule) babel - webpack 연결
       options: {
         presets: [
-          ['@babel/preset-env', { // * 버전 관리
+          ['@babel/preset-env', { // * 버전 관리 babel이 import도 reqire로 변환해 준다.
             targets: {browsers: ['last 2 chrome versions']}, // * 브라우저 관리
             debug: true, // * 개발용
           }],
