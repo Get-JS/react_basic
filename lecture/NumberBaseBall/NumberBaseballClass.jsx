@@ -1,7 +1,12 @@
-import React, { Component, createRef } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import Try from './TryClass';
 
-class NumberBaseball extends Component {
+/**
+ * * pureComponent 활용으로 shouldComponentUpdate처럼 업데이트 마운트를 해야할지 결정
+ * * 참조 관계는 판별하기 어렵다. 혹은, pureComponent로 안되는 경우가 있기 때문에 
+ * * 커스텀은 Component + shouldComponentUpdate() 를 활용 해야 한다.
+ */
+class NumberBaseball extends PureComponent {
   state = {
     result: '',
     value: '',

@@ -1,7 +1,10 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, memo} from 'react';
 import Try from "./Try";
 
-const NumberBaseball = () => {
+/**
+ * * memo => pureComponent 기능
+ */
+const NumberBaseball = memo(() => {
   const [answer, setAnswer] = useState(getNumbers());
   const [value, setValue] = useState('');
   const [result, setResult] = useState('');
@@ -73,7 +76,7 @@ const NumberBaseball = () => {
       </ul>
     </>
   );
-};
+});
 
 const getNumbers = () => {
   const candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -82,6 +85,7 @@ const getNumbers = () => {
     const chosen = candidates.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
     array.push(chosen);
   }
+  alert(array)
   return array;
 };
 
