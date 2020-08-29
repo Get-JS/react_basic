@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 function Detail({ toDo }) {
+  useEffect(() => {
+    console.log('Detail-render-moount')
+    return () => {
+      console.log('Detail-render-willMoount')
+    }
+  }, [])
   return (
     <>
       <h1>{toDo?.text}</h1>
