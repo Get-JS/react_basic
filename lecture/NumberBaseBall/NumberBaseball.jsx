@@ -1,11 +1,12 @@
-import React, {useRef, useState, memo} from 'react';
+import React, {useRef, useState, memo, useMemo} from 'react';
 import Try from "./Try";
 
 /**
  * * memo => pureComponent 기능
  */
 const NumberBaseball = memo(() => {
-  const [answer, setAnswer] = useState(getNumbers());
+  const numbers = useMemo(() => getNumbers(), []);
+  const [answer, setAnswer] = useState(numbers);
   const [value, setValue] = useState('');
   const [result, setResult] = useState('');
   const [tries, setTries] = useState([]);
@@ -22,10 +23,9 @@ const NumberBaseball = memo(() => {
         }
       ]));
       setResult('홈런!');
-      alert('게임을 다시 실행합니다.');
+      alert('홈런!! 게임을 다시 실행합니다.');
       setValue('');
       setAnswer(getNumbers());
-      // setValue('qwer');
       setTries([]);
       inputEl.current.focus();
     } 
