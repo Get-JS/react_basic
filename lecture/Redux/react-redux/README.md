@@ -101,3 +101,43 @@ export default connect(
 )(FriendMain);
 ```
 - `connect 함수의 두 번째 인자로 객체를 전달하면` **그 객체를 액션 생성자 함수를 모아 놓은 객체로 인식한다.**
+
+> Because this is so common, `connect` supports an “object shorthand” form for the mapDispatchToProps argument: if you pass an object full of action creators instead of a function, `connect` **will automatically call bindActionCreators for you internally.**
+```js
+import { bindActionCreators } from 'redux'
+
+const increment = () => ({ type: 'INCREMENT' })
+const decrement = () => ({ type: 'DECREMENT' })
+const reset = () => ({ type: 'RESET' })
+
+// binding an action creator
+// returns (...args) => dispatch(increment(...args))
+const boundIncrement = bindActionCreators(increment, dispatch)
+
+// binding an object full of action creators
+const boundActionCreators = bindActionCreators(
+  { increment, decrement, reset },
+  dispatch
+)
+// returns
+// {
+//   increment: (...args) => dispatch(increment(...args)),
+//   decrement: (...args) => dispatch(decrement(...args)),
+//   reset: (...args) => dispatch(reset(...args)),
+// }
+```
+> `bindActionCreators` turns an object whose values are action creators, into an object with the same keys, but with every action creator wrapped into a `dispatch` call so they may be invoked directly.
+```js
+import { bindActionCreators } from 'redux'
+// ...
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ increment, decrement, reset }, dispatch)
+}
+
+// component receives props.increment, props.decrement, props.reset
+connect(
+  null,
+  mapDispatchToProps
+)(Counter)
+```

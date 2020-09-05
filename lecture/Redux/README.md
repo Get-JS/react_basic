@@ -1,5 +1,19 @@
 # Redux
 
+- 리덕스는 자바스크립트를 위한 상태 관리 프레임워크 이다.
+  - `컴포넌트` 코드로부터 **상태 관리 코드를 분리할 수 있다.**
+  - `서버 렌더링 시` **데이터 전달이 간편하다.**
+  - `로컬 스토리지에` **데이터를 저장하고 불러오는** 코드를 쉽게 작성할 수 있다.
+  - `같은 상탯값을` **다수의 컴포넌트에서 필요로 할 때 좋다.**
+  - 부모 컴포넌트에서 `깊은 곳에 있는 자식 컴포넌트에` **상탯값을 전달할 때 좋다.**
+  - 알림창과 같은 `전역 컴포넌트의` **상탯값을 관리할 때 좋다.**
+  - `페이지가 전환되어도` **데이터는 살아 있어야 할 때 좋다.**
+
+- 리덕스 사용시 **3가지 원칙은 지켜야 한다.**
+  - 전체 상탯값을 하나의 객체에 저장한다.
+  - 상탯값은 불변 객체이다.
+  - 상탯값은 순수 함수에 의해서만 변경되어야 한다.
+
 ## Redux에서 상탯값이 변경되는 과정
 
 ```text
@@ -10,17 +24,28 @@
 
 ## action
 
+```js
+store.dispatch({type: "OPEN_MODAL", payload: {isOpen: true} });
+```
+
 - 액션은 `type 속성값을` 가진 **객체이다.**
 - 액션 객체를 `dispatch 메서드에 넣어서` 호출하면 리덕스는 상탯값을 변경하기 위해 위의 과정을 수행 한다.
+- `액션 생성자 함수를` 따로 만들어 외부 파일에서도 같은 액션을 처리하도록 할 수 있다.
+```js
+const OPEN = "OPEN_MODAL";
+function openModal(payload) => ({type: OPEN, payload });
+store.dispatch(openModal({isOpen: true}));
+```
 
 ## middleware
 
 ```js
 const cMiddleWare = store => next => action => next(action);
 ```
-  
+- 리듀서가 `action을 처리하기 전에` 실행 하는 함수이다.  
 - 미들웨어는 `store와 action 기반으로` 필요한 작업을 수행 할 수 있다.
 - `next 함수를 호출하면` 다른 미들웨어 함수가 호출되면서 최종적으로 리듀서 함수가 호출된다.
+- `API 호출처럼` **부수효과를 여기서 많이 사용한다.**
 
 ```js
 const store = createStore(myReducer, applyMiddleware(cMiddleWare1, cMiddleWare2));
@@ -82,11 +107,11 @@ function dispatch(action) {
 
 ## reducer
 
-- 리듀서는 액션이 발생했을 때 새로운 상탯값을 만드는 함수이다.
+- 리듀서는 액션이 발생했을 때 **새로운 상탯값을 만드는 함수이다.**
 ```text
 (state, action) => nextState
 ```
-- 리덕스는 스토어를 생성할 때 상탯값이 없느 상태로 리듀서를 호출하므로, 매개변수의 기본값을 사용해서 초기 상탯값을 정의한다.
+- 리덕스는 스토어를 생성할 때 상탯값이 없는 상태로 리듀서를 호출하므로, `매개변수의 기본값을 사용해서` **초기 상탯값을 정의한다.**
 - 상탯값을 처리할 때 immutable로 처리해야 하지만, 상탯값이 깊은(depth)곳에서 수정한다면 불변처리가 쉽지 않다.
   - 그래서 `immer 패키지를 사용하여` **불변처리를 하게 된다.**
 ```js
@@ -127,6 +152,7 @@ function reducer(state = INITIAL_STATE, action) {
   - 즉, **reudcer에 초점을 더욱 줄 수 있다.**
 - **action의 값중 type외의 값은 payload 객체로 들어가게 된다.**
 ```js
+  import { createAction } from "@reduxjs/toolkit"
   const addToDo = createAction("ADD");
   const deleteToDo = createAction("DELETE");
 
@@ -166,7 +192,7 @@ const reducer = createReducer([], {
 });
 ```
 
-- 다음은 createReducer 함수의 코드 이다.
+- 다음은 createReducer 함수의 간단한 `폴리필 코드` 이다.
 ```js
 import produce from 'immer'
 
@@ -184,10 +210,11 @@ function createReducer(initialState, handlerMap) {
 
 ## createSlice
 
-- createSlice를 사용할 경우 상탯값 초기값과, 리듀서를 간단하게 정의를 할 수 있다.
-- reducers객체에 정의된 프로퍼티 이름으로 actions 객체를 리턴하게 된다.
-- reducers에 정의된 메서드는 immutable, mutable 상관없이 정의가 가능하다.
-```jsx
+- `createSlice를` 사용할 경우 상탯값 초기값과, 리듀서를 간단하게 정의를 할 수 있다.
+- reducer객체에 정의된 프로퍼티 이름으로 actions 객체를 리턴하게 된다.
+- reducer에 정의된 메서드는 immutable, mutable 상관없이 정의가 가능하다.
+  - **mutable 경우 리턴을 하게되면 안된다.**
+```js
 const toDos = createSlice({
   name: "toDosReducer",
   initialState: [],
@@ -221,3 +248,23 @@ export default configureStore({ reducer: toDos.reducer }); // * redux 상태 볼
 - 특정 파일의 코드가 많아지면 굳이 하나의 파일을 고집할 필요는 없다.
 - redux-thunk 패키지를 이용해서 비동기 코드를 작성하는 경우에는 액션 생성자 함수의 코드 양이 많아진다.
 - 이럴 때는 리듀서 코드와 액션 코드르 별도의 파일로 분리를 하는게 좋다.
+
+## use Redux
+
+- [vanilla-redux](./vanilla-redux)
+- [ReduxCustom](./ReduxCustom)
+  - [createItemsLogic](./ReduxCustom/createItemsLogic)
+  - [combineReducer](./ReduxCustom/combineReducer)
+- [react-redux](./react-redux)
+  - [todo](./react-redux/todo)
+    - createAction, createReducer, configureStore
+    - createSlice
+  - [without-react-redux](./react-redux/without-react-redux)
+    - subscribe, unsubscribe
+  - [with-react-redux](./react-redux/with-react-redux)
+    - connect
+      - mapStateToProps, mapDispatchToProps, Defining mapDispatchToProps As An Object
+- [reselect](./reselect)
+  - [without-reselect](./reselect/without-reselect)
+  - [with-reselect](./reselect/with-reselect)
+  - [with-reselect-props](./reselect/with-reselect-props)

@@ -31,7 +31,7 @@ const onChange = () => {
 // !! subscribe -> if state in store change, call function
 countStore.subscribe(onChange);
 
-// !! dispatch -> cll reducer function, arguments what info action in reducer parameter
+// !! dispatch -> call reducer function, arguments what info action in reducer parameter
 const dispatchAdd = () => countStore.dispatch({ type: ADD })
 const dispatchMinus = () => countStore.dispatch({ type: MINUS })
 countStore.dispatch({ type: "ADD" })

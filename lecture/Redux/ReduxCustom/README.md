@@ -2,7 +2,7 @@
 
 - 여러개의 리덕스를 관리하기 위해 패키지 혹은 커스텀 메서드를 사용하여 관리하는 방법을 설명한다.
 
-## combineReducer
+## combineReducer(custom)
 
 - 프로그램 안에서 사용되는 데이터의 양이 많아지면, 데이터를 체계적으로 구조화하는 방법이 필요하다.
 - 프로그램의 모든 액션을 하나의 파일에 작성하거나 모든 액션 처리 로직을 하나의 리듀서 함수로 작성할 수는 없다.
@@ -11,6 +11,22 @@
 - 리덕스에서 제공하는 `combineReducer` 함수를 이용하면 **리듀서 함수를 여러 개로 분리할 수 있다.**
 
 ```js
+import produce from 'immer'
+
+function createReducer(initialState, handlerMap) {
+  return function(state = initialState, action) {
+    return produce(state, draft => {
+      const handler = handlerMap[action.type];
+      if (handler) {
+        handler(draft, action);
+      }
+    })
+  }
+}
+```
+
+```js
+import createReducer from './createReducer';
 import { createStore, combineReducers } from 'redux';
 import timelineReducer, { // * action 생성자 함수
   addTimeline,

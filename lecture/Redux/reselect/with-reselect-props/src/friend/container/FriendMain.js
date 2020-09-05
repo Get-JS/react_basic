@@ -5,7 +5,7 @@ import FriendList from '../component/FriendList';
 import { connect } from 'react-redux';
 import {
   makeGetFriendsWithAgeLimit,
-  getFriendsWithAgeLimit,
+  getFriendsWithAgeLimit
 } from '../state/selector';
 
 class FriendMain extends React.Component {
