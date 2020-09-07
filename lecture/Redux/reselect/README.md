@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 
 ## with-reselect
 
-- reselect 패키지를 사용할 때는 선택자(selector) 함수를 작성한다.
+- `reselect` 패키지를 사용할 때는 선택자(selector) 함수를 작성한다.
 ```js
 import { createSelector } from 'reselect';
 

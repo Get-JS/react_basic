@@ -68,7 +68,7 @@ const applyMiddleware = (...middlewares) => createStore => (...args) => {
 - `만약 미들웨어가 두 개였다면` **a(b(store.dispatch))와 같다.**
 - 따라서 사용자가 dispatch 메서드를 호출하면 첫 번째 미들웨어 함수부터 실행된다.
 - 그리고 **마지막 미들웨어가 store.dispatch 메서드를 호출한다.**
-- 다음은 미들웨어를 활용한 action 처리를 연기하는 코드이다.
+- 다음은 미들웨어를 활용한 action 처리를 연기(delay)하는 코드이다.
 ```js
 const delayAction = store => next => action => {
   const delay = action.meta && action.meta.delay;
@@ -145,7 +145,7 @@ function reducer(state = INITIAL_STATE, action) {
   - 랜덤 함수를 사용하거나, API를 호출 처럼 부수 효과를 호출하는 로직은 리턴 예측할 수 없기 때문에 디버깅 혹은 test하기가 힘들어진다.
   - `API 호출은` **액션 생성자 함수나 미들웨어에서 하면된다.**
 
-## createAction
+## createAction(@reduxjs/toolkit)
 
 - 액션 생성자를 하나씩 만들고, action안의 값이 변경 될 때, action 생성자와, reducer에 로직을 찾아야 하는 번거로움이 있다.
 - createAction을 사용하게 된다면, action 생성자를 따로 만들 필요 없으며, action의 상수 타입값을 따로 생성할 필요가 없게된다.
@@ -173,7 +173,7 @@ function reducer(state = INITIAL_STATE, action) {
   store.dispatch(deleteToDo(1));
 ```
 
-## createReducer
+## createReducer(@reduxjs/toolkit & custome)
 
 - reducer를 사용할 때 **switch 대신 더 간결하게 리듀서 함수를 작성할 수 있다.**
 ```js
@@ -208,7 +208,7 @@ function createReducer(initialState, handlerMap) {
 }
 ```
 
-## createSlice
+## createSlice(@reduxjs/toolkit)
 
 - `createSlice를` 사용할 경우 상탯값 초기값과, 리듀서를 간단하게 정의를 할 수 있다.
 - reducer객체에 정의된 프로퍼티 이름으로 actions 객체를 리턴하게 된다.
@@ -267,4 +267,11 @@ export default configureStore({ reducer: toDos.reducer }); // * redux 상태 볼
 - [reselect](./reselect)
   - [without-reselect](./reselect/without-reselect)
   - [with-reselect](./reselect/with-reselect)
+    - mapStateToProps에서 데이터를 가공하는 연산을 수행할 때, 메모제이션
   - [with-reselect-props](./reselect/with-reselect-props)
+    - 컴포넌트 인스턴스 별로 독립된 select 함수를 생성할 때 클로저를 통해 메모제이션 버그 수정 
+- [redux-saga](./redux-saga)
+  - [with-redux-saga](./redux-saga/with-redux-saga)
+    - redux-saga/effects
+      - all, call, put, take, fork
+  - [with-redux-saga](./redux-saga/with-redux-saga-exception)
