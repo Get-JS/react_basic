@@ -1,8 +1,8 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import ResponseCheckState from './ResponseCheckState';
 import RenderAverage from './RenderAverage';
 
-const ResponseCheck = memo(() => {
+function ResponseCheck() {
   console.log('ResponseCheck-render');
 
   const [state, setState] = useState('waiting');
@@ -38,16 +38,16 @@ const ResponseCheck = memo(() => {
     }
   };
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     setResult([]);
-  };
+  }, []);
 
   return (
     <>
-      <ResponseCheckState state={state} message={message} onClickScreen={onClickScreen}/>
-      <RenderAverage result={result} onReset={onReset}/>
+      <ResponseCheckState state={state} message={message} onClickScreen={onClickScreen} />
+      <RenderAverage result={result} onReset={onReset} />
     </>
   );
-});
+};
 
 export default ResponseCheck;
