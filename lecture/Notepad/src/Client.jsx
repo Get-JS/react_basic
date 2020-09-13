@@ -1,8 +1,8 @@
 import React from 'react';
-import TodoContainer from './views/todo/container/TodoContainer';
+import Router from './Router';
 
 function Client() {
-  return <TodoContainer />;
+  return <Router />;
 }
 
 export default Client;
