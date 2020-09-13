@@ -13,3 +13,15 @@ export default [
     checked: false,
   },
 ];
+
+export const testData = () => {
+  const array = [];
+  for (let i = 1; i <= 25000; i++) {
+    array.push({
+      id: i,
+      text: 'ttt',
+      checked: false,
+    });
+  }
+  return array;
+};

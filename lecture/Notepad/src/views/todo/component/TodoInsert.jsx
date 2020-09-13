@@ -4,7 +4,7 @@ import '../../../assets/scss/todo/TodoInsert.scss';
 
 function TodoInsert(props) {
   const { handleAdd } = props;
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   const handlePreAdd = useCallback(
     (e) => {
       e.preventDefault();

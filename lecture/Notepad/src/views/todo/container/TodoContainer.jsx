@@ -5,7 +5,7 @@ import TodoList from '../component/TodoList';
 import todoData from '../../../@fake-db/todo';
 
 function TodoContainer() {
-  const [todos, setTodos] = useState(todoData || []);
+  const [todos, setTodos] = useState(todoData);
 
   const nextId = useRef(todos.length + 1);
 
