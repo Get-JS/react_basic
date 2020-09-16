@@ -1,18 +1,15 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { MdAdd } from 'react-icons/md';
 import '../../../assets/scss/todo/TodoInsert.scss';
 
 function TodoInsert(props) {
   const { handleAdd } = props;
   const [value, setValue] = useState('');
-  const handlePreAdd = useCallback(
-    (e) => {
-      e.preventDefault();
-      handleAdd(value);
-      setValue('');
-    },
-    [handleAdd, value],
-  );
+  const handlePreAdd = (e) => {
+    e.preventDefault();
+    handleAdd(value);
+    setValue('');
+  };
 
   return (
     <form className="TodoInsert" onSubmit={handlePreAdd}>

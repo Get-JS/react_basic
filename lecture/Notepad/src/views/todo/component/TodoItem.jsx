@@ -7,13 +7,14 @@ import {
 import cn from 'classnames';
 import '../../../assets/scss/todo/TodoListItem.scss';
 
-function TodoListItem(props) {
+function TodoItem(props) {
   const { handleRemove, toggleTodoCheck } = props;
   const { todo, style } = props;
   const { id, text, checked } = todo;
+
   return (
-    <div className="TodoListItem-virtualized" style={style}>
-      <div className="TodoListItem">
+    <div className="TodoItem-virtualized" style={style}>
+      <div className="TodoItem">
         <div
           className={cn('checkbox', { checked })}
           onClick={() => toggleTodoCheck(id)}
@@ -29,4 +30,4 @@ function TodoListItem(props) {
   );
 }
 
-export default memo(TodoListItem);
+export default memo(TodoItem);

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { List } from 'react-virtualized';
-import TodoListItem from './TodoListItem';
+import TodoItem from './TodoItem';
 import '../../../assets/scss/todo/TodoList.scss';
 
 function TodoList(props) {
@@ -10,7 +10,7 @@ function TodoList(props) {
     ({ index, key, style }) => {
       const todo = todos[index];
       return (
-        <TodoListItem
+        <TodoItem
           todo={todo}
           key={key}
           handleRemove={handleRemove}
