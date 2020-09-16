@@ -10,8 +10,8 @@ function Profile(props) {
     ignoreQueryPrefix: true, // * 문자열 맨 앞의 ? 생략
   });
   const showDetail = query.detail === 'true';
-
   const profile = data[userId];
+
   if (!profile) return <div>존재하지 않는 아이디 입니다.</div>;
   return (
     <div>

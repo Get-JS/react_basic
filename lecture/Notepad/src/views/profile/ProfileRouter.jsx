@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-import Profile from './Profile';
+import Profile from './component/Profile';
 
 function ProfileRouter() {
   return (

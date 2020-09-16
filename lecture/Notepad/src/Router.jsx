@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import TodoContainer from './views/todo/container/TodoContainer';
-import ProfileRouter from './views/profile/component/ProfileRouter';
+import ProfileRouter from './views/profile/ProfileRouter';
 import NewsContainer from './views/news/container/NewsContainer';
 
 function Router() {
