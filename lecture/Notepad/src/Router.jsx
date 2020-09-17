@@ -26,7 +26,7 @@ function Router() {
         <Route path="/" exact component={TodoContainer} />
         <Route path="/todo" component={TodoContainer} />
         <Route path="/profile" component={ProfileRouter} />
-        <Route path="/news" component={NewsContainer} />
+        <Route path="/news/:selectCategory?" component={NewsContainer} />
         <Route
           render={(location) => (
             <div>

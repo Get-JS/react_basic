@@ -1,47 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import axios from 'axios';
 import NewsList from '../component/NewsList';
 import Categories from '../component/Categories';
 import categoriesMenu from '../../../config/menu/News/CategoriesMenu';
+import usePromise from '../../../lib/hooks/usePromise';
 
-function NewsContainer() {
-  const [selectCategory, setSelectCategory] = useState(categoriesMenu[0].name);
-  const handleCategory = useCallback(
-    (category) => setSelectCategory(category),
-    [],
-  );
+function NewsContainer(props) {
+  const { match } = props;
+  const { selectCategory } = match.params;
 
-  const [articles, setArticles] = useState();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const query =
-          selectCategory === categoriesMenu[0].name
-            ? ''
-            : `&category=${selectCategory}`;
-        const response = await axios.get(
-          `http://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=e585fe20a46048f89a7400e950c22bd9`,
-        );
-        setArticles(response.data.articles);
-      } catch (error) {
-        console.log('error', error);
-      }
-      setLoading(false);
-    };
-    fetchData();
+  const [loading, response, error] = usePromise(() => {
+    const query = !selectCategory ? '' : `&category=${selectCategory}`;
+    return axios.get(
+      `http://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=e585fe20a46048f89a7400e950c22bd9`,
+    );
   }, [selectCategory]);
 
   return (
     <>
-      <Categories
-        categoriesMenu={categoriesMenu}
-        selectCategory={selectCategory}
-        handleCategory={handleCategory}
+      <Categories categoriesMenu={categoriesMenu} />
+      <NewsList
+        articles={response?.data?.articles}
+        loading={loading}
+        error={error}
       />
-      <NewsList articles={articles} loading={loading} />
     </>
   );
 }
