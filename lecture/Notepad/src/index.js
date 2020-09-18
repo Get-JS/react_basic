@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import './assets/scss/index.css';
 import Client from './Client';
+import { ColorProvider } from './lib/contexts/color';
 import * as serviceWorker from './serviceWorker';
 
-ReactDom.render(<Client />, document.getElementById('root'));
+ReactDom.render(
+  <ColorProvider>
+    <Client />
+  </ColorProvider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
