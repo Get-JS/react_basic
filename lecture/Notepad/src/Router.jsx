@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
+import './assets/scss/router/NavLinkList.scss';
 import TodoContainer from './views/todo/container/TodoContainer';
 import ProfileRouter from './views/profile/ProfileRouter';
 import NewsContainer from './views/news/container/NewsContainer';
@@ -7,21 +8,23 @@ import NewsContainer from './views/news/container/NewsContainer';
 function Router() {
   return (
     <BrowserRouter>
-      <ul>
+      <ul className="NavLinkList">
         <li>
-          <Link to="/">HOME</Link>
+          <NavLink activeClassName={'active'} to="/todo">
+            TODO
+          </NavLink>
         </li>
         <li>
-          <Link to="/todo">TODO</Link>
+          <NavLink activeClassName={'active'} to="/profile">
+            PROFILE
+          </NavLink>
         </li>
         <li>
-          <Link to="/profile">PROFILE</Link>
-        </li>
-        <li>
-          <Link to="/news">NEWS</Link>
+          <NavLink activeClassName={'active'} to="/news">
+            NEWS
+          </NavLink>
         </li>
       </ul>
-      <hr />
       <Switch>
         <Route path="/" exact component={TodoContainer} />
         <Route path="/todo" component={TodoContainer} />

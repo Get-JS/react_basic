@@ -1,5 +1,28 @@
 import React, { useContext } from 'react';
+import '../assets/scss/selectColorBox/SelectColorBox.scss';
 import ColorContext from '../lib/contexts/color';
+import { MdCheckBox } from 'react-icons/md';
+
+function SelectColors() {
+  const { state, actions } = useContext(ColorContext);
+  return (
+    <div className="SelectColorBox">
+      <h2>background colors select</h2>
+      <div className="selectBox">
+        {COLORS.map((color) => (
+          <div
+            key={color}
+            style={{ background: color }}
+            className={'item'}
+            onClick={() => actions.setColor(color)}
+          >
+            {state.color === color ? <MdCheckBox /> : ''}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const COLORS = [
   '#e9ecef',
@@ -11,29 +34,4 @@ const COLORS = [
   'indigo',
   'violet',
 ];
-
-function SelectColors() {
-  const { actions } = useContext(ColorContext);
-  return (
-    <div style={{ position: 'absolute', right: '0px', top: '0px' }}>
-      <h2>background colors select</h2>
-      <div style={{ display: 'flex' }}>
-        {COLORS.map((color) => (
-          <div
-            key={color}
-            style={{
-              background: color,
-              border: '1px solid',
-              width: '24px',
-              height: '24px',
-              cursor: 'pointer',
-            }}
-            onClick={() => actions.setColor(color)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default SelectColors;
