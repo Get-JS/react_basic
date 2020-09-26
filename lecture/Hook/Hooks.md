@@ -232,7 +232,7 @@ export default use;
 ## useOnFirstRender like constructor (customHook)
 
 ```jsx
-import React from "react";
+import React, { useRef } from "react";
 
 function useOnFirstRender(func) {
   const isFirstRef = useRef(true);
@@ -304,7 +304,7 @@ function Fcomponent() {
 ```
 
 - `useReducer` 훅을 이용해서 `forceUpdate` 메서드를 구현한 코드다.
-- forceUpdate 함수를 호출하면 상탯값이 항상 변경되므로 클래스형 컴포넌트의 forcUpdate 메서드처럼 동작한다.
+- forceUpdate 함수를 호출하면 상탯값이 항상 변경되므로 클래스형 컴포넌트의 forceUpdate 메서드처럼 동작한다.
 
 ## useHasMounted (customHook)
 
