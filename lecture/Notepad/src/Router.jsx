@@ -4,6 +4,7 @@ import './assets/scss/router/NavLinkList.scss';
 import TodoContainer from './views/todo/container/TodoContainer';
 import ProfileRouter from './views/profile/ProfileRouter';
 import NewsContainer from './views/news/container/NewsContainer';
+import CounterContainer from './views/counter/container/CounterContainer';
 
 function Router() {
   return (
@@ -12,6 +13,11 @@ function Router() {
         <li>
           <NavLink activeClassName={'active'} to="/todo">
             TODO
+          </NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName={'active'} to="/counter">
+            COUNTER
           </NavLink>
         </li>
         <li>
@@ -28,6 +34,7 @@ function Router() {
       <Switch>
         <Route path="/" exact component={TodoContainer} />
         <Route path="/todo" component={TodoContainer} />
+        <Route path="/counter" component={CounterContainer} />
         <Route path="/profile" component={ProfileRouter} />
         <Route path="/news/:selectCategory?" component={NewsContainer} />
         <Route

@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import './assets/scss/index.css';
+import { Provider } from 'react-redux';
+import store from './modules'
+import './assets/css/reset.css';
+import './assets/css/index.css';
 import Client from './Client';
 import { ColorProvider } from './lib/contexts/color';
 import * as serviceWorker from './serviceWorker';
 
 ReactDom.render(
-  <ColorProvider>
-    <Client />
-  </ColorProvider>,
+  <Provider store={store}>
+    <ColorProvider>
+      <Client />
+    </ColorProvider>
+  </Provider>,
   document.getElementById('root')
 );
 
