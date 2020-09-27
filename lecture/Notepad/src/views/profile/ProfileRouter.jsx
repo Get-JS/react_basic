@@ -1,19 +1,34 @@
 import React from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import Profile from './component/Profile';
+import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import '../../assets/scss/router/NavLinkList.scss';
+import ProfileUserListContainer from './container/ProfileUserListContainer';
+import ProfileUserContainer from './container/ProfileUserContainer';
 
 function ProfileRouter() {
   return (
     <BrowserRouter>
-      <h1>Admin</h1>
-      <ul>
+      <ul className="NavLinkList">
         <li>
-          <Link to="/profile/test12?detail=true">PROFILE: test12</Link>
+          <NavLink activeClassName="active" to="/profile/userList">
+            PROFILE_USER_LIST
+          </NavLink>
         </li>
       </ul>
-      <hr />
-      <Route path="/profile" exact component={() => <div>select userId</div>} />
-      <Route path="/profile/:userId" component={Profile} />
+      <Route
+        path="/profile"
+        exact
+        component={() => (
+          <h1 style={{ textAlign: 'center', margin: '10px', color: 'red' }}>
+            Select userId!!!
+          </h1>
+        )}
+      />
+      <Route
+        path="/profile/userList"
+        exact
+        component={ProfileUserListContainer}
+      />
+      <Route path="/profile/user/:userId" component={ProfileUserContainer} />
     </BrowserRouter>
   );
 }
