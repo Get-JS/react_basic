@@ -1,13 +1,12 @@
-import React, { memo, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import Counter from '../component/Counter';
 import { increase, decrease } from '../../../modules/counter';
+import useActions from '../../../lib/hooks/useActions';
 
 function CounterContainer() {
   const number = useSelector(({ counter }) => counter.number);
-  const dispatch = useDispatch();
-  const onIncrease = useCallback(() => dispatch(increase())[dispatch]);
-  const onDecrease = useCallback(() => dispatch(decrease())[dispatch]);
+  const [onIncrease, onDecrease] = useActions([increase, decrease], []);
   return (
     <Counter number={number} onIncrease={onIncrease} onDecrease={onDecrease} />
   );
