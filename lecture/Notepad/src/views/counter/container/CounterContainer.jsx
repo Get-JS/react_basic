@@ -6,13 +6,29 @@ import {
   decrease,
   increaseAsync,
   decreaseAsync,
+  increaseSagaAsync,
+  decreaseSagaAsync,
 } from '../../../modules/counter';
 import useActions from '../../../lib/hooks/useActions';
 
 function CounterContainer() {
   const number = useSelector(({ counter }) => counter.number);
-  const [onIncrease, onDecrease, onIncreaseAsync, onDecreaseAsync] = useActions(
-    [increase, decrease, increaseAsync, decreaseAsync],
+  const [
+    onIncrease,
+    onDecrease,
+    onIncreaseAsync,
+    onDecreaseAsync,
+    onIncreaseSagaAsync,
+    onDecreaseSagaAsync,
+  ] = useActions(
+    [
+      increase,
+      decrease,
+      increaseAsync,
+      decreaseAsync,
+      increaseSagaAsync,
+      decreaseSagaAsync,
+    ],
     [],
   );
   return (
@@ -22,6 +38,8 @@ function CounterContainer() {
       onDecrease={onDecrease}
       onIncreaseAsync={onIncreaseAsync}
       onDecreaseAsync={onDecreaseAsync}
+      onIncreaseSagaAsync={onIncreaseSagaAsync}
+      onDecreaseAsync={onDecreaseSagaAsync}
     />
   );
 }
