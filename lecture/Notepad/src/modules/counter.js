@@ -10,26 +10,33 @@ const DECREASE_SAGA_ASYNC = 'counter/DECREASE_SAGA_ASYNC';
 export const increase = createAction(INCREASE);
 export const decrease = createAction(DECREASE);
 
+// * saga-action-test
 export const increaseSagaAsync = createAction(
   INCREASE_SAGA_ASYNC,
-  () => undefined, // * 마우스 클릭 이벤트가 payload 안에 들어가지 않도록 설정
+  () => undefined,
 );
 export const decreaseSagaAsync = createAction(
   DECREASE_SAGA_ASYNC,
   () => undefined,
 );
+// * saga-action-test - END
 
-export const increaseAsync = () => (dispatch) => {
+// * thunk test
+export const increaseAsync = (e) => (dispatch) => {
   setTimeout(() => {
+    console.log('e', e);
     dispatch(increase());
-  }, 1000);
+  }, 5000);
 };
-export const decreaseAsync = () => (dispatch) => {
+export const decreaseAsync = (e) => (dispatch) => {
   setTimeout(() => {
+    console.log('e', e);
     dispatch(decrease());
   }, 1000);
 };
+// * thunk test - END
 
+// * saga test
 function* increaseSaga() {
   yield delay(1000);
   yield put(increase());
@@ -44,6 +51,7 @@ export function* counterSaga() {
   yield takeEvery(INCREASE_SAGA_ASYNC, increaseSaga);
   yield takeLatest(DECREASE_SAGA_ASYNC, decreaseSaga);
 }
+// * saga test - END
 
 const initialState = {
   number: 0,
