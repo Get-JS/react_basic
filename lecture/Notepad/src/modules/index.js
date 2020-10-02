@@ -1,13 +1,15 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { all } from 'redux-saga/effects';
-import { composeWithDevTools } from 'redux-devtools-extension';
+
 import counter, { counterSaga } from './counter';
 import todos from './todos';
 import profile from './profile';
 import loading from './loading';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { all } from 'redux-saga/effects';
 
 const rootReducer = combineReducers({
   counter,

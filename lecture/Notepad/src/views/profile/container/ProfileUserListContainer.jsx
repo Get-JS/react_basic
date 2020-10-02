@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ProfileUserList from '../component/ProfileUserList';
-import { getUsers, GET_USERS } from '../../../modules/profile';
+import { getUsers, GET_USERS } from '../../../modules/profile/user';
 import { ProfileTemplate } from '../styled-component/Profile';
 
 const ProfileUserListContainer = (props) => {

@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
-import * as api from '../lib/apis/users';
-import createRequestThunk from '../lib/thunk/createRequestThunk';
+import * as api from '../../lib/apis/users';
+import createRequestThunk from '../../lib/redux/createRequestThunk';
 
 export const GET_USERS = 'user/GET_USERS';
 export const GET_USERS_SUCESS = 'user/GET_USERS_SUCESS';
@@ -13,21 +13,21 @@ export const getUser = createRequestThunk(GET_USER, api.getUser);
 
 const initialState = {
   users: null,
-  user: null
+  user: null,
 };
 
-const profile = handleActions(
+const user = handleActions(
   {
     [GET_USERS_SUCESS]: (state, { payload }) => ({
       ...state,
-      users: payload
+      users: payload,
     }),
     [GET_USER_SUCESS]: (state, { payload }) => ({
       ...state,
-      user: payload
+      user: payload,
     }),
   },
   initialState,
 );
 
-export default profile;
+export default user;

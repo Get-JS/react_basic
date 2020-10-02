@@ -10,7 +10,7 @@ function ProfileRouter() {
       <ul className="NavLinkList">
         <li>
           <NavLink activeClassName="active" to="/profile/userList">
-            PROFILE_USER_LIST
+            PROFILE-USER-LIST
           </NavLink>
         </li>
       </ul>

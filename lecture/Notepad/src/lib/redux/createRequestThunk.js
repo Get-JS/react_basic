@@ -19,7 +19,7 @@ export default function createRequestThunk(type, request) {
         payload: error,
         error: true,
       });
-      dispatch(startLoading(type));
+      dispatch(finishLoading(type));
       throw error;
     }
   };
