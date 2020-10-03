@@ -64,7 +64,6 @@ export default function createRequestThunk(type, request) {
   const SUCESS = `${type}_SUCESS`;
   const FAILURE = `${type}_FAILURE`;
   return (params) => async (dispatch) => {
-    dispatch({ type });
     dispatch(startLoading(type));
     try {
       const { data } = await request(params);
