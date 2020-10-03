@@ -1,5 +1,7 @@
 # Redux
 
+- [참고](https://mskims.github.io/redux-saga-in-korean/)
+
 - 리덕스는 자바스크립트를 위한 상태 관리 프레임워크 이다.
 
   - `컴포넌트` 코드로부터 **상태 관리 코드를 분리할 수 있다.**

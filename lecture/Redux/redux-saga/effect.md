@@ -6,6 +6,18 @@
 - takeEvery: 들어오는 모든 액션에 대해 특정 작업을 처리해 준다.
 - takeLatest: 기존에 진행중이던 작업이 있다면 취소 처리하고 가장 마지막으로 실행된 작업만 수행한다.
 - call: Promise를 반환하는 함수를 호출하고 기다릴 수 있다.(동기) 첫 번째 파라미터는 함수, 나머지 파라미터는 해당함수에 넣을 인수이다.
+- select: 사가 내부에서 현재 상태를 조회하는 방법이다.
+  ```js
+  const counter = yield select(state => state.counter);
+  ```
+- throttle: 사가가 n초에 단 한 번만 호출되도록 설정할 수 있다.
+  ```js
+  yield throttle(3000, INCREASE_ASYNC, increaseSaga);
+  ```
+- debounce: time초 후에 실행한다.
+  ```js
+  debounce(5000, types.TRY_SET_TEXT, trySetText),
+  ```
 
 ## take, put, call
 
