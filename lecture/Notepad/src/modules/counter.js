@@ -11,15 +11,8 @@ export const increase = createAction(INCREASE);
 export const decrease = createAction(DECREASE);
 
 // * saga-action-test
-export const increaseSagaAsync = createAction(
-  INCREASE_SAGA_ASYNC,
-  () => undefined,
-);
-export const decreaseSagaAsync = createAction(
-  DECREASE_SAGA_ASYNC,
-  () => undefined,
-);
-// * saga-action-test - END
+export const increaseSagaAsync = createAction(INCREASE_SAGA_ASYNC);
+export const decreaseSagaAsync = createAction(DECREASE_SAGA_ASYNC);
 
 // * thunk test
 export const increaseAsync = (e) => (dispatch) => {
@@ -34,24 +27,20 @@ export const decreaseAsync = (e) => (dispatch) => {
     dispatch(decrease());
   }, 1000);
 };
-// * thunk test - END
 
 // * saga test
 function* increaseSaga() {
   yield delay(1000);
   yield put(increase());
 }
-
 function* decreaseSaga() {
   yield delay(1000);
   yield put(decrease());
 }
-
 export function* counterSaga() {
   yield takeEvery(INCREASE_SAGA_ASYNC, increaseSaga);
   yield takeLatest(DECREASE_SAGA_ASYNC, decreaseSaga);
 }
-// * saga test - END
 
 const initialState = {
   number: 0,

@@ -2,7 +2,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 
 import counter, { counterSaga } from './counter';
 import todos from './todos';
-import profile from './profile';
+import profile, { profileSaga } from './profile';
 import loading from './loading';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
 });
 
 function* rootSaga() {
-  yield all([counterSaga()]);
+  yield all([counterSaga(), profileSaga()]);
 }
 
 const logger = createLogger();

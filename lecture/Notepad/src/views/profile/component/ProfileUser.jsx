@@ -14,21 +14,21 @@ function Profile(props) {
   return (
     <>
       <div>
-        {postLoading && '포스트 불러오는 중.....'}
-        {!postLoading && post && (
-          <>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-          </>
-        )}
-      </div>
-      <hr />
-      <div>
         {userLoading && '유저 정보 불러오는 중.....'}
         {!userLoading && user && (
           <>
             <h1>{user.name}님 내역 입니다.</h1>
             <p>{showDetail && user.website}</p>
+          </>
+        )}
+      </div>
+      <hr />
+      <div>
+        {postLoading && '포스트 불러오는 중.....'}
+        {!postLoading && post && (
+          <>
+            <h1>{post.title}</h1>
+            <p>{post.body}</p>
           </>
         )}
       </div>
