@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server"; // * 서버에서 리액트 컴포넌트를 렌더링할 때 사용
+import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import { StaticRouter } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -11,23 +12,26 @@ import App from "./App";
 
 import express from "express";
 import path from "path";
-import fs from "fs";
+// import fs from "fs";
+
+// * Loadable Components를 통해 파일 경로를 조회할 수 있다.
+const statsFile = path.resolve("./build/loadable-stats.json");
 
 // * asset-manifest.json에서 파일 경로들을 조회
-const manifest = JSON.parse(
-  fs.readFileSync(path.resolve("./build/asset-manifest.json"), "utf8")
-);
+// const manifest = JSON.parse(
+//   fs.readFileSync(path.resolve("./build/asset-manifest.json"), "utf8")
+// );
 
-const chunks = Object.keys(manifest.files)
-  .filter((key) => /chunk\.js$/.exec(key)) // * chunk.js로 끝나는 키를 찾아서
-  .map((key) => `<script src="${manifest.files[key]}"></script>`) // * 스크립트 태그로 변환하고
-  .join(""); // * 합침
+// const chunks = Object.keys(manifest.files)
+//   .filter((key) => /chunk\.js$/.exec(key)) // * chunk.js로 끝나는 키를 찾아서
+//   .map((key) => `<script src="${manifest.files[key]}"></script>`) // * 스크립트 태그로 변환하고
+//   .join(""); // * 합침
 
 // * JS와 CSS 파일을 불러오도록 html에 코드를 삽입해야 한다.
 // * stateScript -> API를 통해 받아 온 데이터를 렌더링 하지만,
 // * 서버에서 렌더링하는 과정에서 만들어진 스토어의 상태를 브라우저에서 재사용하지 못하는 상황이다.
 // * 서버에서 만들어 준 상태를 브라우저에서 재사용하려면, 현재 스토어 상태를 문자열로 변환한 뒤 스크립트로 주입해야 한다.
-function createPage(root, stateScript) {
+function createPage(root, tags) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -40,17 +44,15 @@ function createPage(root, stateScript) {
       />
       <meta name="theme-color" content="#000000" />
       <title>React App</title>
-      <link href="${manifest.files["main.css"]}" rel="stylesheet" />
+      ${tags.styles}
+      ${tags.links}
     </head>
     <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="root">
         ${root}
       </div>
-      ${stateScript}
-      <script src="${manifest.files["runtime-main.js"]}"></script>
-      ${chunks}
-      <script src="${manifest.files["main.js"]}"></script>
+      ${tags.scripts}
     </body>
     </html>
   `;
@@ -78,14 +80,20 @@ const serverRender = async (req, res, next) => {
     done: false,
     promises: [],
   };
+
+  // * 필요한 파일을 추출하기 위한 ChunkExtractor
+  const extractor = new ChunkExtractor({ statsFile });
+
   const jsx = (
-    <PreloadContext.Provider value={preloadContext}>
-      <Provider store={store}>
-        <StaticRouter location={req.url} context={context}>
-          <App />
-        </StaticRouter>
-      </Provider>
-    </PreloadContext.Provider>
+    <ChunkExtractorManager extractor={extractor}>
+      <PreloadContext.Provider value={preloadContext}>
+        <Provider store={store}>
+          <StaticRouter location={req.url} context={context}>
+            <App />
+          </StaticRouter>
+        </Provider>
+      </PreloadContext.Provider>
+    </ChunkExtractorManager>
   );
 
   // * renderToStaticMarkup으로 한 번 렌더링
@@ -109,7 +117,14 @@ const serverRender = async (req, res, next) => {
   // * JSON을 문자열로 변환하고 악성 스크립트가 실행되는 것을 방지하기 위해 <를 치환 처리
   const stateString = JSON.stringify(store.getState()).replace(/</g, "\\u003c");
   const stateScript = `<script>__PRELOADED_STATE__ = ${stateString}</script>`; // * 리덕스 초기 상태를 스크릅트로 주입한다.
-  res.send(createPage(root, stateScript));
+
+  // * 미리 불러와야 하는 스타일/스크립트를 추출
+  const tags = {
+    scripts: stateScript + extractor.getScriptTags(), // * 스크립트 일부분에 리덕스 상태 넣기
+    links: extractor.getLinkTags(),
+    styles: extractor.getStyleTags(),
+  };
+  res.send(createPage(root, tags));
 };
 
 const serve = express.static(path.resolve("./build"), {
