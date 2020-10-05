@@ -1,18 +1,27 @@
 import { createAction, handleActions } from 'redux-actions';
-import { delay, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-const INCREASE = 'counter/INCREASE';
-const DECREASE = 'counter/DECREASE';
-
-const INCREASE_SAGA_ASYNC = 'counter/INCREASE_SAGA_ASYNC';
-const DECREASE_SAGA_ASYNC = 'counter/DECREASE_SAGA_ASYNC';
+export const INCREASE = 'counter/INCREASE';
+export const DECREASE = 'counter/DECREASE';
+export const INCREASE_SAGA_ASYNC = 'counter/INCREASE_SAGA_ASYNC';
+export const DECREASE_SAGA_ASYNC = 'counter/DECREASE_SAGA_ASYNC';
 
 export const increase = createAction(INCREASE);
 export const decrease = createAction(DECREASE);
-
-// * saga-action-test
 export const increaseSagaAsync = createAction(INCREASE_SAGA_ASYNC);
 export const decreaseSagaAsync = createAction(DECREASE_SAGA_ASYNC);
+
+export const counterTypeList = {
+  INCREASE,
+  DECREASE,
+  INCREASE_SAGA_ASYNC,
+  DECREASE_SAGA_ASYNC,
+};
+export const counterActionList = {
+  increase,
+  decrease,
+  increaseSagaAsync,
+  decreaseSagaAsync,
+};
 
 // * thunk test
 export const increaseAsync = (e) => (dispatch) => {
@@ -27,20 +36,6 @@ export const decreaseAsync = (e) => (dispatch) => {
     dispatch(decrease());
   }, 1000);
 };
-
-// * saga test
-function* increaseSaga() {
-  yield delay(1000);
-  yield put(increase());
-}
-function* decreaseSaga() {
-  yield delay(1000);
-  yield put(decrease());
-}
-export function* counterSaga() {
-  yield takeEvery(INCREASE_SAGA_ASYNC, increaseSaga);
-  yield takeLatest(DECREASE_SAGA_ASYNC, decreaseSaga);
-}
 
 const initialState = {
   number: 0,

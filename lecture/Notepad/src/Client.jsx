@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import Router from './Router';
+import App from './App';
 import ColorContext from './lib/contexts/color';
-import SelectColors from './components/SelectColors';
+import SelectColors from './components/common/SelectColors';
+import MainHeader from './components/common/MainHeader';
 
 function Client() {
   const { state } = useContext(ColorContext);
@@ -9,7 +10,8 @@ function Client() {
     <>
       <SelectColors />
       <div style={{ backgroundColor: state.color }}>
-        <Router />
+        <MainHeader />
+        <App />
       </div>
     </>
   );

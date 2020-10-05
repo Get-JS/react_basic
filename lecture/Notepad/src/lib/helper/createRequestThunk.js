@@ -1,4 +1,6 @@
-import { startLoading, finishLoading } from '../../modules/loading';
+import { loadingActionList } from '../../redux/loading';
+
+const { startLoading, finishLoading } = loadingActionList;
 
 export default function createRequestThunk(type, request) {
   const SUCESS = `${type}_SUCESS`;
