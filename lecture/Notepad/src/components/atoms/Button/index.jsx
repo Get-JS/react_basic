@@ -1,17 +1,18 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import palette from '../../../../lib/styles/palette';
+import palette from 'lib/styles/palette';
 
-export const buttonStyle = css`
+const S = styled.button`
+  background: ${palette.gray[8]};
+  color: white;
+  padding: 0.25rem 1rem;
+  outline: none;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.25rem 1rem;
-  color: white;
-  outline: none;
   cursor: pointer;
-  background: ${palette.gray[8]};
   &:hover {
     background: ${palette.gray[6]};
   }
@@ -33,10 +34,8 @@ export const buttonStyle = css`
     `}
 `;
 
-export const StyledButton = styled.button`
-  ${buttonStyle}
-`;
+const Button = (props) => {
+  return <S {...props} />;
+};
 
-export const StyledLink = styled(Link)`
-  ${buttonStyle}
-`;
+export default Button;

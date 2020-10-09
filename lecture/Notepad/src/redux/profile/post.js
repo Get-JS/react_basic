@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import * as api from '../../lib/apis/post';
-import createRequestThunk from '../../lib/helper/createRequestThunk';
+import * as api from 'utils/apis/post';
+import createRequestThunk from 'redux/helper/createRequestThunk';
 
 export const GET_POST = 'post/GET_POST';
 export const GET_POST_SUCESS = 'post/GET_POST_SUCESS';

@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
-import { GET_USERS, GET_USER } from '../../redux/profile/user';
-import * as api from '../../lib/apis/user';
-import createRequestSaga from '../../lib/helper/createRequestSaga';
+import { GET_USERS, GET_USER } from 'redux/profile/user';
+import * as api from 'utils/apis/user';
+import createRequestSaga from 'redux/helper/createRequestSaga';
 
 const getUsersSaga = createRequestSaga(GET_USERS, api.getUsers);
 const getUserSaga = createRequestSaga(GET_USER, api.getUser);

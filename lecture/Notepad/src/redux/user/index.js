@@ -1,52 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
-import { createRequestActionTypes } from '../lib/helper/createRequestSaga';
-
-export const CHANGE_FIELD = 'auth/CHANGE_FIELD';
-export const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
-export const [
-  REGISTER,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-] = createRequestActionTypes('auth/REGISTER');
-export const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes(
-  'auth/LOGIN',
-);
-
-export const changeField = createAction(
-  CHANGE_FIELD,
-  ({ form, key, value }) => ({
-    form, // register , login
-    key, // username, password, passwordConfirm
-    value, // 실제 바꾸려는 값
-  }),
-);
-export const initializeForm = createAction(INITIALIZE_FORM, (form) => form); // register / login
-export const register = createAction(REGISTER, ({ username, password }) => ({
-  username,
-  password,
-}));
-export const login = createAction(LOGIN, ({ username, password }) => ({
-  username,
-  password,
-}));
-
-export const authTypeList = {
-  CHANGE_FIELD,
-  INITIALIZE_FORM,
-  REGISTER,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-  LOGIN,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-};
-export const authActionList = {
-  changeField,
-  initializeForm,
-  register,
-  login,
-};
 
 const initialState = {
   register: {

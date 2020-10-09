@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import * as api from '../../lib/apis/user';
-import createRequestThunk from '../../lib/helper/createRequestThunk';
+import * as api from 'utils/apis/user';
+import createRequestThunk from '../helper/createRequestThunk';
 
 export const GET_USERS = 'user/GET_USERS';
 export const GET_USER = 'user/GET_USER';

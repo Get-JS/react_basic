@@ -1,4 +1,4 @@
-import mergeReducers from '../../lib/helper/mergeReducers';
+import mergeReducers from '../helper/mergeReducers';
 import user from './user';
 import post from './post';
 

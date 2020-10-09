@@ -1,4 +1,4 @@
-import { loadingActionList } from '../../redux/loading';
+import { loadingActionList } from '../loading';
 
 const { startLoading, finishLoading } = loadingActionList;
 
