@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from 'lib/styles/palette';
+import palette from 'utils/styles/palette';
 
 export const S = styled.input`
   font-size: 1rem;
@@ -12,9 +12,6 @@ export const S = styled.input`
   &:focus {
     color: $oc-teal-7;
     border-bottom: 1px solid ${palette.gray[7]};
-  }
-  & + & {
-    margin-top: 1rem;
   }
 `;
 

@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 
 // import PostListPage from 'pages/PostListPage';
 import LoginPage from 'pages/Login/';
-// import RegisterPage from 'pages/RegisterPage';
+import RegisterPage from 'pages/Register';
 // import WritePage from 'pages/WritePage';
 // import PostPage from 'pages/PostPage';
 
@@ -17,8 +17,8 @@ const App = () => {
     <>
       {/* <Route path={['/@:username', '/']} exact component={PostListPage} /> */}
       <Route path="/login" component={LoginPage} />
-      {/* <Route path="/register" component={RegisterPage} />
-      <Route path="/write" component={WritePage} />
+      <Route path="/register" component={RegisterPage} />
+      {/* <Route path="/write" component={WritePage} />
       <Route path="/@:username/:postId" component={PostPage} /> */}
 
       {/* <Route path="/todo" component={TodoContainer} />

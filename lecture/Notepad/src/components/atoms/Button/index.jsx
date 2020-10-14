@@ -1,10 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import palette from 'lib/styles/palette';
+import palette from 'utils/styles/palette';
 
 const S = styled.button`
-  background: ${palette.gray[8]};
   color: white;
   padding: 0.25rem 1rem;
   outline: none;
@@ -13,6 +11,7 @@ const S = styled.button`
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+  background: ${palette.gray[8]};
   &:hover {
     background: ${palette.gray[6]};
   }
@@ -24,14 +23,23 @@ const S = styled.button`
       width: 100%;
       font-size: 1.125rem;
     `}
-  ${(props) =>
-    props.cyan &&
-    css`
-      background: ${palette.cyan[5]};
-      &:hover {
-        background: ${palette.cyan[4]};
-      }
-    `}
+  ${(props) => {
+    if (props.disabled) {
+      return css`
+        background: ${palette.cyan[5]};
+        &:hover {
+          background: ${palette.cyan[4]};
+        }
+      `;
+    } else if (props.cyan) {
+      css`
+        background: ${palette.cyan[5]};
+        &:hover {
+          background: ${palette.cyan[4]};
+        }
+      `;
+    }
+  }}
 `;
 
 const Button = (props) => {

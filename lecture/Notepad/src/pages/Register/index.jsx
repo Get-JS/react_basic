@@ -5,41 +5,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import { initializeForm } from 'redux/user/action';
 import useAuthCheck from 'utils/hooks/useAuthCheck';
 
-import LoginTemplate from 'components/templates/Login/';
+import RegisterTemplate from 'components/templates/Register/';
 import TextMessage from 'components/atoms/TextMessage/';
-import LoginForm from './container/LoginForm';
+import RegisterForm from './container/RegisterForm';
 
-function LoginPage() {
-  useAuthCheck();
+function RegisterPage() {
+  useAuthCheck({});
   const [error, setError] = useState('');
 
-  const { loginError } = useSelector(({ user }) => ({
-    loginError: user.login.error,
+  const { registerError } = useSelector(({ user }) => ({
+    registerError: user.register.error,
   }));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initializeForm('login'));
+    dispatch(initializeForm('register'));
   }, [dispatch]);
 
   useEffect(() => {
-    if (loginError) {
-      setError(`Error: ${loginError.response.data.message}`);
+    if (registerError) {
+      setError(`Error: ${registerError.response.data.message}`);
     }
-  }, [dispatch, loginError]);
+  }, [dispatch, registerError]);
 
   return (
-    <LoginTemplate>
+    <RegisterTemplate>
       <div className="logo-area">
         <Link to="/">Notepad</Link>
       </div>
-      <LoginForm />
+      <RegisterForm />
       {error && <TextMessage color="warning">{error}</TextMessage>}
       <div className="nav-bar">
-        <Link to="/register">회원가입</Link>
+        <Link to="/login">로그인</Link>
       </div>
-    </LoginTemplate>
+    </RegisterTemplate>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

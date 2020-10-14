@@ -21,8 +21,8 @@ export const userActionList = {
   getUser,
 };
 
-export const getUsersThunk = createRequestThunk(GET_USERS, api.getUsers);
-export const getUserThunk = createRequestThunk(GET_USER, api.getUser);
+// export const getUsersThunk = createRequestThunk(GET_USERS, api.getUsers);
+// export const getUserThunk = createRequestThunk(GET_USER, api.getUser);
 
 const initialState = {
   users: null,

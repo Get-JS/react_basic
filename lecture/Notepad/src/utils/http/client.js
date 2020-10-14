@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import auth from 'utils/apis/auth';
+import { getAccessToken, getRefreshToken, setAccessToken, removeAccessToken } from 'utils/http/auth';
 import queryData from './queryData';
 import { SERVER_TOKEN, SERVER_TOKEN_NOT_VALID } from 'setting';
 
@@ -19,13 +19,7 @@ const axiosSetting = {
   api: '/api/v1',
   port: '',
   server: function () {
-    return (
-      (this.scheme ? this.scheme + ':' : '') +
-      '//' +
-      this.host +
-      this.api +
-      (this.port ? ':' + this.port : '')
-    );
+    return (this.scheme ? this.scheme + ':' : '') + '//' + this.host + this.api + (this.port ? ':' + this.port : '');
   },
   redirectPage: () => {
     window.location.href = '/';
@@ -56,7 +50,7 @@ const axios = Axios.create({
 // * Add a request interceptor
 axios.interceptors.request.use(
   (config) => {
-    const accessToken = auth.getAccessToken();
+    const accessToken = getAccessToken();
     if (accessToken) config.headers.Authorization = `${SERVER_TOKEN} ${accessToken}`;
     return config;
   },
@@ -81,12 +75,8 @@ axios.interceptors.response.use(
     const url = originalRequest.url || '';
 
     // * API 호출 시, accessToken 만료
-    if (
-      status === 401 &&
-      url.indexOf(api.UPDATE_TOKEN) === -1 &&
-      response.code === SERVER_TOKEN_NOT_VALID
-    ) {
-      const refreshToken = auth.getRefreshToken();
+    if (status === 401 && url.indexOf(api.UPDATE_TOKEN) === -1 && response.code === SERVER_TOKEN_NOT_VALID) {
+      const refreshToken = getRefreshToken();
       const checkToken = queryData['checkToken'];
       const updateToken = queryData['updateToken'];
 
@@ -99,9 +89,9 @@ axios.interceptors.response.use(
         .then(async (response) => {
           if (!response.data) throw new Error();
           else {
-            auth.setAccessToken(response.data); // * 만료되지 않은 경우, accessToken ReSetting
+            setAccessToken(response.data); // * 만료되지 않은 경우, accessToken ReSetting
             if (url.indexOf(api.CHECK_TOKEN) > -1) {
-              const accessToken = auth.getAccessToken();
+              const accessToken = getAccessToken();
               checkToken.token = accessToken;
               originalRequest.data = checkToken;
             }
@@ -109,7 +99,7 @@ axios.interceptors.response.use(
           }
         })
         .catch(() => {
-          auth.removeAccessToken(); // * 만료된 경우, localStorage 삭제
+          removeAccessToken(); // * 만료된 경우, localStorage 삭제
           axiosSetting.redirectPage(); // * token_not_valid login => login(required)!!
         });
     }

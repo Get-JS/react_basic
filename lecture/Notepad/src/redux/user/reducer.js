@@ -1,16 +1,36 @@
 import { handleActions } from 'redux-actions';
 import produce from 'immer';
+import {
+  CHANGE_FIELD,
+  INITIALIZE_FORM,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  REGISTER_VALIDATION,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  CHECK_SUCCESS,
+  CHECK_FAILURE,
+  LOGOUT,
+} from './action';
 
 const initialState = {
   register: {
+    email: '',
     username: '',
     password: '',
     passwordConfirm: '',
+    validation: {
+      email: { check: '', status: '', msg: '' },
+      username: { check: '', status: '', msg: '' },
+      password: { check: '', status: '', msg: '' },
+      passwordConfirm: { check: '', status: '', msg: '' },
+    },
     error: null,
   },
   login: {
-    username: '',
+    email: '',
     password: '',
+    validation: '',
     error: null,
   },
   user: null, // * 유저 정보
@@ -40,6 +60,14 @@ export default handleActions(
         draft.register.error = error;
       }),
 
+    [REGISTER_VALIDATION]: (state, { payload: { key, check, status, msg } }) =>
+      produce(state, (draft) => {
+        if (!draft.register.validation[key]) draft.register.validation[key] = {};
+        draft.register.validation[key]['check'] = check;
+        draft.register.validation[key]['status'] = status;
+        draft.register.validation[key]['msg'] = msg;
+      }),
+
     [LOGIN_SUCCESS]: (state, { payload: user }) =>
       produce(state, (draft) => {
         draft.login.error = null;
@@ -50,11 +78,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.login.error = error;
       }),
-
-    [TEMP_SET_USER]: (state, { payload: user }) => ({
-      ...state,
-      user,
-    }),
 
     [CHECK_SUCCESS]: (state, { payload: user }) => ({
       ...state,

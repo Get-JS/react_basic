@@ -1,70 +1,33 @@
-import React, { useEffect, useState, memo } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { changeField, initializeForm, login } from 'redux/user/index';
-import { check } from 'redux/user';
+import { changeField, login } from 'redux/user/action';
 import LoginForm from 'components/organism/LoiginForm/';
 
-function Container(props) {
-  const { history } = props;
-  const [error, setError] = useState(null);
-
-  const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
+function Container() {
+  const { form } = useSelector(({ user }) => ({
+    form: user.login,
     user: user.user,
   }));
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: 'login',
+        formType: 'login',
         key: name,
         value,
       }),
     );
   };
 
-  // * 폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = form;
-    dispatch(login({ username, password }));
+    const { email, password } = form;
+    dispatch(login({ email, password }));
   };
 
-  // * 컴포넌트가 처음 렌더링 될 때 form 을 초기화함
-  useEffect(() => {
-    dispatch(initializeForm('login'));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (authError) {
-      setError('로그인 실패', authError.response.status);
-      return;
-    }
-    if (auth) {
-      dispatch(check());
-    }
-  }, [auth, authError, dispatch]);
-
-  useEffect(() => {
-    if (user) {
-      history.push('/');
-      try {
-        localStorage.setItem('user', JSON.stringify(user));
-      } catch (e) {
-        console.log('localStorage is not working');
-        // modal dispatch
-      }
-    }
-  }, [history, user]);
-
-  return (
-    <LoginForm type={'login'} form={form} onChange={onChange} onSubmit={onSubmit} error={error} />
-  );
+  return <LoginForm form={form} onChange={onChange} onSubmit={onSubmit} />;
 }
 
-export default memo(withRouter(Container));
+export default Container;

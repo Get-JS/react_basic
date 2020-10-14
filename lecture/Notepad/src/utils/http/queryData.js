@@ -6,10 +6,10 @@ const queryData = {
    * * Authorization: JWT 불필요
    */
   nRegister: {
-    sign_up_type: '', // * (normal default [server])
-    email: '',
-    username: '',
-    password: '',
+    sign_up_type: 'string', // * (normal default [server])
+    email: 'string',
+    username: 'string',
+    password: 'string',
   },
 
   /**
@@ -18,8 +18,8 @@ const queryData = {
    * * Authorization: JWT 불필요
    */
   nLogin: {
-    email: '',
-    password: '',
+    email: 'string',
+    password: 'string',
   },
 
   /**
@@ -237,3 +237,12 @@ const queryData = {
 };
 
 export default queryData;
+
+export function selialize({ type, originDataInfo }) {
+  const dataInfo = {};
+  const dataKeys = Object.keys(queryData[type]);
+  Object.entries(originDataInfo).forEach(([key, value]) => {
+    if (dataKeys.includes(key)) dataInfo[key] = value;
+  });
+  return dataInfo;
+}
