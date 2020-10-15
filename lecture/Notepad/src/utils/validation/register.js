@@ -19,7 +19,7 @@ const singupAlertCheck = {
   username: (name) => {
     if (!name) return { check: true, msg: '필수 값 입니다.' };
     else if (name.length > 8) return { check: true, msg: '8자 이내로 작성해주세요.' };
-    else return { check: false, msg: '' };
+    else return { check: false, msg: '올바른 양식입니다.' };
   },
   email: (email) => {
     if (!email) return { check: true, msg: '필수 값 입니다.' };

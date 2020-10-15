@@ -5,7 +5,6 @@ import Button from 'components/atoms/Button/';
 import TextMessage from 'components/atoms/TextMessage/';
 import InputBox from 'components/atoms/InputBox';
 import FormGroup from 'components/templates/FormGroup/index';
-import { MdCheckCircle, MdError } from 'react-icons/md';
 
 RegisterForm.propTypes = {
   form: PropTypes.object,
@@ -40,13 +39,11 @@ function RegisterForm(props) {
             color={validation.email.status}
           />
           {validation.email && (
-            <TextMessage align="left" color={validation.email.status}>
-              <MdCheckCircle />
+            <TextMessage status={validation.email.status} color={validation.email.status}>
               {validation.email.msg}
             </TextMessage>
           )}
         </FormGroup>
-
         <FormGroup>
           <InputBox
             autoComplete="username"
@@ -57,12 +54,11 @@ function RegisterForm(props) {
             color={validation.username.status}
           />
           {validation.username && (
-            <TextMessage align="left" color={validation.username.status}>
+            <TextMessage status={validation.username.status} color={validation.username.status}>
               {validation.username.msg}
             </TextMessage>
           )}
         </FormGroup>
-
         <FormGroup>
           <InputBox
             autoComplete="new-password"
@@ -74,12 +70,11 @@ function RegisterForm(props) {
             color={validation.password.status}
           />
           {validation.password && (
-            <TextMessage align="left" color={validation.password.status}>
+            <TextMessage status={validation.password.status} color={validation.password.status}>
               {validation.password.msg}
             </TextMessage>
           )}
         </FormGroup>
-
         <FormGroup>
           <InputBox
             autoComplete="new-passwordConfirm"
@@ -91,17 +86,18 @@ function RegisterForm(props) {
             color={validation.passwordConfirm.status}
           />
           {validation.passwordConfirm && (
-            <TextMessage align="left" color={validation.passwordConfirm.status}>
+            <TextMessage status={validation.passwordConfirm.status} color={validation.passwordConfirm.status}>
               {validation.passwordConfirm.msg}
             </TextMessage>
           )}
         </FormGroup>
 
-        <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={isSubmitEnable}>
+        <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={!isSubmitEnable}>
           회원가입
         </Button>
       </form>
     </>
   );
 }
+
 export default RegisterForm;

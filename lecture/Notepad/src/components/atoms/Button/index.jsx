@@ -11,10 +11,6 @@ const S = styled.button`
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  background: ${palette.gray[8]};
-  &:hover {
-    background: ${palette.gray[6]};
-  }
   ${(props) =>
     props.fullWidth &&
     css`
@@ -26,16 +22,23 @@ const S = styled.button`
   ${(props) => {
     if (props.disabled) {
       return css`
+        background: ${palette.gray[5]};
+        &:hover {
+          background: ${palette.gray[4]};
+        }
+      `;
+    } else if (props.cyan) {
+      return css`
         background: ${palette.cyan[5]};
         &:hover {
           background: ${palette.cyan[4]};
         }
       `;
-    } else if (props.cyan) {
-      css`
-        background: ${palette.cyan[5]};
+    } else {
+      return css`
+        background: ${palette.gray[8]};
         &:hover {
-          background: ${palette.cyan[4]};
+          background: ${palette.gray[6]};
         }
       `;
     }
