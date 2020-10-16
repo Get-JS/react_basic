@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 // import TodoContainer from 'components/todo/container/TodoContainer';
@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 // import NewsContainer from 'components/news/container/NewsContainer';
 // import CounterContainer from 'components/counter/container/CounterContainer';
 
-// import PostListPage from 'pages/PostListPage';
+import PostListPage from 'pages/PostListPage';
 import LoginPage from 'pages/Login/';
 import RegisterPage from 'pages/Register';
 // import WritePage from 'pages/WritePage';
@@ -15,7 +15,7 @@ import RegisterPage from 'pages/Register';
 const App = () => {
   return (
     <>
-      {/* <Route path={['/@:username', '/']} exact component={PostListPage} /> */}
+      <Route path={['/@:username', '/']} exact component={PostListPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       {/* <Route path="/write" component={WritePage} />
@@ -25,14 +25,14 @@ const App = () => {
       <Route path="/counter" component={CounterContainer} />
       <Route path="/profile" component={ProfileRouter} />
       <Route path="/news/:selectCategory?" component={NewsContainer} /> */}
-      <Route
+      {/* <Route
         render={(location) => (
           <div>
             <h2>PAGE NOT FOUND</h2>
             <p>{location.pathname}</p>
           </div>
         )}
-      />
+      /> */}
     </>
   );
 };

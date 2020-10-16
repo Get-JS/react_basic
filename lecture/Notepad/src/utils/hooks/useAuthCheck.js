@@ -8,7 +8,8 @@ function useAuthCheck(props) {
   const { loginRequired } = props;
   const history = useHistory();
   const dispatch = useDispatch();
-  const [token] = useState(getAccessToken());
+
+  const token = getAccessToken();
   const [authCheck, setAuthCheck] = useState(false);
 
   useEffect(() => {

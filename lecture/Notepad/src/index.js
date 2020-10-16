@@ -4,16 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'assets/css/reset.css';
 import 'assets/css/index.css';
-import { ColorProvider } from 'lib/contexts/color';
+import { ColorProvider } from 'contexts/color';
 import store from 'store';
-import Client from 'Client';
+import Router from 'Router';
 import * as serviceWorker from 'serviceWorker';
 
 ReactDom.render(
   <Provider store={store}>
     <ColorProvider>
       <BrowserRouter>
-        <Client />
+        <Router />
       </BrowserRouter>
     </ColorProvider>
   </Provider>,

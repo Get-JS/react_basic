@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import palette from 'utils/styles/palette';
 
-const S = styled.button`
-  color: white;
+const Styled = css`
+  color: white !important;
   padding: 0.25rem 1rem;
   outline: none;
   border: none;
@@ -44,6 +45,18 @@ const S = styled.button`
     }
   }}
 `;
+
+const S = styled.button`
+  ${Styled}
+`;
+
+const SLink = styled(Link)`
+  ${Styled}
+`;
+
+export const LinkButton = (props) => {
+  return <SLink {...props} />;
+};
 
 const Button = (props) => {
   return <S {...props} />;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { initializeForm } from 'redux/user/action';
@@ -10,10 +10,13 @@ import TextMessage from 'components/atoms/TextMessage/';
 import LoginForm from './container/LoginForm';
 
 function LoginPage() {
-  useAuthCheck();
+  useAuthCheck({});
   const [error, setError] = useState('');
 
-  const { loginError } = useSelector(({ user }) => ({
+  const history = useHistory();
+
+  const { user, loginError } = useSelector(({ user }) => ({
+    user: user.user,
     loginError: user.login.error,
   }));
   const dispatch = useDispatch();
@@ -27,6 +30,12 @@ function LoginPage() {
       setError(`Error: ${loginError.response.data.message}`);
     }
   }, [dispatch, loginError]);
+
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [user]);
 
   return (
     <LoginTemplate>

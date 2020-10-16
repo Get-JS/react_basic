@@ -21,7 +21,7 @@ function Container() {
   }));
   const dispatch = useDispatch();
 
-  const [isSubmitEnable, setSubmitEnable] = useState(true);
+  const [isSubmitEnable, setSubmitEnable] = useState(false);
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -62,15 +62,4 @@ function Container() {
   );
 }
 
-// useEffect(() => {
-//   Object.entries(validationObj).some(([key, fn]) => {
-//     let checkObj = {};
-//     if (key === 'password' || key === 'passwordConfirm') checkObj = fn(form.password, form.passwordConfirm);
-//     else checkObj = fn(form[key]);
-//     let status = 'success';
-//     if (checkObj.check) status = 'warning';
-//     if (checkObj.msg === validation[key].msg) return false;
-//     dispatch(registerValidation({ key, check: checkObj.check, status, msg: checkObj.msg }));
-//   });
-// }, [dispatch, form]);
 export default Container;

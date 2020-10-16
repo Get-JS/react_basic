@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from 'components/atoms/Button/';
 import TextMessage from 'components/atoms/TextMessage/';
 import InputBox from 'components/atoms/InputBox';
-import FormGroup from 'components/templates/FormGroup/index';
+import FormGroup from 'components/atoms/FormGroup/';
 
 RegisterForm.propTypes = {
   form: PropTypes.object,

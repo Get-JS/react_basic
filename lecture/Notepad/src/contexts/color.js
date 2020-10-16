@@ -3,8 +3,8 @@ import React, { createContext, useState } from 'react';
 const ColorContext = createContext({
   state: { color: '#e9ecef' },
   actions: {
-    setColor: () => { }
-  }
+    setColor: () => {},
+  },
 });
 
 const ColorProvider = ({ children }) => {
@@ -12,12 +12,10 @@ const ColorProvider = ({ children }) => {
 
   const value = {
     state: { color },
-    actions: { setColor }
+    actions: { setColor },
   };
 
-  return (
-    <ColorContext.Provider value={value}>{children}</ColorContext.Provider>
-  );
+  return <ColorContext.Provider value={value}>{children}</ColorContext.Provider>;
 };
 
 const { Consumer: ColorConsumer } = ColorContext;

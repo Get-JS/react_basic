@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Router from 'Router';
-import ColorContext from 'lib/contexts/color';
+import ColorContext from 'contexts/color';
 import SelectColors from 'components/common/SelectColors';
 import MainHeader from 'components/common/MainHeader';
 
