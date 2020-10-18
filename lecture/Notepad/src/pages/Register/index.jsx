@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { initializeForm } from 'redux/user/action';
@@ -13,7 +13,9 @@ function RegisterPage() {
   useAuthCheck({});
   const [error, setError] = useState('');
 
-  const { registerError } = useSelector(({ user }) => ({
+  const history = useHistory();
+  const { user, registerError } = useSelector(({ user }) => ({
+    user: user.user,
     registerError: user.register.error,
   }));
   const dispatch = useDispatch();
@@ -27,6 +29,12 @@ function RegisterPage() {
       setError(`Error: ${registerError.response.data.message}`);
     }
   }, [dispatch, registerError]);
+
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [history, user]);
 
   return (
     <RegisterTemplate>

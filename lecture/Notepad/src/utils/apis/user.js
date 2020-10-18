@@ -20,7 +20,7 @@ export const register = (data = {}) => {
 };
 
 export const getUser = (data = {}) => {
-  const { userId } = data;
+  const { userId = '' } = data;
   const info = selialize({ type: 'userRead', originDataInfo: data });
-  return axios.post(`${api.MEMBER}${userId}`, info);
+  return axios.get(`${api.MEMBER}${userId}`, info);
 };

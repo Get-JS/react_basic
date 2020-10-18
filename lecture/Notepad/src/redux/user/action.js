@@ -3,6 +3,7 @@ import { createRequestActionTypes } from '../helper/createRequestSaga';
 
 export const CHANGE_FIELD = 'user/CHANGE_FIELD';
 export const INITIALIZE_FORM = 'user/INITIALIZE_FORM';
+export const [USER_INFO, USER_INFO_SUCCESS, USER_INFO_FAILURE] = createRequestActionTypes('user/USER_INFO');
 export const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('user/LOGIN');
 export const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes('user/REGISTER');
 export const REGISTER_VALIDATION = 'user/REGISTER_VALIDATION';
@@ -15,6 +16,7 @@ export const changeField = createAction(CHANGE_FIELD, ({ formType, key, value })
   key,
   value,
 }));
+export const getUser = createAction(USER_INFO);
 export const check = createAction(CHECK);
 export const login = createAction(LOGIN, ({ email, password }) => ({
   email,

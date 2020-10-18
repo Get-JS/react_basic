@@ -3,6 +3,8 @@ import produce from 'immer';
 import {
   CHANGE_FIELD,
   INITIALIZE_FORM,
+  USER_INFO_SUCCESS,
+  USER_INFO_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_VALIDATION,
@@ -48,6 +50,18 @@ export default handleActions(
       ...state,
       [formType]: initialState[formType],
     }),
+
+    [USER_INFO_SUCCESS]: (state, { payload: user }) =>
+      produce(state, (draft) => {
+        draft.userError = null;
+        draft.user = user;
+      }),
+
+    [USER_INFO_FAILURE]: (state, { payload: error }) =>
+      produce(state, (draft) => {
+        draft.userError = error;
+        draft.user = null;
+      }),
 
     [REGISTER_SUCCESS]: (state, { payload: user }) =>
       produce(state, (draft) => {

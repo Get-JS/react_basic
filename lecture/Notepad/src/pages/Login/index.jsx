@@ -14,7 +14,6 @@ function LoginPage() {
   const [error, setError] = useState('');
 
   const history = useHistory();
-
   const { user, loginError } = useSelector(({ user }) => ({
     user: user.user,
     loginError: user.login.error,
@@ -35,7 +34,7 @@ function LoginPage() {
     if (user) {
       history.push('/');
     }
-  }, [user]);
+  }, [history, user]);
 
   return (
     <LoginTemplate>
