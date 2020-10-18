@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConfigBoxBlock, ConfigBoxGroup, SelectBox, ColorBox } from './style-modules/ConfigBox';
 import { MdCheck } from 'react-icons/md';
-import { AiFillFormatPainter } from 'react-icons/ai';
+import { GiPaintRoller } from 'react-icons/gi';
 
 function ConfigBox(props) {
   const { bgColor, setBgColor } = props;
@@ -9,7 +9,7 @@ function ConfigBox(props) {
   return (
     <ConfigBoxBlock>
       <ConfigBoxGroup>
-        <AiFillFormatPainter size={20} color={bgColor} />
+        <GiPaintRoller size={20} color={bgColor} />
         <h4>Background color select</h4>
         <SelectBox>
           {COLORS.map((color) => (
@@ -23,5 +23,5 @@ function ConfigBox(props) {
   );
 }
 
-const COLORS = ['#e9ecef', '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f1c40f', '#e67e22', '#e74c3c'];
+const COLORS = ['white', '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f1c40f', '#e67e22', '#e74c3c'];
 export default ConfigBox;

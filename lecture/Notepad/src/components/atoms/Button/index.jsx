@@ -12,6 +12,7 @@ const Styled = css`
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+
   ${(props) =>
     props.fullWidth &&
     css`
@@ -20,6 +21,7 @@ const Styled = css`
       width: 100%;
       font-size: 1.125rem;
     `}
+
   ${(props) => {
     if (props.disabled) {
       return css`

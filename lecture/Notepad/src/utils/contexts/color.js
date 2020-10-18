@@ -1,18 +1,18 @@
 import React, { createContext, useState } from 'react';
 
 const ColorContext = createContext({
-  state: { color: '#e9ecef' },
-  actions: {
-    setColor: () => {},
+  colorState: { bgColor: 'white' },
+  colorActions: {
+    setBgColor: () => {},
   },
 });
 
 const ColorProvider = ({ children }) => {
-  const [color, setColor] = useState('#e9ecef');
+  const [bgColor, setBgColor] = useState('white');
 
   const value = {
-    state: { color },
-    actions: { setColor },
+    colorState: { bgColor },
+    colorActions: { setBgColor },
   };
 
   return <ColorContext.Provider value={value}>{children}</ColorContext.Provider>;

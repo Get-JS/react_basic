@@ -1,15 +1,16 @@
-import Responsive from 'components/atoms/Responsive/';
+import Responsive from 'components/animation/Responsive/';
 import styled from 'styled-components';
 
 export const HeaderBlock = styled.div`
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   background: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);
 `;
 
 export const Wrapper = styled(Responsive)`
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between; /* 자식 엘리먼트 사이에 여백을 최대로 설정 */
@@ -27,6 +28,11 @@ export const Wrapper = styled(Responsive)`
 export const UserInfo = styled.div`
   font-weight: 800;
   margin-right: 1rem;
+  .avatar {
+    margin-left: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 
 /**

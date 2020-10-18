@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'assets/css/reset.css';
 import 'assets/css/index.css';
-import { ColorProvider } from 'contexts/color';
+import { ColorProvider } from 'utils/contexts/color';
 import store from 'store';
 import Router from 'Router';
 import * as serviceWorker from 'serviceWorker';

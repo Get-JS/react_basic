@@ -5,15 +5,7 @@ export const ConfigBoxBlock = styled.div`
   width: 25rem;
   height: 100%;
   min-height: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   padding: 1rem;
-
-  transform: translate(0, 30px);
-  transition: all 1s cubic-bezier(0.75, -0.02, 0.2, 0.97);
-  visibility: hidden;
 `;
 
 export const ConfigBoxGroup = styled.div`
@@ -27,10 +19,11 @@ export const SelectBox = styled.div`
 `;
 
 export const ColorBox = styled.div`
+  display: flex;
   border: 1px solid #2c3e50;
   width: 24px;
   height: 24px;
-  cursor: pointer;
   font-size: 1.5rem;
   text-align: center;
+  cursor: pointer;
 `;
