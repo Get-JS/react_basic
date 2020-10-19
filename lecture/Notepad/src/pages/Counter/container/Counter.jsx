@@ -1,17 +1,10 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import Counter from '../component/Counter';
-import {
-  increase,
-  decrease,
-  increaseAsync,
-  decreaseAsync,
-  increaseSagaAsync,
-  decreaseSagaAsync,
-} from '../../../modules/counter';
-import useActions from '../../../lib/hooks/useActions';
+import { increase, decrease, increaseAsync, decreaseAsync, increaseSagaAsync, decreaseSagaAsync } from 'redux/counter';
+import useActions from 'utils/hooks/useActions';
+import Counter from 'components/organism/Counter';
 
-function CounterContainer() {
+function Container() {
   const number = useSelector(({ counter }) => counter.number);
   const [
     onIncrease,
@@ -20,17 +13,7 @@ function CounterContainer() {
     onDecreaseAsync,
     onIncreaseSagaAsync,
     onDecreaseSagaAsync,
-  ] = useActions(
-    [
-      increase,
-      decrease,
-      increaseAsync,
-      decreaseAsync,
-      increaseSagaAsync,
-      decreaseSagaAsync,
-    ],
-    [],
-  );
+  ] = useActions([increase, decrease, increaseAsync, decreaseAsync, increaseSagaAsync, decreaseSagaAsync], []);
   return (
     <Counter
       number={number}
@@ -44,4 +27,4 @@ function CounterContainer() {
   );
 }
 
-export default memo(CounterContainer);
+export default memo(Container);

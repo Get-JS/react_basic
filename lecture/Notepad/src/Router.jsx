@@ -4,13 +4,14 @@ import { Route } from 'react-router-dom';
 // import TodoContainer from 'components/todo/container/TodoContainer';
 // import ProfileRouter from 'components/profile/ProfileRouter';
 // import NewsContainer from 'components/news/container/NewsContainer';
-// import CounterContainer from 'components/counter/container/CounterContainer';
 
 import PostListPage from 'pages/PostListPage';
-import LoginPage from 'pages/Login/';
+import LoginPage from 'pages/Login';
 import RegisterPage from 'pages/Register';
 // import WritePage from 'pages/WritePage';
 // import PostPage from 'pages/PostPage';
+
+import CounterPage from 'pages/Counter';
 
 const App = () => {
   return (
@@ -21,10 +22,10 @@ const App = () => {
       {/* <Route path="/write" component={WritePage} />
       <Route path="/@:username/:postId" component={PostPage} /> */}
 
-      {/* <Route path="/todo" component={TodoContainer} />
-      <Route path="/counter" component={CounterContainer} />
-      <Route path="/profile" component={ProfileRouter} />
-      <Route path="/news/:selectCategory?" component={NewsContainer} /> */}
+      {/* <Route path="/todo" component={TodoContainer} />*/}
+      <Route path="/counter" component={CounterPage} />
+      {/* <Route path="/profile" component={ProfileRouter} />
+      <Route path="/news/:selectCategory?" component={NewsContainer} />  */}
       {/* <Route
         render={(location) => (
           <div>

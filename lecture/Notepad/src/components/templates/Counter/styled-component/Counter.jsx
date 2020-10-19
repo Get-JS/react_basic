@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CounterTemplate = styled.div`
+export const CounterTemplateBlock = styled.div`
   width: 512px;
   margin-left: auto;
   margin-right: auto;
