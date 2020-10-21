@@ -31,7 +31,7 @@ export const Content = styled.div`
   margin-top: 3rem;
   border-radius: 4px;
   overflow: hidden;
-  width: 60rem;
+  width: 100%;
   height: 100rem;
 `;
 
