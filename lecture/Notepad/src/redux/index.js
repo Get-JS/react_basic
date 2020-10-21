@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import user from './user/reducer';
 import profile from './profile';
 import todos from './todos';
-import counter from './counter';
+import counter from './counter/reducer';
 import loading from './loading';
 
 const rootReducer = combineReducers({

@@ -1,6 +1,6 @@
 import { delay, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { INCREASE_SAGA_ASYNC, DECREASE_SAGA_ASYNC, increase, decrease } from 'redux/counter/action';
 
-// * saga test
 function* increaseSaga() {
   yield delay(1000);
   yield put(increase());

@@ -1,9 +1,9 @@
 import { all } from 'redux-saga/effects';
-// import profile from './profile/';
+import counter from './counter/saga';
 import user from './user/saga';
 
 function* rootSaga() {
-  yield all([user()]);
+  yield all([user(), counter()]);
 }
 
 export default rootSaga;

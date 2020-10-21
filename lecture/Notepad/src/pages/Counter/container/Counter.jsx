@@ -1,6 +1,13 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { increase, decrease, increaseAsync, decreaseAsync, increaseSagaAsync, decreaseSagaAsync } from 'redux/counter';
+import {
+  increase,
+  decrease,
+  increaseAsync,
+  decreaseAsync,
+  increaseSagaAsync,
+  decreaseSagaAsync,
+} from 'redux/counter/action';
 import useActions from 'utils/hooks/useActions';
 import Counter from 'components/organism/Counter';
 
