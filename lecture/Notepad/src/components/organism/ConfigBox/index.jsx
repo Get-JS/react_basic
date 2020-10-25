@@ -1,27 +1,28 @@
-import React from 'react';
-import { ConfigBoxBlock, ConfigBoxGroup, SelectBox, ColorBox } from './style-modules/ConfigBox';
+import React, { useContext } from 'react';
+import { ConfigBoxContainer, ConfigBoxWrapper, ColorSelectWrapper, ColorGroup } from './styled';
 import { MdCheck } from 'react-icons/md';
 import { GiPaintRoller } from 'react-icons/gi';
+import ColorContext from 'utils/contexts/color';
 
-function ConfigBox(props) {
-  const { bgColor, setBgColor } = props;
+function ConfigBox() {
+  const { colorState, colorActions } = useContext(ColorContext);
 
   return (
-    <ConfigBoxBlock>
-      <ConfigBoxGroup>
-        <GiPaintRoller size={20} color={bgColor} />
+    <ConfigBoxContainer>
+      <ConfigBoxWrapper>
+        <GiPaintRoller size={20} color={colorState.bgColor} />
         <h4>Background color select</h4>
-        <SelectBox>
+        <ColorSelectWrapper>
           {COLORS.map((color) => (
-            <ColorBox key={color} style={{ background: color }} onClick={() => setBgColor(color)}>
-              {bgColor === color && <MdCheck />}
-            </ColorBox>
+            <ColorGroup key={color} style={{ background: color }} onClick={() => colorActions.setBgColor(color)}>
+              {colorState.bgColor === color && <MdCheck />}
+            </ColorGroup>
           ))}
-        </SelectBox>
-      </ConfigBoxGroup>
-    </ConfigBoxBlock>
+        </ColorSelectWrapper>
+      </ConfigBoxWrapper>
+    </ConfigBoxContainer>
   );
 }
 
-const COLORS = ['white', '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f1c40f', '#e67e22', '#e74c3c'];
+const COLORS = ['white', '#bfb9b9', '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#f1c40f', '#e67e22'];
 export default ConfigBox;

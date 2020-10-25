@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Button from 'components/atoms/Button/';
-import TextMessage from 'components/atoms/TextMessage/';
+import { InputWrapper } from './styled';
+import Button from 'components/atoms/Button';
+import TextMessage from 'components/atoms/TextMessage';
 import InputBox from 'components/atoms/InputBox';
-import FormGroup from 'components/atoms/FormGroup/';
 
 RegisterForm.propTypes = {
   form: PropTypes.object,
@@ -29,7 +28,7 @@ function RegisterForm(props) {
     <>
       <h3>회원가입</h3>
       <form onSubmit={onSubmit}>
-        <FormGroup>
+        <InputWrapper>
           <InputBox
             autoComplete="email"
             name="email"
@@ -43,8 +42,8 @@ function RegisterForm(props) {
               {validation.email.msg}
             </TextMessage>
           )}
-        </FormGroup>
-        <FormGroup>
+        </InputWrapper>
+        <InputWrapper>
           <InputBox
             autoComplete="username"
             name="username"
@@ -58,8 +57,8 @@ function RegisterForm(props) {
               {validation.username.msg}
             </TextMessage>
           )}
-        </FormGroup>
-        <FormGroup>
+        </InputWrapper>
+        <InputWrapper>
           <InputBox
             autoComplete="new-password"
             name="password"
@@ -74,8 +73,8 @@ function RegisterForm(props) {
               {validation.password.msg}
             </TextMessage>
           )}
-        </FormGroup>
-        <FormGroup>
+        </InputWrapper>
+        <InputWrapper>
           <InputBox
             autoComplete="new-passwordConfirm"
             name="passwordConfirm"
@@ -90,7 +89,7 @@ function RegisterForm(props) {
               {validation.passwordConfirm.msg}
             </TextMessage>
           )}
-        </FormGroup>
+        </InputWrapper>
 
         <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={!isSubmitEnable}>
           회원가입

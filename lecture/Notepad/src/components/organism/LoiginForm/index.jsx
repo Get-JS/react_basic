@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Button from 'components/atoms/Button/';
-import FormGroup from 'components/atoms/FormGroup/';
-import Input from 'components/atoms/Input/';
+import { InputWrapper } from './styled';
+import Button from 'components/atoms/Button';
+import Input from 'components/atoms/Input';
 
 LoginForm.propTypes = {
   form: PropTypes.object,
@@ -21,11 +20,11 @@ function LoginForm(props) {
     <>
       <h3>로그인</h3>
       <form onSubmit={onSubmit}>
-        <FormGroup>
+        <InputWrapper>
           <Input autoComplete="email" name="email" placeholder="이메일" onChange={onChange} value={form.email} />
-        </FormGroup>
+        </InputWrapper>
 
-        <FormGroup>
+        <InputWrapper>
           <Input
             autoComplete="new-password"
             name="password"
@@ -34,7 +33,7 @@ function LoginForm(props) {
             onChange={onChange}
             value={form.password}
           />
-        </FormGroup>
+        </InputWrapper>
 
         <Button cyan fullWidth style={{ marginTop: '1rem' }}>
           로그인

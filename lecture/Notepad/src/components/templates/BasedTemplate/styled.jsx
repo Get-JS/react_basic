@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import Responsive from 'components/animation/Responsive/';
 
-export const BasedTemplateBlock = styled.div`
+export const BasedTemplateContainer = styled.div`
   background: ${(props) => props.bgcolor || 'white'};
 `;
 
-export const NavLayout = styled.div`
+export const NavWrapper = styled.div`
   position: fixed;
   background: rgb(247, 246, 243);
   width: 12rem;
@@ -15,7 +16,7 @@ export const NavLayout = styled.div`
   }
 `;
 
-export const MainLayout = styled.div`
+export const MainWrapper = styled.div`
   padding-left: 12rem;
   display: flex;
   flex-flow: column;
@@ -25,17 +26,18 @@ export const MainLayout = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const ContentWrapper = styled(Responsive)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
-  border-radius: 4px;
+  padding: 3rem;
   overflow: hidden;
-  width: 100%;
   height: 100rem;
+  border: 1px solid black;
+  border-radius: 30px;
 `;
 
-export const ConfigButtonGroup = styled.div`
+export const ConfigBoxWrapper = styled.div`
   position: fixed;
   top: 8rem;
   right: 0;

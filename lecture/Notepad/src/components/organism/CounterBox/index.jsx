@@ -1,4 +1,6 @@
 import React from 'react';
+import { CounterContainer, ButtonWrapper } from './styled';
+import Button from 'components/atoms/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   increase,
@@ -8,8 +10,6 @@ import {
   increaseSagaAsync,
   decreaseSagaAsync,
 } from 'redux/counter/action';
-import { CounterContainer, ButtonWrapper } from './styled';
-import Button from 'components/atoms/Button';
 
 function CounterBox() {
   const number = useSelector(({ counter }) => counter.number);
