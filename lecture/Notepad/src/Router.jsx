@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-// import TodoContainer from 'components/todo/container/TodoContainer';
+import Todo from 'pages/Todo';
 // import ProfileRouter from 'components/profile/ProfileRouter';
 // import NewsContainer from 'components/news/container/NewsContainer';
 
@@ -11,7 +11,7 @@ import RegisterPage from 'pages/Register';
 // import WritePage from 'pages/WritePage';
 // import PostPage from 'pages/PostPage';
 
-import CounterPage from 'pages/Counter';
+import ThunkSaga from 'pages/ThunkSaga';
 
 const App = () => {
   return (
@@ -22,8 +22,8 @@ const App = () => {
       {/* <Route path="/write" component={WritePage} />
       <Route path="/@:username/:postId" component={PostPage} /> */}
 
-      {/* <Route path="/todo" component={TodoContainer} />*/}
-      <Route path="/counter" component={CounterPage} />
+      <Route path="/todo" component={Todo} />
+      <Route path="/thunkSaga" component={ThunkSaga} />
       {/* <Route path="/profile" component={ProfileRouter} />
       <Route path="/news/:selectCategory?" component={NewsContainer} />  */}
       {/* <Route

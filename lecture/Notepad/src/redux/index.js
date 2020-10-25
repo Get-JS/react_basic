@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import user from './user/reducer';
 import profile from './profile';
-import todos from './todos';
+import todo from './todo/reducer';
 import counter from './counter/reducer';
 import loading from './loading';
 
 const rootReducer = combineReducers({
   user,
   profile,
-  todos,
+  todo,
   counter,
   loading,
 });
