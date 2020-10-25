@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-export const CounterTemplateBlock = styled.div`
-  width: 512px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid black;
-  border-radius: 4px;
+export const CounterTemplateWrapper = styled.div`
+  padding-left: 6rem;
+  padding-right: 6rem;
+`;
+
+export const CouterSection = styled.div`
   text-align: center;
-  background: #9b59b6;
-  overflow: hidden;
 `;

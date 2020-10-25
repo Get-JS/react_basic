@@ -1,9 +1,13 @@
 import React from 'react';
-import { CounterTemplateBlock } from './styled-component/Counter';
+import { CounterTemplateWrapper, CouterSection } from './styled-component/Counter';
 
 function CounterTemplate(props) {
   const { children } = props;
-  return <CounterTemplateBlock>{children}</CounterTemplateBlock>;
+  return (
+    <CounterTemplateWrapper>
+      <CouterSection>{children}</CouterSection>
+    </CounterTemplateWrapper>
+  );
 }
 
 export default CounterTemplate;
