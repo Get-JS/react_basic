@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsItemBlock } from '../styled-component/NewsItem';
+import { NewsItemBlock } from './styled';
 
 function NewsItem(props) {
   const { article } = props;

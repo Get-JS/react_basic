@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Todo from 'pages/Todo';
 // import ProfileRouter from 'components/profile/ProfileRouter';
-// import NewsContainer from 'components/news/container/NewsContainer';
+import NewsPage from 'pages/News';
 
 import PostListPage from 'pages/PostListPage';
 import LoginPage from 'pages/Login';
@@ -24,8 +24,7 @@ const App = () => {
 
       <Route path="/todo" component={Todo} />
       <Route path="/thunkSaga" component={ThunkSaga} />
-      {/* <Route path="/profile" component={ProfileRouter} />
-      <Route path="/news/:selectCategory?" component={NewsContainer} />  */}
+      <Route path="/news/:selectCategory?" component={NewsPage} />
       {/* <Route
         render={(location) => (
           <div>

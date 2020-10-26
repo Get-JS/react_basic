@@ -11,7 +11,7 @@ export const decrease = createAction(DECREASE);
 export const increaseAsync = (e) => (dispatch) => {
   setTimeout(() => {
     dispatch(increase());
-  }, 5000);
+  }, 1000);
 };
 export const decreaseAsync = (e) => (dispatch) => {
   setTimeout(() => {

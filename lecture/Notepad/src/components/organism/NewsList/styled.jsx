@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NewsListBlock = styled.div`
+export const NewsListContainer = styled.div`
   box-sizing: border-box;
   padding-bottom: 3rem;
   width: 768px;

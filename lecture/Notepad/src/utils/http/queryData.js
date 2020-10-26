@@ -234,6 +234,12 @@ const queryData = {
   },
 
   // ****************** ALRAM - - SOCKET - END *****************//
+
+  news: {
+    country: '',
+    category: '',
+    apiKey: '',
+  },
 };
 
 export default queryData;

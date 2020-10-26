@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const CategoriesBlock = styled.div`
+export const NewsNavBarContainer = styled.div`
   display: flex;
   padding: 1rem;
   width: 768px;
@@ -12,7 +12,8 @@ export const CategoriesBlock = styled.div`
   }
 `;
 
-export const Category = styled(NavLink)`
+// @deprecated
+export const NewsLink = styled(NavLink)`
   font-size: 1.125rem;
   cursor: pointer;
   white-space: pre;

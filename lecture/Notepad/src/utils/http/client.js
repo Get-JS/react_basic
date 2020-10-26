@@ -40,6 +40,8 @@ const api = {
   MEMBER_LOGOUT: 'user/sign-out/', // * 로그아웃
 
   MEMBER: 'user/',
+
+  NEWS: 'http://newsapi.org/v2/top-headlines',
 };
 
 const axios = Axios.create({
@@ -59,12 +61,12 @@ axios.interceptors.request.use(
   },
 );
 
-// * Add a response interceptor
+// Add a response interceptor
 axios.interceptors.response.use(
   function (response) {
     return response;
   },
-  async (error) => {
+  async function (error) {
     if (!error.response) {
       error['response'] = { data: { message: '네트워크 연결이 끊어져 있습니다.' } };
     }
@@ -74,22 +76,23 @@ axios.interceptors.response.use(
     const originalRequest = error.config || {};
     const url = originalRequest.url || '';
 
-    // * API 호출 시, accessToken 만료
+    // API 호출 시, accessToken 만료
     if (status === 401 && url.indexOf(api.UPDATE_TOKEN) === -1 && response.code === SERVER_TOKEN_NOT_VALID) {
       const refreshToken = getRefreshToken();
       const checkToken = queryData['checkToken'];
       const updateToken = queryData['updateToken'];
 
-      // * "token_not_valid => login(required)!!
+      // token_not_valid => login(required)!!
       if (!refreshToken) axiosSetting.redirectPage();
       else updateToken.refresh = refreshToken;
+      alert(1);
 
       return await axios
         .post(api.UPDATE_TOKEN, updateToken)
         .then(async (response) => {
           if (!response.data) throw new Error();
           else {
-            setAccessToken(response.data); // * 만료되지 않은 경우, accessToken ReSetting
+            setAccessToken(response.data); // 만료되지 않은 경우, accessToken reSetting
             if (url.indexOf(api.CHECK_TOKEN) > -1) {
               const accessToken = getAccessToken();
               checkToken.token = accessToken;
@@ -99,15 +102,15 @@ axios.interceptors.response.use(
           }
         })
         .catch(() => {
-          removeAccessToken(); // * 만료된 경우, localStorage 삭제
-          axiosSetting.redirectPage(); // * token_not_valid login => login(required)!!
+          removeAccessToken(); // 만료된 경우, localStorage 삭제
+          axiosSetting.redirectPage(); // token_not_valid login => login(required)!!
         });
     }
-    // * login 필수
+    // login 필수
     else if (status === 401 && ('' + response.detail).indexOf('authentication credentials') > -1) {
-      axiosSetting.redirectPage(); // * no authentication login!!
+      axiosSetting.redirectPage(); // no authentication login!!
     }
-    // * 그 외는 서버에서 내리는 에러
+    // 그 외는 서버에서 내리는 에러
     else return Promise.reject(error);
   },
 );
