@@ -34,12 +34,14 @@ const api = {
   G_MEMBER_REGISTER: 'user/google/sign-up/', // * 구글 회원가입
   G_MEMBER_LOGIN: 'user/google/sign-in/', // * 구글 로그인
 
-  N_MEMBER_REGISTER: 'user/sign-up/', // * 일반 회원가입
+  N_MEMBER_REGISTER: 'user/sign-upss/', // * 일반 회원가입
   N_MEMBER_LOGIN: 'user/sign-in/', // * 일반 로그인
 
   MEMBER_LOGOUT: 'user/sign-out/', // * 로그아웃
 
   MEMBER: 'user/',
+
+  POST_WRITE: '/api/posts',
 
   NEWS: 'http://newsapi.org/v2/top-headlines',
 };
@@ -85,7 +87,6 @@ axios.interceptors.response.use(
       // token_not_valid => login(required)!!
       if (!refreshToken) axiosSetting.redirectPage();
       else updateToken.refresh = refreshToken;
-      alert(1);
 
       return await axios
         .post(api.UPDATE_TOKEN, updateToken)

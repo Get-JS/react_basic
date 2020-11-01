@@ -240,6 +240,12 @@ const queryData = {
     category: '',
     apiKey: '',
   },
+
+  postWrite: {
+    title: '',
+    body: '',
+    tags: '',
+  },
 };
 
 export default queryData;
