@@ -1,4 +1,4 @@
-import { takeLatest, throttle } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga from 'redux/helper/createRequestSaga';
 import { removeAccessToken } from 'utils/http/auth';
 import * as userAPI from 'utils/apis/user';

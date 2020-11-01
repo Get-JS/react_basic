@@ -1,22 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
-import LoginForm from '../../organism/LoiginForm';
+import RegisterForm from '../../organism/RegisterForm';
 import { URL_GROUP } from 'configs/links/urls';
 
-function LoginSection() {
+function RegisetrSection() {
   return (
-    <S.LoginContainer>
+    <S.RegisterContainer>
       <div className="logo-area">
         <Link to={URL_GROUP.HOME}>Notepad</Link>
       </div>
-      <h3>로그인</h3>
-      <LoginForm />
+      <h3>회원가입</h3>
+      <RegisterForm />
       <div className="nav-bar">
-        <Link to={URL_GROUP.REGISTER}>회원가입</Link>
+        <Link to={URL_GROUP.LOGIN}>로그인</Link>
       </div>
-    </S.LoginContainer>
+    </S.RegisterContainer>
   );
 }
 
-export default LoginSection;
+export default RegisetrSection;

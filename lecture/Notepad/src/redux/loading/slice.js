@@ -19,9 +19,9 @@ const slice = createSlice({
   reducers,
 });
 const selectAllState = createSelector(
-  (state) => ({ ...state }),
-  (...state) => {
-    return { ...state };
+  (state) => state,
+  (state) => {
+    return state;
   },
 );
 export const loadingSelector = {
