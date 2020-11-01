@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import palette from 'utils/styles/palette';
 
@@ -15,8 +15,8 @@ export const S = styled.input`
   }
 `;
 
-const Input = (props) => {
-  return <S {...props} />;
+const Input = (props, ref) => {
+  return <S {...props} ref={ref} />;
 };
 
-export default Input;
+export default forwardRef(Input);
