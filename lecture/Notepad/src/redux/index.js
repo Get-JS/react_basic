@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import user from './user/reducer';
+import { USER, userReducer } from './user/slice';
 import todo from './todo/reducer';
 import news from './news/reducer';
 import counter from './counter/reducer';
-import loading from './loading';
+import { LOADING, loadingReducer } from './loading/slice';
 
 const rootReducer = combineReducers({
-  user,
+  [LOADING]: loadingReducer,
+  [USER]: userReducer,
   todo,
   news,
   counter,
-  loading,
 });
 
 export default rootReducer;

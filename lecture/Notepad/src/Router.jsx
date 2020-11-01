@@ -1,31 +1,29 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-
+import { Router, Route, Switch } from 'react-router-dom';
 import Todo from 'pages/Todo';
-// import ProfileRouter from 'components/profile/ProfileRouter';
 import NewsPage from 'pages/News';
-
 import PostListPage from 'pages/PostListPage';
 import LoginPage from 'pages/Login';
-import RegisterPage from 'pages/Register';
-// import WritePage from 'pages/WritePage';
+// import RegisterPage from 'pages/Register';
+import WritePostPage from 'pages/WritePost';
 // import PostPage from 'pages/PostPage';
+import ThunkSagaPage from 'pages/ThunkSaga';
+import { history } from './history';
 
-import ThunkSaga from 'pages/ThunkSaga';
-
-const App = () => {
+function RouterConfig() {
   return (
-    <>
-      <Route path={['/@:username', '/']} exact component={PostListPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/register" component={RegisterPage} />
-      {/* <Route path="/write" component={WritePage} />
-      <Route path="/@:username/:postId" component={PostPage} /> */}
+    <Router history={history}>
+      <Switch>
+        <Route path={['/@:username', '/']} exact component={PostListPage} permission />
+        <Route path="/login" component={LoginPage} />
+        {/* <Route path="/register" component={RegisterPage} /> */}
+        <Route path="/write/post" component={WritePostPage} />
+        {/* <Route path="/@:username/:postId" component={PostPage} /> */}
 
-      <Route path="/todo" component={Todo} />
-      <Route path="/thunkSaga" component={ThunkSaga} />
-      <Route path="/news/:selectCategory?" component={NewsPage} />
-      {/* <Route
+        <Route path="/todo" component={Todo} />
+        <Route path="/thunkSaga" component={ThunkSagaPage} />
+        <Route path="/news/:selectCategory?" component={NewsPage} />
+        {/* <Route 
         render={(location) => (
           <div>
             <h2>PAGE NOT FOUND</h2>
@@ -33,7 +31,8 @@ const App = () => {
           </div>
         )}
       /> */}
-    </>
+      </Switch>
+    </Router>
   );
-};
-export default App;
+}
+export default RouterConfig;

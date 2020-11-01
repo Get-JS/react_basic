@@ -6,14 +6,14 @@ import 'assets/css/reset.css';
 import 'assets/css/index.css';
 import { ColorProvider } from 'utils/contexts/color';
 import store from 'store';
-import Router from 'Router';
+import App from 'App';
 import * as serviceWorker from 'serviceWorker';
 
 ReactDom.render(
   <Provider store={store}>
     <ColorProvider>
       <BrowserRouter>
-        <Router />
+        <App />
       </BrowserRouter>
     </ColorProvider>
   </Provider>,

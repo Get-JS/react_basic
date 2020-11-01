@@ -1,29 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { check } from 'redux/user/action';
-import { setAccessToken } from 'utils/http/auth';
+import { getAccessToken, setAccessToken } from 'utils/http/auth';
+import { userSelector, userAction } from 'redux/user/slice';
+const { load, check } = userAction;
 
-function useAuthCheck(props) {
-  const { loginRequired } = props;
-  const history = useHistory();
-  const { user } = useSelector(({ user }) => ({
-    user: user.user,
-  }));
+function useAuthCheck() {
   const dispatch = useDispatch();
+  const { user, checkToken } = useSelector(userSelector.all);
+  const token = getAccessToken();
+  const authCheck = useRef(false);
 
-  const [authCheck, setAuthCheck] = useState(false);
+  if (token && !authCheck.current) {
+    dispatch(check());
+    authCheck.current = true;
+  }
 
   useEffect(() => {
-    if (!authCheck) {
-      dispatch(check());
-      setAuthCheck(true);
-    } else if (user) {
-      setAccessToken(user.token);
-    } else if (loginRequired) {
-      history.push('/login');
+    if (checkToken) {
+      setAccessToken(checkToken.token);
+      dispatch(load());
     }
-  }, [dispatch, history, user, authCheck, loginRequired]);
+  }, [dispatch, checkToken]);
+
+  useEffect(() => {
+    if (user) setAccessToken(user.token);
+  }, [dispatch, user]);
 }
 
 export default useAuthCheck;
