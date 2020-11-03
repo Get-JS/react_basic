@@ -10,6 +10,9 @@ import rootSaga from '../redux/saga';
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools({ trace: true })(applyMiddleware(logger, ReduxThunk, sagaMiddleware)),
+);
 sagaMiddleware.run(rootSaga);
 export default store;

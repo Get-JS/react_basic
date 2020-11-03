@@ -5,48 +5,41 @@ const name = 'USER';
 const initialState = {
   user: null,
   checkToken: null,
-  error: null,
 };
 
 const reducers = {
   load: () => {},
   loadSuccess: (state, { payload: user }) => {
     state.user = user;
-    state.error = null;
   },
-  loadFailure: (state, { payload: error }) => {
+  loadFail: (state) => {
     state.user = null;
-    state.error = error;
   },
+
   register: () => {},
   registerSuccess: (state, { payload: user }) => {
     state.user = user;
-    state.error = null;
   },
-  registerFailure: (state, { payload: error }) => {
-    state.user = null;
-    state.error = error;
-  },
+  registerFail: () => {},
+
   login: () => {},
   loginSuccess: (state, { payload: user }) => {
     state.user = user;
-    state.error = null;
   },
-  loginFailure: (state, { payload: error }) => {
+  loginFail: (state) => {
     state.user = null;
-    state.error = error;
   },
+
   check: () => {},
   checkSuccess: (state, { payload: checkToken }) => {
     state.checkToken = checkToken;
-    state.error = null;
   },
-  checkFailure: (state, { payload: error }) => {
+  checkFail: (state) => {
     state.checkToken = null;
-    state.error = error;
   },
-  logout: (state) => {
-    state.user = null;
+
+  logout: () => {
+    return initialState;
   },
 };
 
@@ -58,9 +51,8 @@ const slice = createSlice({
 const selectAllState = createSelector(
   (state) => state.user,
   (state) => state.checkToken,
-  (state) => state.error,
-  (user, checkToken, error) => {
-    return { user, checkToken, error };
+  (user, checkToken) => {
+    return { user, checkToken };
   },
 );
 export const userSelector = {

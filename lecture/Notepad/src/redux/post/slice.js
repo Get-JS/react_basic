@@ -3,7 +3,8 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 const name = 'POST';
 
 const initialState = {
-  form: null,
+  post: null,
+  form: {},
   error: null,
 };
 
@@ -27,10 +28,11 @@ const slice = createSlice({
   reducers,
 });
 const selectAllState = createSelector(
+  (state) => state.post,
   (state) => state.form,
   (state) => state.error,
-  (form, error) => {
-    return { form, error };
+  (post, form, error) => {
+    return { post, form, error };
   },
 );
 const selectFormState = createSelector(

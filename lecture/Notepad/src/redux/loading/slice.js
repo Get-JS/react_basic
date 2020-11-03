@@ -18,14 +18,17 @@ const slice = createSlice({
   initialState,
   reducers,
 });
+
 const selectAllState = createSelector(
   (state) => state,
   (state) => {
     return state;
   },
 );
+
 export const loadingSelector = {
   all: (state) => selectAllState(state[LOADING]),
+  getName: (name) => (state) => selectAllState(state[LOADING][name]),
 };
 export const LOADING = slice.name;
 export const loadingReducer = slice.reducer;
