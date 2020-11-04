@@ -19,7 +19,7 @@ function useAlert() {
       }).then((result) => {
         if (result.isConfirmed) {
           dispatch(confirmPendingAction());
-        } else if (alertState.type === 'alert' && result.isDenied) {
+        } else if (alertState.type === 'alert' && result.dismiss === Swal.DismissReason.backdrop) {
           dispatch(confirmPendingAction());
         }
       });

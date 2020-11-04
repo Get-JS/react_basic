@@ -4,7 +4,7 @@ const { confirmPendingAction, closeAlert } = alertAction;
 
 function* pendingProccess() {
   const { pendingConfirmationAction } = yield select(alertSelector.all);
-  if (typeof pendingConfirmationAction === 'function') yield put(pendingConfirmationAction());
+  if (typeof pendingConfirmationAction === 'function') yield pendingConfirmationAction();
   yield put(closeAlert());
 }
 

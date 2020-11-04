@@ -24,10 +24,10 @@ const schema = yup.object().shape({
 
 function RegisterForm() {
   const dispatch = useDispatch();
-  const loadingState = useSelector(loadingSelector.all);
+  const loading = useSelector(loadingSelector.getName(Nregister));
   const { register, handleSubmit, formState, errors } = useForm({
     defaultValues: { email: '', username: '', password: '', passwordConfirm: '' },
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
@@ -35,7 +35,7 @@ function RegisterForm() {
     const { email, username, password } = data;
     dispatch(Nregister({ email, username, password }));
   };
-  console.log('formState.isSubmitting', formState);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <S.InputWrapper>
@@ -100,8 +100,8 @@ function RegisterForm() {
           </TextMessage>
         )}
       </S.InputWrapper>
-      <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={loadingState[Nregister] || !formState.isValid}>
-        회원가입 {loadingState[Nregister] && <CircularProgress size={20} />}
+      <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={loading || !formState.isValid}>
+        회원가입 {loading && <CircularProgress size={20} />}
       </Button>
     </form>
   );

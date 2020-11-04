@@ -8,9 +8,7 @@ const { load, check, login, register, checkFail, logout } = userAction;
 const userLoad = createRequestSaga(load, userAPI.getUser);
 const userCheck = createRequestSaga(check, userAPI.check);
 const userLogin = createRequestSaga(login, userAPI.login);
-
 const userRegister = createRequestSaga(register, userAPI.register);
-
 function userCheckFail() {
   removeAccessToken();
 }
