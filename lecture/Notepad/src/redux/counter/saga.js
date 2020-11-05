@@ -1,16 +1,17 @@
 import { delay, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { INCREASE_SAGA_ASYNC, DECREASE_SAGA_ASYNC, increase, decrease } from 'redux/counter/action';
+import { counterAction } from './slice';
+const { increaseSaga, decreaseSaga, increase, decrease } = counterAction;
 
-function* increaseSaga() {
+function* counterIncreaseSaga() {
   yield delay(1000);
   yield put(increase());
 }
-function* decreaseSaga() {
+function* counterDecreaseSaga() {
   yield delay(1000);
   yield put(decrease());
 }
 
-export default function* counter() {
-  yield takeEvery(INCREASE_SAGA_ASYNC, increaseSaga);
-  yield takeLatest(DECREASE_SAGA_ASYNC, decreaseSaga);
+export function* watchCounter() {
+  yield takeEvery(increaseSaga, counterIncreaseSaga);
+  yield takeLatest(decreaseSaga, counterDecreaseSaga);
 }

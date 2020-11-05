@@ -1,19 +1,14 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { CounterContainer, ButtonWrapper } from './styled';
 import Button from 'components/atoms/Button';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  increase,
-  decrease,
-  increaseAsync,
-  decreaseAsync,
-  increaseSagaAsync,
-  decreaseSagaAsync,
-} from 'redux/counter/action';
+import { counterAction, counterSelector } from 'redux/counter';
+
+const { increase, increaseAsync, increaseSaga, decrease, decreaseSaga, decreaseAsync } = counterAction;
 
 function CounterBox() {
-  const number = useSelector(({ counter }) => counter.number);
   const dispatch = useDispatch();
+  const { number } = useSelector(counterSelector.all);
 
   return (
     <CounterContainer>
@@ -21,12 +16,12 @@ function CounterBox() {
       <ButtonWrapper>
         <Button onClick={() => dispatch(increase())}>+1</Button>
         <Button onClick={() => dispatch(increaseAsync())}>+1(Thunk-Async)</Button>
-        <Button onClick={() => dispatch(increaseSagaAsync())}>+1(Saga-Async)</Button>
+        <Button onClick={() => dispatch(increaseSaga())}>+1(Saga-Async)</Button>
       </ButtonWrapper>
       <ButtonWrapper>
         <Button onClick={() => dispatch(decrease())}>-1</Button>
-        <Button onClick={() => dispatch(decreaseAsync())}>-1(Thunk-Async)</Button>
-        <Button onClick={() => dispatch(decreaseSagaAsync())}>-1(Saga-Async)</Button>
+        <Button onClick={() => dispatch(decreaseSaga())}>-1(Thunk-Async)</Button>
+        <Button onClick={() => dispatch(decreaseAsync())}>-1(Saga-Async)</Button>
       </ButtonWrapper>
     </CounterContainer>
   );

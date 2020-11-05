@@ -31,7 +31,7 @@ function RegisterPage() {
     } else if (done) {
       history.push(URL_GROUP.HOME);
     }
-  }, [user, done, history]);
+  }, [dispatch, user, done, history]);
 
   return (
     <S.RegsiterTemplate>

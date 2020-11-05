@@ -1,7 +1,7 @@
 import React from 'react';
 import BasedTemplate from 'components/templates/BasedTemplate';
 import { CouterSection } from './styled';
-import CounterBox from 'components/organism/CounterBox';
+import CounterBox from './organism/CounterBox';
 
 function ThunkSagaPage() {
   return (
