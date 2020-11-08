@@ -12,12 +12,12 @@ export const TagBoxContainer = styled.div`
   }
 `;
 
-export const TagForm = styled.form`
+export const TagBoxWrapper = styled.div`
   border-radius: 4px;
   overflow: hidden;
   display: flex;
   width: 300px;
-  border: 1px solid ${palette.gray[9]}; /* 스타일 초기화 */
+  border: 1px solid ${palette.gray[9]};
   input,
   button {
     outline: none;

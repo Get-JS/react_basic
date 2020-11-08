@@ -1,24 +1,89 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { init, success, fail } from '../helper/fetchData';
 
 const name = 'POST';
 
 const initialState = {
-  post: null,
-  form: {},
-  error: null,
+  data: {},
+  listData: {},
+
+  loadFetch: init(),
+  listLoadFetch: init(),
+  writeFetch: init(),
+  updateFetch: init(),
+  removeFetch: init(),
 };
 
 const reducers = {
-  changeFormState: (state, { payload }) => {
-    state.form = { ...state.form, ...payload };
+  setInit: () => {
+    return initialState;
   },
-  write: () => {},
-  writeSuccess: (state) => {
+  setInitFetch: (state, { payload: name }) => {
+    state[name] = init();
+  },
+  setChangeFieldState: (state, { payload: { name, value } }) => {
+    state[name] = value;
+  },
+  setChangeState: (state, { payload }) => {
+    return { ...state, ...payload };
+  },
+
+  load: (state) => {
+    state.loadFetch = initialState.loadFetch;
+  },
+  loadSuccess: (state, { payload: data }) => {
+    state.data = data;
+    state.loadFetch = success(data);
+  },
+  loadFailure: (state, { payload: error }) => {
+    state.loadFetch = fail(error);
+  },
+
+  listLoad: (state) => {
+    state.listLoadFetch = initialState.listLoadFetch;
+  },
+  listLoadSuccess: (state, { payload: data }) => {
+    state.data = data;
+    state.listLoadFetch = success(data);
+  },
+  listLoadFailure: (state, { payload: error }) => {
+    state.listLoadFetch = fail(error);
+  },
+
+  writeFetchInit: (state) => {
+    state.writeFetch = initialState.writeFetch;
+  },
+  write: (state) => {
+    state.writeFetch = initialState.writeFetch;
+  },
+  writeSuccess: (state, { payload: data }) => {
     state.form = null;
-    state.error = null;
+    state.writeFetch = success(data);
   },
   writeFailure: (state, { payload: error }) => {
-    state.error = error;
+    state.form = null;
+    state.writeFetch = fail(error);
+  },
+
+  update: (state) => {
+    state.updateFetch = initialState.updateFetch;
+  },
+  updateSuccess: (state, { payload: data }) => {
+    state.updateFetch = success(data);
+  },
+  updateFailure: (state, { payload: error }) => {
+    state.updateFetch = fail(error);
+  },
+
+  remove: (state) => {
+    state.removeFetch = initialState.removeFetch;
+  },
+  removeSuccess: (state, { payload: data }) => {
+    state.form = null;
+    state.removeFetch = success(data);
+  },
+  removeFailure: (state, { payload: error }) => {
+    state.removeFetch = fail(error);
   },
 };
 
@@ -28,22 +93,21 @@ const slice = createSlice({
   reducers,
 });
 const selectAllState = createSelector(
-  (state) => state.post,
-  (state) => state.form,
-  (state) => state.error,
-  (post, form, error) => {
-    return { post, form, error };
+  (state) => state,
+  (state) => {
+    return state;
   },
 );
-const selectFormState = createSelector(
-  (state) => state.form,
-  (form) => {
-    return { ...form };
-  },
-);
+
 export const postSelector = {
   all: (state) => selectAllState(state[POST]),
-  form: (state) => selectFormState(state[POST]),
+  data: (state) => selectAllState(state[POST].data),
+  listData: (state) => selectAllState(state[POST].listData),
+  loadFetch: (state) => selectAllState(state[POST].loadFetch),
+  listLoadFetch: (state) => selectAllState(state[POST].listLoadFetch),
+  writeFetch: (state) => selectAllState(state[POST].writeFetch),
+  updateFetch: (state) => selectAllState(state[POST].updateFetch),
+  removeFetch: (state) => selectAllState(state[POST].removeFetch),
 };
 export const POST = slice.name;
 export const postReducer = slice.reducer;

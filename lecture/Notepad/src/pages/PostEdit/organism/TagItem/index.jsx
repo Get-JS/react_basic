@@ -1,22 +1,17 @@
-import React, { useCallback, memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo } from 'react';
 import * as S from './styled';
-import { postSelector, postAction } from 'redux/post/slice';
-const { changeFormState } = postAction;
 
-function TagItem({ tag }) {
-  const dispatch = useDispatch();
-  const { tags } = useSelector(postSelector.form);
-
-  const onRemove = useCallback(
-    (tag) => {
-      const nextTags = tags.filter((t) => t !== tag);
-      dispatch(changeFormState({ tags: nextTags }));
-    },
-    [dispatch, tags],
+function TagItem({ index, tagName, handleRemoveTag }) {
+  return (
+    <S.TagItem
+      onClick={(e) => {
+        e.preventDefault();
+        handleRemoveTag(index);
+      }}
+    >
+      #{tagName} [x]
+    </S.TagItem>
   );
-
-  return <S.TagItem onClick={() => onRemove(tag)}>#{tag} [x]</S.TagItem>;
 }
 
 export default memo(TagItem);
