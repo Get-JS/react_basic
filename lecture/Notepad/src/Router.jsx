@@ -6,7 +6,7 @@ import PostListPage from 'pages/PostListPage';
 import LoginPage from 'pages/Login';
 import RegisterPage from 'pages/Register';
 import PostEditPage from 'pages/PostEdit';
-// import PostPage from 'pages/PostPage';
+import PostPage from 'pages/Post';
 import ThunkSagaPage from 'pages/ThunkSaga';
 import { history } from './history';
 
@@ -17,8 +17,8 @@ function RouterConfig() {
         <Route path={['/@:username', '/']} exact component={PostListPage} permission />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/write/post" component={PostEditPage} />
-        {/* <Route path="/@:username/:postId" component={PostPage} /> */}
+        <Route path="/post/edit" component={PostEditPage} />
+        <Route path="/post/@:username/:postId" component={PostPage} />
 
         <Route path="/todo" component={Todo} />
         <Route path="/thunkSaga" component={ThunkSagaPage} />

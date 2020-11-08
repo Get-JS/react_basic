@@ -1,9 +1,15 @@
 import { axios, api } from 'utils/http/client';
 import { selialize } from 'utils/http/queryData';
+import { getDashQueryParams } from 'utils/http/queryParam';
 
 export const load = (data = {}) => {
-  const info = selialize({ type: 'postLoad', originDataInfo: data });
-  return axios.get(api.POST, info);
+  const infoObj = selialize({ type: 'postLoad', originDataInfo: data });
+  const dataArr = [];
+  for (const [, value] of Object.entries(infoObj)) {
+    dataArr.push(value);
+  }
+  const info = getDashQueryParams(dataArr);
+  return axios.get(`${api.POST}${info}`);
 };
 export const listLoad = (data = {}) => {
   const info = selialize({ type: 'postLoad', originDataInfo: data });

@@ -18,9 +18,6 @@ const reducers = {
   setInit: () => {
     return initialState;
   },
-  setInitFetch: (state, { payload: name }) => {
-    state[name] = init();
-  },
   setChangeFieldState: (state, { payload: { name, value } }) => {
     state[name] = value;
   },
@@ -28,6 +25,9 @@ const reducers = {
     return { ...state, ...payload };
   },
 
+  loadFetchInit: (state) => {
+    state.loadFetch = initialState.loadFetch;
+  },
   load: (state) => {
     state.loadFetch = initialState.loadFetch;
   },
@@ -35,7 +35,7 @@ const reducers = {
     state.data = data;
     state.loadFetch = success(data);
   },
-  loadFailure: (state, { payload: error }) => {
+  loadFail: (state, { payload: error }) => {
     state.loadFetch = fail(error);
   },
 
@@ -46,7 +46,7 @@ const reducers = {
     state.data = data;
     state.listLoadFetch = success(data);
   },
-  listLoadFailure: (state, { payload: error }) => {
+  listLoadFail: (state, { payload: error }) => {
     state.listLoadFetch = fail(error);
   },
 
@@ -60,7 +60,7 @@ const reducers = {
     state.form = null;
     state.writeFetch = success(data);
   },
-  writeFailure: (state, { payload: error }) => {
+  writeFail: (state, { payload: error }) => {
     state.form = null;
     state.writeFetch = fail(error);
   },
@@ -71,7 +71,7 @@ const reducers = {
   updateSuccess: (state, { payload: data }) => {
     state.updateFetch = success(data);
   },
-  updateFailure: (state, { payload: error }) => {
+  updateFail: (state, { payload: error }) => {
     state.updateFetch = fail(error);
   },
 
@@ -82,7 +82,7 @@ const reducers = {
     state.form = null;
     state.removeFetch = success(data);
   },
-  removeFailure: (state, { payload: error }) => {
+  removeFail: (state, { payload: error }) => {
     state.removeFetch = fail(error);
   },
 };

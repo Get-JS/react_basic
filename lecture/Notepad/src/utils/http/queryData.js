@@ -241,6 +241,10 @@ const queryData = {
     apiKey: '',
   },
 
+  postLoad: {
+    postId: '',
+  },
+
   postWrite: {
     title: '',
     body: '',

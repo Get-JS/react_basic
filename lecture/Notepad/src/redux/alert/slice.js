@@ -7,7 +7,7 @@ const initialState = {
   title: '',
   icon: '',
   text: '',
-  pendingConfirmationAction: null,
+  pendingConfirmationAction: () => {},
   confirmButtonText: '확인',
   denyButtonText: '취소',
 };
