@@ -6,7 +6,7 @@ function Tags({ tags }) {
   return (
     <S.TagsContainer>
       {tags?.map((tag) => (
-        <Link className="tag" to={`./?tag=${tag}`} key={tag}>
+        <Link className="tag" to={`/?tag=${tag}`} key={tag}>
           #{tag}
         </Link>
       ))}

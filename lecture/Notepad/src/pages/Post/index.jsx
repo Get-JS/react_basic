@@ -1,14 +1,14 @@
 import React from 'react';
-import * as S from './styled';
 import BasedTemplate from 'components/templates/BasedTemplate';
-import PostSection from './section/PostSection';
+import PostDetailCard from './section/PostDetailCard';
+import usePageFilter from './hooks/usePageFilter';
 
 function PostPage() {
+  usePageFilter();
+
   return (
     <BasedTemplate contentTitle={'Post Page'}>
-      <S.PostSection>
-        <PostSection />
-      </S.PostSection>
+      <PostDetailCard />
     </BasedTemplate>
   );
 }

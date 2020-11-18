@@ -24,7 +24,6 @@ const reducers = {
   loadSuccess: (state, { payload: data }) => {
     state.data = data;
   },
-  loadFail: () => {},
 
   listLoad: () => {},
   listLoadSuccess: (state, { payload: data }) => {

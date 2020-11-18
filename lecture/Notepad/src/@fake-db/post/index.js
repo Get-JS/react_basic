@@ -59,3 +59,10 @@ export const listData = {
     },
   ],
 };
+export const responseData = {
+  title: 'ss',
+  user: { username: 'test' },
+  publishDate: Date.now(),
+  tags: ['sss', 'ss'],
+  body: '<p>Hello</p><p>This is page first Page!!</p>',
+};

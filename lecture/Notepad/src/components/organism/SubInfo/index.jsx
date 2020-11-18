@@ -7,7 +7,7 @@ function SubInfo({ username, publishedDate, hasMarginTop }) {
     <S.SubInfoContainer hasMarginTop={hasMarginTop}>
       <span>
         <b>
-          <Link to={`./@${username}`}>{username}</Link>
+          <Link to={`/@${username}`}>{username}</Link>
         </b>
       </span>
       <span>{publishedDate && new Date(publishedDate).toLocaleDateString()}</span>
