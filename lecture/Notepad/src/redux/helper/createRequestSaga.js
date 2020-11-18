@@ -1,6 +1,6 @@
-import { call, put } from 'redux-saga/effects';
-import { loadingAction } from '../loading';
-const { startLoading, finishLoading } = loadingAction;
+import { call, put, delay } from 'redux-saga/effects';
+import { fetchStatusAction } from '../fetchStatus';
+const { request, success, fail } = fetchStatusAction;
 
 export const createRequestActionTypes = (type) => {
   const SUCCESS = `${type}Success`;
@@ -8,25 +8,28 @@ export const createRequestActionTypes = (type) => {
   return [type, SUCCESS, FAILURE];
 };
 
-export default function createRequestSaga(type, request) {
+export default function createRequestSaga(type, requestCall) {
   const SUCESS = `${type}Success`;
   const FAILURE = `${type}Fail`;
 
   return function* (action) {
-    yield put(startLoading(type));
+    yield put(request(type));
     try {
-      const { data } = yield call(request, action.payload);
-      yield put({
-        type: SUCESS,
-        payload: data,
-      });
+      yield delay(300);
+      const data = yield call(requestCall, action.payload);
+      yield put({ type: SUCESS, payload: data });
+      yield put(success({ type, data }));
     } catch (error) {
-      yield put({
-        type: FAILURE,
-        payload: error,
-      });
-    } finally {
-      yield put(finishLoading(type));
+      yield put({ type: FAILURE, payload: error });
+      yield put(fail({ type, error }));
     }
+  };
+}
+
+export function createRequestThunk(action) {
+  return (payload, meta) => (dispatch) => {
+    return new Promise((resolve, reject) => {
+      dispatch({ ...action(payload, meta), resolve, reject });
+    });
   };
 }

@@ -6,10 +6,12 @@ const queryData = {
    * * Authorization: JWT 불필요
    */
   nRegister: {
-    sign_up_type: 'string', // * (normal default [server])
-    email: 'string',
-    username: 'string',
-    password: 'string',
+    bodyQuery: {
+      sign_up_type: 'string',
+      email: 'string',
+      username: 'string',
+      password: 'string',
+    },
   },
 
   /**
@@ -18,37 +20,11 @@ const queryData = {
    * * Authorization: JWT 불필요
    */
   nLogin: {
-    email: 'string',
-    password: 'string',
+    bodyQuery: {
+      email: 'string',
+      password: 'string',
+    },
   },
-
-  /**
-   * * 구글 로그인 POST
-   * * /user/google/sign-in/
-   * * Authorization: JWT 불필요
-   * * email, password 불필요
-   */
-  gLogin: {
-    token: '',
-  },
-
-  /**
-   * * 구글 회원가입 POST
-   * * /user/google/sign-up/
-   * * Authorization: JWT 불필요
-   * * email, password 불필요
-   */
-  gRegister: {
-    token: '',
-  },
-
-  /**
-   * * 로그아웃 POST
-   * * /user/sign-out/
-   * * JWT 불필요
-   * * email, password 불필요
-   */
-  logout: {},
 
   /**
    * * 회원정보 조회 GET
@@ -56,46 +32,18 @@ const queryData = {
    * * JWT 필요
    */
   userRead: {},
-
-  /**
-   * * 회원정보 부분 수정 PATCH
-   * * user/{userId}/ (option)
-   * * JWT 필요
-   */
-  userUpdate: {
-    // "sign_up_type": "",
-    // "email": "",
-    username: '',
-    password: '',
-  },
-
-  /**
-   * * 회원정보 삭제 DELETE
-   * * user/{userId}/ (option)
-   * * JWT 필요
-   */
-  userDelete: {},
   // ****************** USER - END ************************ //
 
   // ****************** TOEKN ****************************** //
-  /**
-   * * JWT 발급 POST
-   * * /user/token/
-   * * JWT 불필요
-   */
-  // !! deprecated
-  getToken: {
-    email: '',
-    password: '',
-  },
-
   /**
    * * JWT 갱신 POST
    * * /user/token/refresh/
    * * JWT 불필요
    */
   updateToken: {
-    refresh: '',
+    bodyQuery: {
+      refresh: 'string',
+    },
   },
 
   /**
@@ -104,161 +52,52 @@ const queryData = {
    * * JWT 불필요
    */
   checkToken: {
-    token: '',
+    bodyQuery: {
+      token: 'string',
+    },
   },
   // ****************** TOEKN - END ************************ //
 
-  // ****************** CATEGORY *************************** //
-  /**
-   * * 카테고리 리스트 조회 GET
-   * * category/ -> list
-   * * category/{categoryId}/
-   * * JWT 필요
-   */
-  categoryRead: {},
-
-  /**
-   * * 카테고리 등록 POST
-   * * category/
-   * * JWT 필요
-   */
-  categoryWrite: {
-    name: '',
-    is_favorited: '',
-  },
-
-  /**
-   * * 카테고리 수정 PATCH
-   * * category/{categoryId}/
-   * * JWT 필요
-   */
-  categoryUpdate: {
-    name: '',
-    is_favorited: '',
-    order: '',
-  },
-
-  /**
-   * * 카테고리 삭제 DLETE
-   * * category/{id}/
-   * * JWT 필요
-   */
-  categoryDelete: {},
-  // ****************** CATEGORY - END ********************** //
-
-  // ****************** LINK ******************************* //
-  /**
-   * * Link 리스트 조회 GET
-   * * url/?category={categoryId}&path={path}&title={title}
-   * * JWT 필요
-   */
-  linkRead: {},
-
-  /**
-   * * URL 등록 POST
-   * * url/?category={categoryId}
-   * * JWT 필요
-   */
-  linkWrite: {
-    path: [],
-  },
-
-  /**
-   * * URL 등록 PATCH
-   * * /url/{urlId}/
-   * * JWT 필요
-   */
-  linkUpdate: {
-    title: '',
-    description: '',
-    is_favorited: '',
-  },
-
-  /**
-   * * URL 삭제 DELETE
-   * * url/{urlId}/
-   * * JWT 필요
-   */
-  linkDelete: {},
-  // ****************** LINK - END ************************* //
-
-  // ****************** ALRAM ***************************** //
-  /**
-   * * alarm 리스트 모두 조회 GET
-   * * alarm/
-   * * JWT 필요
-   */
-  alarmRead: {},
-
-  /**
-   * * alarm 등록 POST
-   * * alarm/?category={categoryId}&url={urlId} (all Required)
-   * * JWT 필요
-   */
-  alarmWrite: {
-    name: '',
-    reserved_time: {
-      year: '',
-      month: '',
-      day: '',
-      hour: '',
-      minute: '',
+  news: {
+    bodyQuery: {
+      country: 'string',
+      category: 'string',
+      apiKey: 'string',
     },
   },
 
-  /**
-   * * alarm 등록 DELETE
-   * * alarm/{alarmId}/ (Required)
-   * * JWT 필요
-   */
-  alarmDelete: {},
-  // ****************** ALRAM - END ************************ //
-
-  // ****************** ALRAM - SOCKET ************************ //
-  /**
-   * * alarm Read
-   * * 알람 봤다고 요청
-   */
-  alarmReadMessage: {
-    alarm_id: '',
-    action: '', // * read
-  },
-
-  /**
-   * * alarm No message return
-   * * 알람에 노출하지 않기로 요청
-   */
-  alarmNoReturnMessage: {
-    alarm_id: '',
-    action: '', // * done
-  },
-
-  // ****************** ALRAM - - SOCKET - END *****************//
-
-  news: {
-    country: '',
-    category: '',
-    apiKey: '',
-  },
-
+  // ****************** POST ****************************** //
   postLoad: {
-    postId: '',
+    queryParams: {
+      postId: 'number',
+    },
+  },
+
+  postListLoad: {
+    headerQuery: {
+      tag: 'string',
+      username: 'string',
+      page: 'string',
+    },
   },
 
   postWrite: {
-    title: '',
-    body: '',
-    tags: '',
+    bodyQuery: {
+      title: 'string',
+      body: 'string',
+      tags: 'string',
+    },
   },
+  // ****************** POST - END ************************ //
 };
 
 export default queryData;
 
-export function selialize({ type, originDataInfo }) {
+export function selialize({ type, queryType = 'bodyQuery', originDataInfo }) {
   const dataInfo = {};
-  const dataKeys = Object.keys(queryData[type]);
+  const dataKeys = Object.keys(queryData[type][queryType]);
   Object.entries(originDataInfo).forEach(([key, value]) => {
-    if (dataKeys.includes(key)) dataInfo[key] = value;
+    if (dataKeys.includes(key) && queryData[type][queryType][key] === typeof value) dataInfo[key] = value;
   });
   return dataInfo;
 }

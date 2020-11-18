@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import Todo from 'pages/Todo';
 import NewsPage from 'pages/News';
-import PostListPage from 'pages/PostListPage';
+import PostListPage from 'pages/PostList';
 import LoginPage from 'pages/Login';
 import RegisterPage from 'pages/Register';
 import PostEditPage from 'pages/PostEdit';
