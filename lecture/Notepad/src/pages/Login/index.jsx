@@ -2,21 +2,19 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as S from './styled';
-import LoginSection from './section/LoginSection';
+import LoginCard from './card/LoginCard';
 import { userSelector } from 'redux/user';
 import { alertAction } from 'redux/alert';
 import { URL_GROUP } from 'configs/links/urls';
-
 const { setAlertState } = alertAction;
 
 function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector(userSelector.all);
-  const { done } = useSelector(userSelector.loginFetch);
+  const { checkToken } = useSelector(userSelector.all);
 
   useEffect(() => {
-    if (user) {
+    if (checkToken) {
       dispatch(
         setAlertState({
           type: 'alert',
@@ -28,15 +26,13 @@ function LoginPage() {
           },
         }),
       );
-    } else if (done) {
-      history.push(URL_GROUP.HOME);
     }
-  }, [dispatch, user, done, history]);
+  }, [dispatch, checkToken, history]);
 
   return (
     <S.LoginTemplate>
       <S.LoginSection>
-        <LoginSection />
+        <LoginCard />
       </S.LoginSection>
     </S.LoginTemplate>
   );

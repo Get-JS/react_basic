@@ -3,24 +3,24 @@ import createRequestSaga from 'redux/helper/createRequestSaga';
 import { removeAccessToken } from 'utils/http/auth';
 import * as userAPI from 'utils/apis/user';
 import { userAction } from './slice';
-const { load, check, login, register, checkFail, logout } = userAction;
+const { userLoad, check, login, register, checkFail, logout } = userAction;
 
-const userLoad = createRequestSaga(load, userAPI.getUser);
-const userCheck = createRequestSaga(check, userAPI.check);
-const userLogin = createRequestSaga(login, userAPI.login);
-const userRegister = createRequestSaga(register, userAPI.register);
-function userCheckFail() {
+const userLoadSaga = createRequestSaga(userLoad, userAPI.getUser);
+const userCheckSaga = createRequestSaga(check, userAPI.check);
+const userLoginSaga = createRequestSaga(login, userAPI.login);
+const userRegisterSaga = createRequestSaga(register, userAPI.register);
+function userCheckFailSaga() {
   removeAccessToken();
 }
-function userLogout() {
+function userLogoutSaga() {
   removeAccessToken();
 }
 
 export function* watchUser() {
-  yield takeLatest(load, userLoad);
-  yield takeLatest(check, userCheck);
-  yield takeLatest(login, userLogin);
-  yield takeLatest(register, userRegister);
-  yield takeLatest(checkFail, userCheckFail);
-  yield takeLatest(logout, userLogout);
+  yield takeLatest(userLoad, userLoadSaga);
+  yield takeLatest(check, userCheckSaga);
+  yield takeLatest(login, userLoginSaga);
+  yield takeLatest(register, userRegisterSaga);
+  yield takeLatest(checkFail, userCheckFailSaga);
+  yield takeLatest(logout, userLogoutSaga);
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
-import LoginForm from '../../organism/LoiginForm';
+import LoginForm from './LoiginForm';
 import { URL_GROUP } from 'configs/links/urls';
 
-function LoginSection() {
+function LoginCard() {
   return (
     <S.LoginContainer>
       <div className="logo-area">
@@ -19,4 +19,4 @@ function LoginSection() {
   );
 }
 
-export default LoginSection;
+export default LoginCard;
