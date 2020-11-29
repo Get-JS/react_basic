@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,9 +9,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from 'components/atoms/Button';
 import TextMessage from 'components/atoms/TextMessage';
 import InputBox from 'components/atoms/InputBox';
-import { userAction } from 'redux/user/slice';
-import { loadingSelector } from 'redux/loading/slice';
-const { register: Nregister } = userAction;
+import { fetchStatusSelector, LOADING } from 'redux/fetchStatus';
+import { userAction } from 'redux/user';
+import { URL_GROUP } from 'configs/links/urls';
+const { registerThunk, register: userRegister } = userAction;
 
 const schema = yup.object().shape({
   email: yup.string().email('올바르지 않은 이메일 양식입니다.').required('이메일은 필수 입력입니다.'),
@@ -24,20 +26,26 @@ const schema = yup.object().shape({
 
 function RegisterForm() {
   const dispatch = useDispatch();
-  const loading = useSelector(loadingSelector.getName(Nregister));
+  const history = useHistory();
+  const { status } = useSelector(fetchStatusSelector.getFetchStatus(userRegister));
   const { register, handleSubmit, formState, errors } = useForm({
     defaultValues: { email: '', username: '', password: '', passwordConfirm: '' },
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    const { email, username, password } = data;
-    dispatch(Nregister({ email, username, password }));
+  const handleRegister = async (data) => {
+    try {
+      const { email, username, password } = data;
+      await dispatch(registerThunk({ email, username, password }));
+      history.push(URL_GROUP.HOME);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleRegister)}>
       <S.InputWrapper>
         <InputBox
           id="email"
@@ -100,8 +108,14 @@ function RegisterForm() {
           </TextMessage>
         )}
       </S.InputWrapper>
-      <Button cyan fullWidth style={{ marginTop: '1rem' }} disabled={loading || !formState.isValid}>
-        회원가입 {loading && <CircularProgress size={20} />}
+      <Button
+        type="submit"
+        cyan
+        fullWidth
+        style={{ marginTop: '1rem' }}
+        disabled={status === LOADING || !formState.isValid}
+      >
+        회원가입 {status === LOADING && <CircularProgress size={20} />}
       </Button>
     </form>
   );

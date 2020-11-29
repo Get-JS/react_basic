@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
-import RegisterForm from '../../organism/RegisterForm';
+import RegisterForm from './RegisterForm';
 import { URL_GROUP } from 'configs/links/urls';
 
-function RegisetrSection() {
+function RegisetrCard() {
   return (
     <S.RegisterContainer>
       <div className="logo-area">
@@ -19,4 +19,4 @@ function RegisetrSection() {
   );
 }
 
-export default RegisetrSection;
+export default RegisetrCard;

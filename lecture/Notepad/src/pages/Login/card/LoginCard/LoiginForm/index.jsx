@@ -1,16 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as S from './styled';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from 'components/atoms/Button';
 import InputBox from 'components/atoms/InputBox';
 import TextMessage from 'components/atoms/TextMessage';
+import { fetchStatusSelector, LOADING } from 'redux/fetchStatus';
 import { userAction } from 'redux/user/slice';
 import { URL_GROUP } from 'configs/links/urls';
-const { loginThunk } = userAction;
+const { loginThunk, login } = userAction;
 
 const schema = yup.object().shape({
   email: yup.string().required('이메일은 필수 입력입니다.'),
@@ -20,9 +22,10 @@ const schema = yup.object().shape({
 function LoginForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, handleSubmit, errors } = useForm({
+  const { status } = useSelector(fetchStatusSelector.getFetchStatus(login));
+  const { register, handleSubmit, formState, errors } = useForm({
     defaultValues: { email: '', password: '' },
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
@@ -51,7 +54,6 @@ function LoginForm() {
         <InputBox
           id="password"
           name="password"
-          autoComplete="new-password"
           type="password"
           ref={register}
           placeholder="비밀번호"
@@ -64,8 +66,14 @@ function LoginForm() {
         )}
       </S.InputWrapper>
 
-      <Button type="submit" cyan fullWidth style={{ marginTop: '1rem' }}>
-        로그인
+      <Button
+        type="submit"
+        cyan
+        fullWidth
+        style={{ marginTop: '1rem' }}
+        disabled={status === LOADING || !formState.isValid}
+      >
+        로그인 {status === LOADING && <CircularProgress size={20} />}
       </Button>
     </form>
   );

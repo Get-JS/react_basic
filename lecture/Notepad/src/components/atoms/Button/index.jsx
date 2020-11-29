@@ -57,7 +57,7 @@ const SLink = styled(Link)`
 `;
 
 export const LinkButton = (props) => {
-  return <SLink {...props} />;
+  return <SLink {...props} cyan={props.cyan ? 1 : 0} />;
 };
 
 const Button = (props) => {

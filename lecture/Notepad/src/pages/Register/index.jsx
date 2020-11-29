@@ -2,21 +2,19 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as S from './styled';
-import RegisterSection from './section/RegisterSection';
+import RegisterCard from './card/RegisterCard';
 import { userSelector } from 'redux/user';
 import { alertAction } from 'redux/alert';
 import { URL_GROUP } from 'configs/links/urls';
-
 const { setAlertState } = alertAction;
 
 function RegisterPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector(userSelector.all);
-  const { done } = useSelector(userSelector.loginFetch);
+  const { checkToken } = useSelector(userSelector.all);
 
   useEffect(() => {
-    if (user) {
+    if (checkToken) {
       dispatch(
         setAlertState({
           type: 'alert',
@@ -28,15 +26,13 @@ function RegisterPage() {
           },
         }),
       );
-    } else if (done) {
-      history.push(URL_GROUP.HOME);
     }
-  }, [dispatch, user, done, history]);
+  }, [dispatch, checkToken, history]);
 
   return (
     <S.RegsiterTemplate>
       <S.RegisterSection>
-        <RegisterSection />
+        <RegisterCard />
       </S.RegisterSection>
     </S.RegsiterTemplate>
   );

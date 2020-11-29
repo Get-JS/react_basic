@@ -25,9 +25,6 @@ const reducers = {
   loginSuccess: (state, { payload: data }) => {
     state.user = data;
   },
-  loginFail: (state) => {
-    state.user = null;
-  },
 
   check: () => {},
   checkSuccess: (state, { payload: data }) => {
@@ -61,7 +58,8 @@ export const userSelector = {
 };
 
 const loginThunk = createRequestThunk(slice.actions.login);
-slice.actions = { ...slice.actions, loginThunk };
+const registerThunk = createRequestThunk(slice.actions.register);
+slice.actions = { ...slice.actions, loginThunk, registerThunk };
 export const USER = slice.name;
 export const userReducer = slice.reducer;
 export const userAction = slice.actions;
