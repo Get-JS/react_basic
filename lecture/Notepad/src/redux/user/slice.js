@@ -12,9 +12,6 @@ const reducers = {
   userLoadSuccess: (state, { payload: data }) => {
     state.user = data;
   },
-  userLoadFail: (state) => {
-    state.user = null;
-  },
 
   register: () => {},
   registerSuccess: (state, { payload: data }) => {
@@ -29,9 +26,6 @@ const reducers = {
   check: () => {},
   checkSuccess: (state, { payload: data }) => {
     state.checkToken = data;
-  },
-  checkFail: (state) => {
-    state.checkToken = null;
   },
 
   logout: () => {
@@ -57,9 +51,10 @@ export const userSelector = {
   checkToken: (state) => selectAllState(state[USER].checkToken),
 };
 
+const checkThunk = createRequestThunk(slice.actions.check);
 const loginThunk = createRequestThunk(slice.actions.login);
 const registerThunk = createRequestThunk(slice.actions.register);
-slice.actions = { ...slice.actions, loginThunk, registerThunk };
+slice.actions = { ...slice.actions, checkThunk, loginThunk, registerThunk };
 export const USER = slice.name;
 export const userReducer = slice.reducer;
 export const userAction = slice.actions;

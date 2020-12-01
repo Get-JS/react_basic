@@ -4,15 +4,15 @@ import Button from 'components/atoms/Button';
 
 function Pagination({ page, lastPage, handleSearch }) {
   return (
-    <S.PaginationWrapper>
-      <Button disabled={page === 1} onClick={() => handleSearch({ page: page - 1 })}>
+    <S.Container>
+      <Button disabled={page === 1} onClick={() => handleSearch({ currentPage: page - 1 })}>
         이전
       </Button>
-      <S.PageNumber>{page}</S.PageNumber>
-      <Button disabled={page === lastPage} onClick={() => handleSearch({ page: page + 1 })}>
+      <span>{page}</span>
+      <Button disabled={page === lastPage} onClick={() => handleSearch({ currentPage: page + 1 })}>
         다음
       </Button>
-    </S.PaginationWrapper>
+    </S.Container>
   );
 }
 

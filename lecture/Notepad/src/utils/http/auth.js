@@ -8,7 +8,7 @@ export function getRefreshToken() {
   return STORAGE.getItem(UPDATE_TOKEN_NAME) || '';
 }
 
-export function setAccessToken(token) {
+export function setAccessToken(token = {}) {
   const accessToken = token.access || '';
   const refreshToken = token.refresh || '';
   STORAGE.setItem(TOKEN_NAME, accessToken || STORAGE.getItem(TOKEN_NAME));

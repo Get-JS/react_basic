@@ -1,24 +1,21 @@
-import { useEffect, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import qs from 'qs';
+import { useDispatch } from 'react-redux';
+import { currentPageToOffset } from 'utils/common';
 import { postAction } from 'redux/post';
+import { getPostListQueryParams } from 'configs/links/urls';
 const { listLoad } = postAction;
 
 function usePageFilter() {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const params = useParams();
-  const { username } = useMemo(() => {
-    return params;
-  }, [params]);
+  const { search } = useLocation();
+  const { username } = useParams();
 
   useEffect(() => {
-    const { tag, page } = qs.parse(location.search, {
-      ignoreQueryPrefix: true,
-    });
-    dispatch(listLoad({ tag, username, page }));
-  }, [dispatch, location, username]);
+    const { tag, currentPage, pageSize } = getPostListQueryParams(search);
+    const offset = currentPageToOffset({ currentPage, pageSize });
+    dispatch(listLoad({ tag, username, offset, pageSize }));
+  }, [dispatch, search, username]);
 }
 
 export default usePageFilter;

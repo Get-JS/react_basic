@@ -1,6 +1,7 @@
 import React from 'react';
+import * as S from './styled';
 import BasedTemplate from 'components/templates/BasedTemplate';
-import PostCard from './section/PostCard';
+import PostListCard from './card/PostListCard';
 import usePageFilter from './hooks/usePageFilter';
 
 function PostListPage() {
@@ -8,7 +9,9 @@ function PostListPage() {
 
   return (
     <BasedTemplate>
-      <PostCard />
+      <S.PostListSection>
+        <PostListCard />
+      </S.PostListSection>
     </BasedTemplate>
   );
 }

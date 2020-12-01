@@ -1,7 +1,7 @@
-import Responsive from 'components/animation/Responsive/';
+import Responsive from 'components/animation/Responsive';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
+export const Container = styled.div`
   position: sticky;
   top: 0;
   width: 100%;
@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.08);
 `;
 
-export const HeaderWrapper = styled(Responsive)`
+export const Wrapper = styled(Responsive)`
   height: 3rem;
   display: flex;
   align-items: center;
@@ -28,13 +28,16 @@ export const HeaderWrapper = styled(Responsive)`
 export const UserWrapper = styled.div`
   font-weight: 800;
   margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .postAdd {
+    margin-right: 1rem;
+  }
   .avatar {
     margin-left: 1rem;
+    margin-right: 1rem;
     width: 2rem;
     height: 2rem;
   }
-`;
-
-export const Spacer = styled.div`
-  height: 4rem;
 `;

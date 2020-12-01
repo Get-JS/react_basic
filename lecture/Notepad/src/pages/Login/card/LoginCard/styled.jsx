@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import palette from 'utils/styles/palette';
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
   .logo-area {
     display: block;
     padding-bottom: 2rem;

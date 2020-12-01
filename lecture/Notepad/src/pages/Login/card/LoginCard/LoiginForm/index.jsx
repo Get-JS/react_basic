@@ -12,6 +12,7 @@ import TextMessage from 'components/atoms/TextMessage';
 import { fetchStatusSelector, LOADING } from 'redux/fetchStatus';
 import { userAction } from 'redux/user/slice';
 import { URL_GROUP } from 'configs/links/urls';
+import { setAccessToken } from 'utils/http/auth';
 const { loginThunk, login } = userAction;
 
 const schema = yup.object().shape({
@@ -29,10 +30,11 @@ function LoginForm() {
     resolver: yupResolver(schema),
   });
 
-  const handleLogin = async (data) => {
+  const handleLogin = async (formData) => {
     try {
-      const { email, password } = data;
-      await dispatch(loginThunk({ email, password }));
+      const { email, password } = formData;
+      const { token } = await dispatch(loginThunk({ email, password }));
+      setAccessToken(token);
       history.push(URL_GROUP.HOME);
     } catch (error) {
       console.error(error);

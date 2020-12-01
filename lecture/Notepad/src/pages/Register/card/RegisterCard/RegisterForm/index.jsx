@@ -12,6 +12,7 @@ import InputBox from 'components/atoms/InputBox';
 import { fetchStatusSelector, LOADING } from 'redux/fetchStatus';
 import { userAction } from 'redux/user';
 import { URL_GROUP } from 'configs/links/urls';
+import { setAccessToken } from 'utils/http/auth';
 const { registerThunk, register: userRegister } = userAction;
 
 const schema = yup.object().shape({
@@ -37,7 +38,8 @@ function RegisterForm() {
   const handleRegister = async (data) => {
     try {
       const { email, username, password } = data;
-      await dispatch(registerThunk({ email, username, password }));
+      const { token } = await dispatch(registerThunk({ email, username, password }));
+      setAccessToken(token);
       history.push(URL_GROUP.HOME);
     } catch (error) {
       console.error(error);

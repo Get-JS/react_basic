@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import palette from 'utils/styles/palette';
 
 // * 흰색 박스
-export const RegisterContainer = styled.div`
+export const Container = styled.div`
   .logo-area {
     display: block;
     padding-bottom: 2rem;

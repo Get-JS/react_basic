@@ -4,14 +4,14 @@ import * as S from './styled';
 
 function SubInfo({ username, publishedDate, hasMarginTop }) {
   return (
-    <S.SubInfoContainer hasMarginTop={hasMarginTop}>
+    <S.Container hasMarginTop={hasMarginTop}>
       <span>
         <b>
-          <Link to={`/@${username}`}>{username}</Link>
+          <Link to={`@${username}`}>{username}</Link>
         </b>
       </span>
       <span>{publishedDate && new Date(publishedDate).toLocaleDateString()}</span>
-    </S.SubInfoContainer>
+    </S.Container>
   );
 }
 

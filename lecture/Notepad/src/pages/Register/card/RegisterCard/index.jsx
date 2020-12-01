@@ -6,7 +6,7 @@ import { URL_GROUP } from 'configs/links/urls';
 
 function RegisetrCard() {
   return (
-    <S.RegisterContainer>
+    <S.Container>
       <div className="logo-area">
         <Link to={URL_GROUP.HOME}>Notepad</Link>
       </div>
@@ -15,7 +15,7 @@ function RegisetrCard() {
       <div className="nav-bar">
         <Link to={URL_GROUP.LOGIN}>로그인</Link>
       </div>
-    </S.RegisterContainer>
+    </S.Container>
   );
 }
 

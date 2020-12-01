@@ -15,8 +15,8 @@ export default function createRequestSaga(type, requestCall) {
   return function* (action) {
     yield put(request(type));
     try {
-      yield delay(300);
-      const data = yield call(requestCall, action.payload);
+      yield delay(1000);
+      const { data } = yield call(requestCall, action.payload);
       yield put({ type: SUCESS, payload: data });
       yield put(success({ type, data }));
       if (action.resolve) {

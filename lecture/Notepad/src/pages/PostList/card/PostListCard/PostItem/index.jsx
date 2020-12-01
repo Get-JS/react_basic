@@ -3,17 +3,20 @@ import * as S from './styled';
 import SubInfo from 'components/organism/SubInfo';
 import Tags from 'components/organism/Tags';
 import { Link } from 'react-router-dom';
+import { URL_GROUP, getPostQuery } from 'configs/links/urls';
 
 function PostItem({ data }) {
   return (
-    <S.PostItemWrapper>
+    <S.Container>
       <h2>
-        <Link to={`/post/@${data?.user.username}/${data.id}`}>{data.title}</Link>
+        <Link to={`${URL_GROUP.POST}/${getPostQuery({ username: data.user?.username, id: data.id })}`}>
+          {data.title}
+        </Link>
       </h2>
-      <SubInfo username={data?.user.username} publishedDate={data.publishedDate} />
+      <SubInfo username={data.user?.username} publishedDate={data.publishedDate} />
       <Tags tags={data.tags} />
       <p>{data.body}</p>
-    </S.PostItemWrapper>
+    </S.Container>
   );
 }
 export default PostItem;

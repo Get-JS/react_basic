@@ -31,7 +31,9 @@ const queryData = {
    * * user/{userId}/ (option)
    * * JWT 필요
    */
-  userRead: {},
+  userRead: {
+    bodyQuery: {},
+  },
   // ****************** USER - END ************************ //
 
   // ****************** TOEKN ****************************** //
@@ -68,7 +70,7 @@ const queryData = {
 
   // ****************** POST ****************************** //
   postLoad: {
-    queryParams: {
+    dashParams: {
       postId: 'number',
     },
   },
@@ -77,11 +79,12 @@ const queryData = {
     headerQuery: {
       tag: 'string',
       username: 'string',
-      page: 'string',
+      offset: 'number',
+      pageSize: 'number',
     },
   },
 
-  postWrite: {
+  postAdd: {
     bodyQuery: {
       title: 'string',
       body: 'string',

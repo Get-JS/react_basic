@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import palette from 'utils/styles/palette';
 
-export const SubInfoContainer = styled.div`
+export const Container = styled.div`
   ${(props) =>
     props.hasMarginTop &&
     css`

@@ -6,7 +6,7 @@ import { URL_GROUP } from 'configs/links/urls';
 
 function LoginCard() {
   return (
-    <S.LoginContainer>
+    <S.Container>
       <div className="logo-area">
         <Link to={URL_GROUP.HOME}>Notepad</Link>
       </div>
@@ -15,7 +15,7 @@ function LoginCard() {
       <div className="nav-bar">
         <Link to={URL_GROUP.REGISTER}>회원가입</Link>
       </div>
-    </S.LoginContainer>
+    </S.Container>
   );
 }
 

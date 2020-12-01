@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConfigBoxContainer = styled.div`
+export const Container = styled.div`
   background: rgba(142, 68, 173, 0.3);
   width: 25rem;
   height: 100%;
@@ -8,17 +8,17 @@ export const ConfigBoxContainer = styled.div`
   padding: 1rem;
 `;
 
-export const ConfigBoxWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
 `;
 
-export const ColorSelectWrapper = styled.div`
+export const ColorBoxWrapper = styled.div`
   display: flex;
 `;
 
-export const ColorGroup = styled.div`
+export const ColorBox = styled.div`
   display: flex;
   border: 1px solid #2c3e50;
   width: 24px;

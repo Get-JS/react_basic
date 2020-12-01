@@ -5,9 +5,24 @@ import { Provider } from 'react-redux';
 import 'assets/css/reset.css';
 import 'assets/css/index.css';
 import { ColorProvider } from 'utils/contexts/color';
+import { getAccessToken } from 'utils/http/auth';
 import store from 'store';
 import App from 'App';
 import * as serviceWorker from 'serviceWorker';
+import { userAction } from 'redux/user';
+const { userLoad, checkThunk } = userAction;
+
+const loadUser = async () => {
+  const token = getAccessToken();
+  if (!!token) {
+    try {
+      await store.dispatch(checkThunk({ token }));
+      store.dispatch(userLoad());
+    } catch (error) {}
+  }
+};
+
+loadUser();
 
 ReactDom.render(
   <Provider store={store}>

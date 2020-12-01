@@ -4,13 +4,13 @@ import * as S from './styled';
 
 function Tags({ tags }) {
   return (
-    <S.TagsContainer>
+    <S.Container>
       {tags?.map((tag) => (
-        <Link className="tag" to={`/?tag=${tag}`} key={tag}>
+        <Link className="tag" to={`?tag=${tag}`} key={tag}>
           #{tag}
         </Link>
       ))}
-    </S.TagsContainer>
+    </S.Container>
   );
 }
 

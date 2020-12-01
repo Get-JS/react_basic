@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import palette from 'utils/styles/palette';
 
-export const TagsContainer = styled.div`
+export const Container = styled.div`
   margin-top: 0.5rem;
   .tag {
     display: inline-block;

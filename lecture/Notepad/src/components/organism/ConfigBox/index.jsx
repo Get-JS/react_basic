@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ConfigBoxContainer, ConfigBoxWrapper, ColorSelectWrapper, ColorGroup } from './styled';
+import * as S from './styled';
 import { MdCheck } from 'react-icons/md';
 import { GiPaintRoller } from 'react-icons/gi';
 import ColorContext from 'utils/contexts/color';
@@ -8,19 +8,19 @@ function ConfigBox() {
   const { colorState, colorActions } = useContext(ColorContext);
 
   return (
-    <ConfigBoxContainer>
-      <ConfigBoxWrapper>
+    <S.Container>
+      <S.Wrapper>
         <GiPaintRoller size={20} color={colorState.bgColor} />
         <h4>Background color select</h4>
-        <ColorSelectWrapper>
+        <S.ColorBoxWrapper>
           {COLORS.map((color) => (
-            <ColorGroup key={color} style={{ background: color }} onClick={() => colorActions.setBgColor(color)}>
+            <S.ColorBox key={color} style={{ background: color }} onClick={() => colorActions.setBgColor(color)}>
               {colorState.bgColor === color && <MdCheck />}
-            </ColorGroup>
+            </S.ColorBox>
           ))}
-        </ColorSelectWrapper>
-      </ConfigBoxWrapper>
-    </ConfigBoxContainer>
+        </S.ColorBoxWrapper>
+      </S.Wrapper>
+    </S.Container>
   );
 }
 

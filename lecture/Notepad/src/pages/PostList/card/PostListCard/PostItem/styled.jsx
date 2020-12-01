@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import palette from 'utils/styles/palette';
 
-export const PostItemWrapper = styled.div`
+export const Container = styled.div`
   padding-top: 3rem;
   padding-bottom: 3rem;
   /* 맨 위 포스트는 padding-top 없음 */

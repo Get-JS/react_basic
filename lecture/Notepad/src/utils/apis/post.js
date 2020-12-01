@@ -2,7 +2,7 @@ import { axios, api } from 'utils/http/client';
 import { listData, responseData } from '@fake-db/post';
 import { selialize } from 'utils/http/queryData';
 import { getDashQueryParams } from 'utils/http/queryParam';
-import qs from 'qs';
+// import qs from 'qs';
 
 export const load = (data = {}) => {
   const infoObj = selialize({ type: 'postLoad', queryType: 'dashParams', originDataInfo: data });
@@ -12,23 +12,30 @@ export const load = (data = {}) => {
   });
   const info = getDashQueryParams(dataArr);
   // return axios.get(`${api.POST}${info}`);
-  return new Promise((resolve, reject) => {
-    console.log('load getDashQueryParams', info);
+  return new Promise((resolve) => {
     resolve(responseData);
   });
 };
+
 export const listLoad = (data = {}) => {
   const infoObj = selialize({ type: 'postListLoad', queryType: 'headerQuery', originDataInfo: data });
-  const info = qs.stringify(infoObj);
+  // const info = qs.stringify(infoObj);
   // return axios.get(`${api.POST}/?${info}`);
-  return new Promise((resolve, reject) => {
-    console.log('listLoad headerQuery', info);
-    resolve({ ...listData, list: listData.list.slice(0, 4) });
+  return new Promise((resolve) => {
+    const { offset, pageSize } = infoObj;
+    const totalCount = listData.list.length;
+    const preCount = offset + pageSize;
+    const count = preCount > totalCount ? totalCount : preCount;
+    resolve({ data: { ...listData, list: listData.list.slice(offset, count) } });
   });
 };
-export const write = (data = {}) => {
-  const info = selialize({ type: 'postWrite', originDataInfo: data });
-  return axios.post(api.POST, info);
+
+export const add = (data = {}) => {
+  const info = selialize({ type: 'postAdd', originDataInfo: data });
+  // return axios.post(api.POST, info);
+  return new Promise((resolve, reject) => {
+    resolve(info);
+  });
 };
 export const update = (data = {}) => {
   const info = selialize({ type: 'postUpate', originDataInfo: data });

@@ -1,9 +1,8 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-
+import { createRequestThunk } from '../helper/createRequestSaga';
 const name = 'POST';
 
 const initialState = {
-  pageSize: 5,
   totalCount: 0,
   listData: [],
   data: {},
@@ -31,17 +30,14 @@ const reducers = {
     state.listData = data?.list || [];
   },
 
-  write: () => {},
-  writeSuccess: () => {},
-  writeFail: () => {},
+  add: () => {},
+  addSuccess: () => {},
 
   update: () => {},
   updateSuccess: () => {},
-  updateFail: () => {},
 
   remove: () => {},
   removeSuccess: () => {},
-  removeFail: () => {},
 };
 
 const slice = createSlice({
@@ -75,6 +71,8 @@ export const postSelector = {
   pageOption: (state) => selectPageOpption(state[POST]),
 };
 
+const addThunk = createRequestThunk(slice.actions.add);
+slice.actions = { ...slice.actions, addThunk };
 export const POST = slice.name;
 export const postReducer = slice.reducer;
 export const postAction = slice.actions;
