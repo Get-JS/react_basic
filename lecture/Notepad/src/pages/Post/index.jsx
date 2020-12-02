@@ -1,6 +1,7 @@
 import React from 'react';
+import * as S from './styled';
 import BasedTemplate from 'components/templates/BasedTemplate';
-import PostDetailCard from './section/PostDetailCard';
+import PostDetailCard from './card/PostDetailCard';
 import usePageFilter from './hooks/usePageFilter';
 
 function PostPage() {
@@ -8,7 +9,9 @@ function PostPage() {
 
   return (
     <BasedTemplate contentTitle={'Post Page'}>
-      <PostDetailCard />
+      <S.PostDetailSection>
+        <PostDetailCard />
+      </S.PostDetailSection>
     </BasedTemplate>
   );
 }

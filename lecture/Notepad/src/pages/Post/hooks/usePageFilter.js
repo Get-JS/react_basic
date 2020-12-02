@@ -6,11 +6,11 @@ const { load } = postAction;
 
 function usePageFilter() {
   const dispatch = useDispatch();
-  const { postId } = useParams();
+  const { username, postId } = useParams();
 
   useEffect(() => {
-    dispatch(load({ postId }));
-  }, [dispatch, postId]);
+    dispatch(load({ username, postId }));
+  }, [dispatch, username, postId]);
 }
 
 export default usePageFilter;

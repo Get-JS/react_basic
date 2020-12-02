@@ -67,6 +67,7 @@ const queryData = {
       apiKey: 'string',
     },
   },
+
   // ****************** TODO ****************************** //
   todoListLoad: {
     bodyQuery: {},
@@ -94,7 +95,7 @@ const queryData = {
   // ****************** POST ****************************** //
   postLoad: {
     dashParams: {
-      postId: 'number',
+      postId: 'string',
     },
   },
 

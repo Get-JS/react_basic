@@ -5,7 +5,7 @@ export const URL_GROUP = {
   LOGIN: '/login',
   REGISTER: '/register',
   POST: '/post',
-  POST_LIST: '/post',
+  POST_LIST: '/post/list',
   POST_ADD: '/post/add',
 };
 
@@ -23,7 +23,7 @@ export function getPostListQueryParams(search) {
   return { tag, currentPage: parseInt(currentPage), pageSize: parseInt(pageSize) };
 }
 
-export function getPostQuery({ username, id }) {
+export function getPostQuery({ id }) {
   if (!id) return;
-  else return `@${username}/${id}`;
+  else return id;
 }

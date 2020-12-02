@@ -13,11 +13,11 @@ function RouterConfig() {
   return (
     <Router history={history}>
       <Switch>
-        <Route path={['/post/@:username', '/']} component={PostListPage} permission />
+        <Route path={['/post/list/:username?', '/']} exact component={PostListPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/post/edit" component={PostEditPage} />
-        <Route path="/post/@:username/:postId" component={PostPage} />
+        <Route path="/post/:postId" component={PostPage} />
 
         <Route path="/todo" component={Todo} />
         <Route path="/news/:selectCategory?" component={NewsPage} />

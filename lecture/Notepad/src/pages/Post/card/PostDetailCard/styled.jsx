@@ -2,10 +2,14 @@ import styled from 'styled-components';
 import Responsive from 'components/animation/Responsive';
 import palette from 'utils/styles/palette';
 
-export const PostSection = styled(Responsive)`
+export const Container = styled(Responsive)`
   width: 680px;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
 `;
 
 export const PostHead = styled.div`

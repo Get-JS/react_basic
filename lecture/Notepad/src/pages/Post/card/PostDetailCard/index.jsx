@@ -5,9 +5,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import SubInfo from 'components/organism/SubInfo';
 import Tags from 'components/organism/Tags';
-import { LOADING, SUCCESS, FAIL } from 'utils/constants';
-import { fetchStatusSelector } from 'redux/fetchStatus';
+import { fetchStatusSelector, LOADING, SUCCESS, FAIL } from 'redux/fetchStatus';
 import { postSelector, postAction } from 'redux/post';
+import { URL_GROUP, getPostListQuery } from 'configs/links/urls';
 const { load } = postAction;
 
 function PostDetailCard() {
@@ -15,29 +15,30 @@ function PostDetailCard() {
   const data = useSelector(postSelector.data);
 
   return (
-    <S.PostSection>
-      {/* 로딩중 */}
+    <S.Container>
       {status === LOADING && (
-        <Container style={{ display: 'flex', justifyContent: 'center' }}>
+        <Container className="loading">
           <CircularProgress size={20} />
         </Container>
       )}
-      {/* 데이터가 없을 때 */}
       {status === SUCCESS && !Object.keys(data).length && '게시글이 없습니다.'}
-      {/* 데이터가 있을 때 */}
       {status === SUCCESS && (
         <>
           <S.PostHead>
             <h1>{data.title}</h1>
-            <SubInfo username={data.user?.username} publishedDate={data.publishedDate} hasMarginTop />
-            <Tags tags={data.tags} />
+            <SubInfo
+              username={data.user?.username}
+              publishedDate={data.publishedDate}
+              hasMarginTop
+              to={`${URL_GROUP.POST_LIST}/${getPostListQuery({ username: data.user?.username })}`}
+            />
+            <Tags tags={data.tags} handleTo={(tag) => `${URL_GROUP.POST_LIST}/${getPostListQuery({ tag })}`} />
           </S.PostHead>
           <S.PostContent dangerouslySetInnerHTML={{ __html: data.body }} />
         </>
       )}
-      {/* 에러 발생 시 */}
       {status === FAIL && 'Error!!!....'}
-    </S.PostSection>
+    </S.Container>
   );
 }
 

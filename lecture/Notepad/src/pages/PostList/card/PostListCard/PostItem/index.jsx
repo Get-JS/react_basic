@@ -9,9 +9,7 @@ function PostItem({ data }) {
   return (
     <S.Container>
       <h2>
-        <Link to={`${URL_GROUP.POST}/${getPostQuery({ username: data.user?.username, id: data.id })}`}>
-          {data.title}
-        </Link>
+        <Link to={`${URL_GROUP.POST}/${getPostQuery({ id: data.id })}`}>{data.title}</Link>
       </h2>
       <SubInfo
         username={data.user?.username}

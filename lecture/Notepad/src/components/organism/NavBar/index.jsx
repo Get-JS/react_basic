@@ -6,14 +6,11 @@ function NavBar() {
   return (
     <NavBarContainer>
       <NavBarGroup>
+        <NavLink fullwidth to="/post/list">
+          POST
+        </NavLink>
         <NavLink fullwidth to="/todo">
           TODO
-        </NavLink>
-        <NavLink fullwidth to="/thunkSaga">
-          THUNK_SAGA
-        </NavLink>
-        <NavLink fullwidth to="/profile">
-          PROFILE
         </NavLink>
         <NavLink fullwidth to="/news">
           NEWS
