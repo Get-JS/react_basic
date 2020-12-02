@@ -7,7 +7,6 @@ import LoginPage from 'pages/Login';
 import RegisterPage from 'pages/Register';
 import PostEditPage from 'pages/PostEdit';
 import PostPage from 'pages/Post';
-import ThunkSagaPage from 'pages/ThunkSaga';
 import { history } from './history';
 
 function RouterConfig() {
@@ -21,7 +20,6 @@ function RouterConfig() {
         <Route path="/post/@:username/:postId" component={PostPage} />
 
         <Route path="/todo" component={Todo} />
-        <Route path="/thunkSaga" component={ThunkSagaPage} />
         <Route path="/news/:selectCategory?" component={NewsPage} />
         {/* <Route 
         render={(location) => (

@@ -5,7 +5,6 @@ import { USER, userReducer } from './user';
 import { POST, postReducer } from './post';
 import { TODO, todoReducer } from './todo';
 import news from './news/reducer';
-import { COUNTER, counterReducer } from './counter';
 
 const rootReducer = combineReducers({
   [ALERT]: alertReducer,
@@ -14,7 +13,6 @@ const rootReducer = combineReducers({
   [POST]: postReducer,
   [TODO]: todoReducer,
   news,
-  [COUNTER]: counterReducer,
 });
 
 export default rootReducer;
