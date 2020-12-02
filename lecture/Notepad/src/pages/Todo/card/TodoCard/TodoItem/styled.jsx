@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const TodoItemContainer = styled.div`
+export const Container = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@ export const TodoItemContainer = styled.div`
   }
 `;
 
-export const TodoWrapper = styled.div`
+export const Wrapper = styled.div`
   cursor: pointer;
   flex: 1;
   display: flex;

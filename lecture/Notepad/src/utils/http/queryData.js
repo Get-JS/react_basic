@@ -67,6 +67,29 @@ const queryData = {
       apiKey: 'string',
     },
   },
+  // ****************** TODO ****************************** //
+  todoListLoad: {
+    bodyQuery: {},
+  },
+
+  todoAdd: {
+    bodyQuery: {
+      text: 'string',
+    },
+  },
+
+  todoToggleChecked: {
+    bodyQuery: {
+      id: 'string',
+    },
+  },
+
+  todoRemove: {
+    bodyQuery: {
+      id: 'string',
+    },
+  },
+  // ****************** TODO - END ************************ //
 
   // ****************** POST ****************************** //
   postLoad: {

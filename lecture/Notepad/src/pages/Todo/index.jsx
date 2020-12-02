@@ -1,19 +1,17 @@
 import React from 'react';
 import BasedTemplate from 'components/templates/BasedTemplate';
-import { TodoSection, TodoTitle, TodoContent } from './styled';
-import TodoInsert from 'components/organism/TodoInsert';
-import TodoList from 'components/organism/TodoList';
+import * as S from './styled';
+import TodoCard from './card/TodoCard';
+import usePageFilter from './hooks/usePageFilter';
 
 function TodoPage() {
+  usePageFilter();
+
   return (
     <BasedTemplate contentTitle={'Todo Page'}>
-      <TodoSection>
-        <TodoTitle>TODO LIST</TodoTitle>
-        <TodoContent>
-          <TodoInsert />
-          <TodoList />
-        </TodoContent>
-      </TodoSection>
+      <S.TodoSection>
+        <TodoCard />
+      </S.TodoSection>
     </BasedTemplate>
   );
 }

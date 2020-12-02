@@ -3,7 +3,7 @@ import { ALERT, alertReducer } from './alert';
 import { FETCH_STATUS, fetchStatusReducer } from './fetchStatus';
 import { USER, userReducer } from './user';
 import { POST, postReducer } from './post';
-import todo from './todo/reducer';
+import { TODO, todoReducer } from './todo';
 import news from './news/reducer';
 import { COUNTER, counterReducer } from './counter';
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   [FETCH_STATUS]: fetchStatusReducer,
   [USER]: userReducer,
   [POST]: postReducer,
-  todo,
+  [TODO]: todoReducer,
   news,
   [COUNTER]: counterReducer,
 });

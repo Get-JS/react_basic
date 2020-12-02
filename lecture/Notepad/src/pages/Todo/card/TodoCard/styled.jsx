@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-export const TodoTemplateBlock = styled.div`
+export const Container = styled.div`
   width: 512px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 6rem;
   border-radius: 4px;
-  overflow: hidden;
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
 `;
 
 export const TodoTitle = styled.div`
