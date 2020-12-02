@@ -13,7 +13,7 @@ function RouterConfig() {
   return (
     <Router history={history}>
       <Switch>
-        <Route path={['/@:username', '/']} exact component={PostListPage} permission />
+        <Route path={['/post/@:username', '/']} component={PostListPage} permission />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/post/edit" component={PostEditPage} />

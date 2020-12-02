@@ -11,7 +11,7 @@ export const URL_GROUP = {
 
 export function getPostListQuery({ tag, currentPage, pageSize, username }) {
   const query = qs.stringify({ tag, currentPage, pageSize });
-  return username ? `@${username}?${query}` : `?${query}`;
+  return username ? `@${username}/?${query}` : `?${query}`;
 }
 
 export function getPostListQueryParams(search) {

@@ -3,7 +3,7 @@ import { useLocation, useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { postSelector } from 'redux/post';
 import Pagination from 'components/organism/Pagination';
-import { getPostListQuery, getPostListQueryParams } from 'configs/links/urls';
+import { URL_GROUP, getPostListQuery, getPostListQueryParams } from 'configs/links/urls';
 
 const Postpagination = () => {
   const history = useHistory();
@@ -15,7 +15,7 @@ const Postpagination = () => {
   const lastPage = Math.ceil(totalCount / pageSize);
 
   const handleSearch = ({ currentPage }) => {
-    history.push(getPostListQuery({ tag, currentPage, pageSize, username }));
+    history.push(`${URL_GROUP.POST}/${getPostListQuery({ tag, currentPage, pageSize, username })}`);
   };
 
   return <Pagination page={parseInt(currentPage)} lastPage={lastPage} handleSearch={handleSearch} />;
