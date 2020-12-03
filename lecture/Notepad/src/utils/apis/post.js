@@ -23,14 +23,26 @@ export const listLoad = (data = {}) => {
 
 export const add = (data = {}) => {
   const info = selialize({ type: 'postAdd', originDataInfo: data });
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve(info);
   });
 };
 
-export const update = (data = {}) => {
-  const info = selialize({ type: 'postUpate', originDataInfo: data });
-  return axios.patch(api.POST, info);
+export const modify = (data = {}) => {
+  const info = selialize({ type: 'postModify', originDataInfo: data });
+  return new Promise((resolve) => {
+    try {
+      listData.list = listData.list.map((post) => {
+        const _ = Object.assign({}, post);
+        if (_.id === info.id) return data;
+        else return _;
+      });
+      const findData = listData.list.find((post) => post.id === info.id);
+      resolve({ data: findData });
+    } catch (error) {
+      console.log('error', error);
+    }
+  });
 };
 
 export const remove = (data = {}) => {

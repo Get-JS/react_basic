@@ -33,8 +33,10 @@ const reducers = {
   add: () => {},
   addSuccess: () => {},
 
-  update: () => {},
-  updateSuccess: () => {},
+  modify: () => {},
+  modifySuccess: (state, { payload: data }) => {
+    state.listData = data;
+  },
 
   remove: () => {},
   removeSuccess: () => {},
@@ -72,7 +74,8 @@ export const postSelector = {
 };
 
 const addThunk = createRequestThunk(slice.actions.add);
-slice.actions = { ...slice.actions, addThunk };
+const modifyThunk = createRequestThunk(slice.actions.modify);
+slice.actions = { ...slice.actions, addThunk, modifyThunk };
 export const POST = slice.name;
 export const postReducer = slice.reducer;
 export const postAction = slice.actions;

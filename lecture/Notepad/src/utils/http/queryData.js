@@ -115,6 +115,15 @@ const queryData = {
       tags: 'string',
     },
   },
+
+  postModify: {
+    bodyQuery: {
+      id: 'string',
+      title: 'string',
+      body: 'string',
+      tags: 'string',
+    },
+  },
   // ****************** POST - END ************************ //
 };
 
