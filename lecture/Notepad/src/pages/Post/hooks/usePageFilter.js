@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { postAction } from 'redux/post';
-const { load } = postAction;
+const { load, unload } = postAction;
 
 function usePageFilter() {
   const dispatch = useDispatch();
@@ -10,6 +10,9 @@ function usePageFilter() {
 
   useEffect(() => {
     dispatch(load({ postId }));
+    return () => {
+      dispatch(unload());
+    };
   }, [dispatch, postId]);
 }
 

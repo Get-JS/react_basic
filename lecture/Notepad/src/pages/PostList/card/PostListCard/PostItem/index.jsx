@@ -12,6 +12,7 @@ function PostItem({ data }) {
         <Link to={`${URL_GROUP.POST}/${getPostQuery({ id: data.id })}`}>{data.title}</Link>
       </h2>
       <SubInfo
+        hasMarginTop={true}
         username={data.user?.username}
         publishedDate={data.publishedDate}
         to={`${URL_GROUP.POST_LIST}/${getPostListQuery({ username: data.user?.username })}`}

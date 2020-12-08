@@ -24,17 +24,17 @@ function PostModifyForm({ data }) {
     async (formData) => {
       try {
         const { title, body, tags } = formData;
-        const response = await dispatch(modifyThunk({ title, body, tags, id: data?.id }));
-        const { id } = response;
+        const { id } = await dispatch(modifyThunk({ title, body, tags, id: data?.id }));
         history.push(`${URL_GROUP.POST}/${getPostQuery({ id })}`);
       } catch (error) {
         console.error(error);
       }
     },
-    [dispatch, history],
+    [dispatch, history, data],
   );
 
-  const onCancel = () => {
+  const onCancel = (e) => {
+    e.preventDefault();
     history.goBack();
   };
 
@@ -48,9 +48,7 @@ function PostModifyForm({ data }) {
   useEffect(() => {
     if (quill) {
       quill.on('text-change', (_delta, _oldDelta, source) => {
-        if (source === 'user') {
-          setValue('body', quill.root.innerHTML);
-        }
+        if (source === 'user') setValue('body', quill.root.innerHTML);
       });
       quill.root.innerHTML = getValues('body');
     }

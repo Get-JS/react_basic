@@ -1,9 +1,9 @@
-import { axios, api } from 'utils/http/client';
 import { listData } from '@fake-db/post';
 import { selialize } from 'utils/http/queryData';
+let TOTAL_COUNT = listData.list.length;
 
 export const load = (data = {}) => {
-  const info = selialize({ type: 'postLoad', queryType: 'dashParams', originDataInfo: data });
+  const info = selialize({ type: 'postLoad', queryType: 'headerQuery', originDataInfo: data });
   const findData = listData.list.find((post) => post.id === info.postId);
   return new Promise((resolve) => {
     resolve({ data: findData });
@@ -13,10 +13,13 @@ export const load = (data = {}) => {
 export const listLoad = (data = {}) => {
   const infoObj = selialize({ type: 'postListLoad', queryType: 'headerQuery', originDataInfo: data });
   return new Promise((resolve) => {
-    const { offset, pageSize } = infoObj;
-    const totalCount = listData.list.length;
+    let { offset, pageSize } = infoObj;
     const preCount = offset + pageSize;
-    const count = preCount > totalCount ? totalCount : preCount;
+    let count = preCount > TOTAL_COUNT ? TOTAL_COUNT : preCount;
+    if (!count) {
+      count = TOTAL_COUNT;
+      offset = 0;
+    }
     resolve({ data: { ...listData, list: listData.list.slice(offset, count) } });
   });
 };
@@ -24,7 +27,9 @@ export const listLoad = (data = {}) => {
 export const add = (data = {}) => {
   const info = selialize({ type: 'postAdd', originDataInfo: data });
   return new Promise((resolve) => {
-    resolve(info);
+    info.id = (++TOTAL_COUNT).toString();
+    listData.list.push(info);
+    resolve({ data: info });
   });
 };
 
@@ -47,5 +52,10 @@ export const modify = (data = {}) => {
 
 export const remove = (data = {}) => {
   const info = selialize({ type: 'postRemove', originDataInfo: data });
-  return axios.delete(api.POST, info);
+  return new Promise((resolve) => {
+    const fIdx = listData.list.findIndex((post) => post.id === info.id);
+    listData.list.splice(fIdx, 1);
+    TOTAL_COUNT--;
+    resolve({ data: info.id });
+  });
 };

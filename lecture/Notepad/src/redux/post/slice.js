@@ -19,6 +19,9 @@ const reducers = {
     return { ...state, ...payload };
   },
 
+  unload: (state) => {
+    state.data = initialState.data;
+  },
   load: () => {},
   loadSuccess: (state, { payload: data }) => {
     state.data = data;
@@ -31,7 +34,9 @@ const reducers = {
   },
 
   add: () => {},
-  addSuccess: () => {},
+  addSuccess: (state, { payload: data }) => {
+    state.listData.push(data);
+  },
 
   modify: () => {},
   modifySuccess: (state, { payload: data }) => {
@@ -39,7 +44,10 @@ const reducers = {
   },
 
   remove: () => {},
-  removeSuccess: () => {},
+  removeSuccess: (state, { payload: id }) => {
+    const fIdx = state.listData.findIndex((todo) => todo.id === id);
+    state.listData.splice(fIdx, 1);
+  },
 };
 
 const slice = createSlice({
@@ -75,7 +83,8 @@ export const postSelector = {
 
 const addThunk = createRequestThunk(slice.actions.add);
 const modifyThunk = createRequestThunk(slice.actions.modify);
-slice.actions = { ...slice.actions, addThunk, modifyThunk };
+const removeThunk = createRequestThunk(slice.actions.remove);
+slice.actions = { ...slice.actions, addThunk, modifyThunk, removeThunk };
 export const POST = slice.name;
 export const postReducer = slice.reducer;
 export const postAction = slice.actions;

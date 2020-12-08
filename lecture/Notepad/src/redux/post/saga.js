@@ -8,7 +8,7 @@ const postLoad = createRequestSaga(load, postAPI.load);
 const postListLoad = createRequestSaga(listLoad, postAPI.listLoad);
 const postAdd = createRequestSaga(add, postAPI.add);
 const postUpdate = createRequestSaga(modify, postAPI.modify);
-const postRemove = createRequestSaga(remove, postAPI.remove);
+const postRemove = createRequestSaga(remove, postAPI.remove, '삭제 완료');
 
 export function* watchPost() {
   yield takeLatest(load, postLoad);

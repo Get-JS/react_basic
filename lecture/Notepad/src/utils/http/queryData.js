@@ -60,6 +60,7 @@ const queryData = {
   },
   // ****************** TOEKN - END ************************ //
 
+  // ****************** NEWS ****************************** //
   news: {
     bodyQuery: {
       country: 'string',
@@ -67,6 +68,7 @@ const queryData = {
       apiKey: 'string',
     },
   },
+  // ****************** NEWS - END ************************ //
 
   // ****************** TODO ****************************** //
   todoListLoad: {
@@ -94,7 +96,7 @@ const queryData = {
 
   // ****************** POST ****************************** //
   postLoad: {
-    dashParams: {
+    headerQuery: {
       postId: 'string',
     },
   },
@@ -122,6 +124,12 @@ const queryData = {
       title: 'string',
       body: 'string',
       tags: 'string',
+    },
+  },
+
+  postRemove: {
+    bodyQuery: {
+      id: 'string',
     },
   },
   // ****************** POST - END ************************ //

@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'assets/css/reset.css';
 import 'assets/css/index.css';
 import { ColorProvider } from 'utils/contexts/color';
@@ -29,6 +31,7 @@ ReactDom.render(
     <ColorProvider>
       <BrowserRouter>
         <App />
+        <ToastContainer />
       </BrowserRouter>
     </ColorProvider>
   </Provider>,

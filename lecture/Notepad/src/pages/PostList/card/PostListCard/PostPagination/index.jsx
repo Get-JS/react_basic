@@ -15,7 +15,7 @@ const Postpagination = () => {
   const lastPage = Math.ceil(totalCount / pageSize);
 
   const handleSearch = ({ currentPage }) => {
-    history.push(`${URL_GROUP.POST}/${getPostListQuery({ tag, currentPage, pageSize, username })}`);
+    history.push(`${URL_GROUP.POST_LIST}/${getPostListQuery({ tag, currentPage, pageSize, username })}`);
   };
 
   return <Pagination page={parseInt(currentPage)} lastPage={lastPage} handleSearch={handleSearch} />;

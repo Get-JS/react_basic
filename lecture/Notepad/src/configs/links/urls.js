@@ -7,6 +7,7 @@ export const URL_GROUP = {
   POST: '/post',
   POST_LIST: '/post/list',
   POST_ADD: '/post/add',
+  POST_MODIFY: '/post/modify',
 };
 
 export function getPostListQuery({ tag, currentPage, pageSize, username }) {

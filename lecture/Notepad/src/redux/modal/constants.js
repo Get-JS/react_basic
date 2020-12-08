@@ -1,0 +1,1 @@
+export const POST_REMOVE_MODAL = 'POST_REMOVE_MODAL';
