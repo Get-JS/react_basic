@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as S from './styled';
@@ -36,6 +37,9 @@ function PostDetailCard() {
       {status === SUCCESS && !Object.keys(data).length && '게시글이 없습니다.'}
       {status === SUCCESS && (
         <>
+          <Helmet>
+            <title>{`${data.title}  - POST`}</title>
+          </Helmet>
           <S.PostHead>
             <h1>{data.title}</h1>
             <SubInfo

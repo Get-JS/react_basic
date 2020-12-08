@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'assets/css/reset.css';
 import 'assets/css/index.css';
+import { HelmetProvider } from 'react-helmet-async';
 import { ColorProvider } from 'utils/contexts/color';
 import { getAccessToken } from 'utils/http/auth';
 import store from 'store';
@@ -30,8 +31,10 @@ ReactDom.render(
   <Provider store={store}>
     <ColorProvider>
       <BrowserRouter>
-        <App />
-        <ToastContainer />
+        <HelmetProvider>
+          <App />
+          <ToastContainer />
+        </HelmetProvider>
       </BrowserRouter>
     </ColorProvider>
   </Provider>,
