@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NewsListContainer = styled.div`
+export const Container = styled.div`
   box-sizing: border-box;
   padding-bottom: 3rem;
   width: 768px;
@@ -10,5 +10,11 @@ export const NewsListContainer = styled.div`
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
   }
 `;

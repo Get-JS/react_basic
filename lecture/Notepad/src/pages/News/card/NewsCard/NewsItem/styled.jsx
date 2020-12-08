@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NewsItemBlock = styled.div`
+export const Container = styled.div`
   display: flex;
 
   .thumbnail {

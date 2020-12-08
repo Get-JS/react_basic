@@ -5,7 +5,7 @@ import { FETCH_STATUS, fetchStatusReducer } from './fetchStatus';
 import { USER, userReducer } from './user';
 import { POST, postReducer } from './post';
 import { TODO, todoReducer } from './todo';
-import news from './news/reducer';
+import { NEWS, newsReducer } from './news';
 
 const rootReducer = combineReducers({
   [ALERT]: alertReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   [USER]: userReducer,
   [POST]: postReducer,
   [TODO]: todoReducer,
-  news,
+  [NEWS]: newsReducer,
 });
 
 export default rootReducer;

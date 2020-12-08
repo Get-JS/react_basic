@@ -41,8 +41,6 @@ const api = {
 
   MEMBER: 'user/',
 
-  POST_WRITE: '/api/posts',
-
   NEWS: 'http://newsapi.org/v2/top-headlines',
 };
 

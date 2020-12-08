@@ -1,10 +1,11 @@
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga from 'redux/helper/createRequestSaga';
 import * as newsAPI from 'utils/apis/news';
-import { NEWS_INFO } from 'redux/news/action';
+import { newsAction } from './slice';
+const { listLoad } = newsAction;
 
-export const getNews = createRequestSaga(NEWS_INFO, newsAPI.getNews);
+export const newsListLoad = createRequestSaga(listLoad, newsAPI.listLoad);
 
-export default function* news() {
-  yield takeLatest(NEWS_INFO, getNews);
+export function* watchNews() {
+  yield takeLatest(listLoad, newsListLoad);
 }

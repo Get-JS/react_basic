@@ -28,3 +28,8 @@ export function getPostQuery({ id }) {
   if (!id) return;
   else return id;
 }
+
+export function getNewsListQueryParams({ category, country, apiKey }) {
+  const query = qs.stringify({ category, country, apiKey });
+  return `?${query}`;
+}

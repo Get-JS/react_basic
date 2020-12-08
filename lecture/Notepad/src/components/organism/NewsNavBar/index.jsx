@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { NewsNavBarContainer } from './styled';
 import NavLink from 'components/atoms/NavLink';
 
-function NewsNavBar({ NewsLinkArr }) {
+function NewsNavBar({ data }) {
   return (
     <NewsNavBarContainer>
-      {NewsLinkArr &&
-        NewsLinkArr.map((link) => (
+      {data &&
+        data.map((link) => (
           <NavLink
             key={link.name}
             activeClassName="active"
@@ -20,4 +20,4 @@ function NewsNavBar({ NewsLinkArr }) {
   );
 }
 
-export default NewsNavBar;
+export default memo(NewsNavBar);

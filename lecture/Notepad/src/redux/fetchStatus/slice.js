@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { init, loading, success, fail } from '../helper/fetchData';
+import { init, loading, success, fail } from './fetchData';
 
 const name = 'FETCH_STATUS';
 

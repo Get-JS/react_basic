@@ -1,4 +1,4 @@
-import { FAIL, INIT, LOADING, SUCCESS } from 'utils/constants';
+import { FAIL, INIT, LOADING, SUCCESS } from './constants';
 
 export function init() {
   return {

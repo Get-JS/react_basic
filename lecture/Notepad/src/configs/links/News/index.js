@@ -1,4 +1,4 @@
-const linkArr = [
+export default [
   {
     name: 'all',
     text: '전체보기',
@@ -28,4 +28,3 @@ const linkArr = [
     text: '기술',
   },
 ];
-export default linkArr;

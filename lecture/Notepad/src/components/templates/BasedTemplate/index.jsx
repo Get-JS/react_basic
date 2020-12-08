@@ -38,9 +38,11 @@ function BasedTemplate({ contentTitle, children }) {
             <MdSettings size={20} />
           </Rotate>
         </Button>
-        <Popover visiable={configBoxVisable}>
-          <ConfigBox />
-        </Popover>
+        {configBoxVisable && (
+          <Popover visiable={configBoxVisable}>
+            <ConfigBox />
+          </Popover>
+        )}
       </ConfigBoxWrapper>
     </BasedTemplateContainer>
   );
