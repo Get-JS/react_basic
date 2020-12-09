@@ -8,6 +8,7 @@ import Header from 'components/organism/Header';
 import ConfigBox from 'components/organism/ConfigBox';
 import { MdSettings } from 'react-icons/md';
 import ColorContext from 'utils/contexts/color';
+import MainLinkData from 'configs/links/Main';
 
 function BasedTemplate({ contentTitle, children }) {
   const [configBoxVisable, setConfigBoxVisable] = useState(false);
@@ -16,7 +17,7 @@ function BasedTemplate({ contentTitle, children }) {
   return (
     <BasedTemplateContainer bgcolor={colorState.bgColor}>
       <NavWrapper>
-        <NavBar />
+        <NavBar data={MainLinkData} />
       </NavWrapper>
 
       <MainWrapper>

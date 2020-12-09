@@ -11,8 +11,8 @@ function RegisterPage() {
   const { isOpen, toggleModal } = useOpenModal(REDIRECT_MODAL);
 
   useEffect(() => {
-    if (checkToken) toggleModal();
-  }, [checkToken]);
+    if (!isOpen && checkToken) toggleModal();
+  }, [checkToken, isOpen, toggleModal]);
 
   return (
     <S.RegsiterTemplate>

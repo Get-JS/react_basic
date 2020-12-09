@@ -15,7 +15,6 @@ function TodoCard() {
 
   return (
     <S.Container>
-      <S.TodoTitle>TODO LIST</S.TodoTitle>
       <S.TodoContent>
         {status === LOADING && (
           <Container className="loading">
@@ -25,6 +24,7 @@ function TodoCard() {
         {status === SUCCESS && !listData.length && '데이터가 없습니다.'}
         {status === SUCCESS && (
           <>
+            <S.TodoTitle>TODO LIST</S.TodoTitle>
             <TodoInsert />
             <TodoList listData={listData} />
           </>

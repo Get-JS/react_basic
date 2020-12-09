@@ -8,7 +8,7 @@ function TodoPage() {
   usePageFilter();
 
   return (
-    <BasedTemplate contentTitle={'Todo Page'}>
+    <BasedTemplate>
       <S.TodoSection>
         <TodoCard />
       </S.TodoSection>

@@ -8,7 +8,7 @@ function PostPage() {
   usePageFilter();
 
   return (
-    <BasedTemplate contentTitle={'Post Page'}>
+    <BasedTemplate>
       <S.PostDetailSection>
         <PostDetailCard />
       </S.PostDetailSection>

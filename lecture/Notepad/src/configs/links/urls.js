@@ -4,6 +4,8 @@ export const URL_GROUP = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
+  NEWS: '/news',
+  TODO: '/todo',
   POST: '/post',
   POST_LIST: '/post/list',
   POST_ADD: '/post/add',
