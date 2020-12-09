@@ -8,13 +8,13 @@ import 'quill/dist/quill.bubble.css';
 import useQuill from 'utils/hooks/useQuill';
 import { postAction } from 'redux/post';
 import { URL_GROUP, getPostQuery } from 'configs/links/urls';
-const { modifyThunk } = postAction;
+const { addThunk } = postAction;
 
-function PostModifyForm({ data }) {
+function PostAddForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { control, register, setValue, getValues, handleSubmit, watch } = useForm({
-    defaultValues: { title: data?.title || '', body: data?.body || '', tags: data?.tags || [] },
+    defaultValues: { title: '', body: '', tags: [] },
   });
   const tags = watch('tags');
   const quillElement = useRef(null);
@@ -24,13 +24,13 @@ function PostModifyForm({ data }) {
     async (formData) => {
       try {
         const { title, body, tags } = formData;
-        const { id } = await dispatch(modifyThunk({ title, body, tags, id: data?.id }));
+        const { id } = await dispatch(addThunk({ title, body, tags }));
         history.push(`${URL_GROUP.POST}/${getPostQuery({ id })}`);
       } catch (error) {
         console.error(error);
       }
     },
-    [dispatch, history, data],
+    [dispatch, history],
   );
 
   const onCancel = (e) => {
@@ -72,7 +72,7 @@ function PostModifyForm({ data }) {
       />
       <S.ButtonWrapper>
         <S.StyledButton cyan type="submit">
-          포스트 수정
+          포스트 등록
         </S.StyledButton>
         <S.StyledButton onClick={onCancel}>취소</S.StyledButton>
       </S.ButtonWrapper>
@@ -80,4 +80,4 @@ function PostModifyForm({ data }) {
   );
 }
 
-export default PostModifyForm;
+export default PostAddForm;

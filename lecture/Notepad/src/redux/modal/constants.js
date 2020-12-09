@@ -1,1 +1,2 @@
+export const REDIRECT_MODAL = 'REDIRECT_MODAL';
 export const POST_REMOVE_MODAL = 'POST_REMOVE_MODAL';

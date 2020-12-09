@@ -10,7 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ColorProvider } from 'utils/contexts/color';
 import { getAccessToken } from 'utils/http/auth';
 import store from 'store';
-import App from 'App';
+import Router from 'Router';
 import * as serviceWorker from 'serviceWorker';
 import { userAction } from 'redux/user';
 const { userLoad, checkThunk } = userAction;
@@ -32,7 +32,7 @@ ReactDom.render(
     <ColorProvider>
       <BrowserRouter>
         <HelmetProvider>
-          <App />
+          <Router />
           <ToastContainer />
         </HelmetProvider>
       </BrowserRouter>

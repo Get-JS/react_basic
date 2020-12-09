@@ -6,6 +6,7 @@ import NewsPage from 'pages/News';
 import PostListPage from 'pages/PostList';
 import LoginPage from 'pages/Login';
 import RegisterPage from 'pages/Register';
+import PostAddPage from 'pages/PostAdd';
 import PostModifyPage from 'pages/PostModify';
 import PostPage from 'pages/Post';
 import { history } from './history';
@@ -21,6 +22,7 @@ function RouterConfig() {
           <Route path={['/post/list/:username?', '/']} exact component={PostListPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/post/add" component={PostAddPage} />
           <Route path="/post/modify/:postId" component={PostModifyPage} />
           <Route path="/post/:postId" component={PostPage} />
           <Route path="/todo" component={Todo} />

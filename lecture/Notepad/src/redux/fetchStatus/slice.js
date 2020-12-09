@@ -12,8 +12,8 @@ const reducers = {
   request: (state, { payload: { type } }) => {
     state[type] = loading();
   },
-  success: (state, { payload: { type, data } }) => {
-    state[type] = success(data);
+  success: (state, { payload: { type } }) => {
+    state[type] = success();
   },
   fail: (state, { payload: { type, error } }) => {
     state[type] = fail(error);

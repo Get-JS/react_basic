@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as S from './styled';
 import TagItem from './TagItem';
 
-function TagBox({ tags, handleAddTag, handleRemoveTag }) {
+function TagBoxController({ tags, handleAddTag, handleRemoveTag }) {
   const { register, reset, getValues } = useForm({
     defaultValues: { tagName: '' },
   });
@@ -33,4 +33,4 @@ function TagBox({ tags, handleAddTag, handleRemoveTag }) {
   );
 }
 
-export default TagBox;
+export default TagBoxController;

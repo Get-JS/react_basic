@@ -9,10 +9,12 @@ function ConfirmModal({ visible, title, description, confirmText = '확인', can
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="buttons">
-          <S.StyledButton onClick={onCancel}>{cancelText}</S.StyledButton>
-          <S.StyledButton cyan onClick={onConfirm}>
-            {confirmText}
-          </S.StyledButton>
+          {onCancel && <S.StyledButton onClick={onCancel}>{cancelText}</S.StyledButton>}
+          {onConfirm && (
+            <S.StyledButton cyan onClick={onConfirm}>
+              {confirmText}
+            </S.StyledButton>
+          )}
         </div>
       </S.Wrapper>
     </S.Container>

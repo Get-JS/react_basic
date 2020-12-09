@@ -114,7 +114,7 @@ const queryData = {
     bodyQuery: {
       title: 'string',
       body: 'string',
-      tags: 'string',
+      tags: 'object',
     },
   },
 
@@ -123,7 +123,7 @@ const queryData = {
       id: 'string',
       title: 'string',
       body: 'string',
-      tags: 'string',
+      tags: 'object',
     },
   },
 
