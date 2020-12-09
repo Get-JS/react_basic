@@ -34,20 +34,8 @@ const reducers = {
   },
 
   add: () => {},
-  addSuccess: (state, { payload: data }) => {
-    state.listData.push(data);
-  },
-
   modify: () => {},
-  modifySuccess: (state, { payload: data }) => {
-    state.listData = data;
-  },
-
   remove: () => {},
-  removeSuccess: (state, { payload: id }) => {
-    const fIdx = state.listData.findIndex((todo) => todo.id === id);
-    state.listData.splice(fIdx, 1);
-  },
 };
 
 const slice = createSlice({
