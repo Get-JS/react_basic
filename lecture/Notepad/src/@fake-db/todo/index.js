@@ -1,18 +1,23 @@
-export default [
-  {
-    id: 1,
-    text: 'say hi',
-    checked: true,
-  }, {
-    id: 2,
-    text: 'say I',
-    checked: true,
-  }, {
-    id: 3,
-    text: 'say am',
-    checked: false,
-  },
-];
+export const listData = {
+  totalCount: 3,
+  list: [
+    {
+      id: '1',
+      text: 'say hi',
+      checked: true,
+    },
+    {
+      id: '2',
+      text: 'say I',
+      checked: true,
+    },
+    {
+      id: '3',
+      text: 'say am',
+      checked: false,
+    },
+  ],
+};
 
 export const testData = () => {
   const array = [];
