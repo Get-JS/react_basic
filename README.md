@@ -106,6 +106,10 @@
   - each life method parameter
     - prevState, prevProps value check
     - this.state, this.props value check
+  - if return {}(object) in getDerivedStateFromProps(), no re-cycle to init step!!
+    - just keep going currenet cycle, and nextState change.
+  - if just parent update state, children component work?
+    - children component call cycle. => rendering(Virtual DOM), but don't work real DOM.
 
 - [(P) GuGuDan-without-webpack](./practice/GuGuDan)
 
@@ -159,3 +163,5 @@
 - [(P) Lotto](./practice/Lotto)
 
   - useEffect look up dependency props or state
+
+- [(P) TicTacToe](./practice/TicTacToe)
