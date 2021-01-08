@@ -165,3 +165,6 @@
   - useEffect look up dependency props or state
 
 - [(P) TicTacToe](./practice/TicTacToe)
+
+  - reducer => async call, if sync call, use useEffect call
+  - useMemo => can know component
