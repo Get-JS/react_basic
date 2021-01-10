@@ -40,40 +40,6 @@
     - useState, useEffect, rules, useContext, useRef, useMemo, useCallback, useReducer, useImperativeHandle, useLayoutEffect
     - useOnFirstRender like constructor (customHook), usePrevious, useOnUpdate (customHook), forceUpdate (customHook), useHasMounted (customHook), useDebounce (customHook)
 
-- [(L) Redux](./lecture/Redux) // \* !!
-
-  - [vanilla-redux](./Redux/vanilla-redux)
-    - reducer, actions
-    - store
-      - subscribe, dispatch
-  - [ReduxCustom](./Redux/ReduxCustom)
-    - [createItemsLogic](./Redux/ReduxCustom/createItemsLogic)
-      - createItemsLogic(custom), createReducer(custom), mergeReducers(custom)
-    - [combineReducer](./Redux/ReduxCustom/combineReducer)
-      - combineReducer(redux) vs mergeReducers(custom)
-  - [react-redux](./Redux/react-redux)
-    - [todo](./Redux/react-redux/todo)
-      - createAction(toolkit), createReducer(toolkit), configureStore(toolkit)
-      - createSlice(toolkit)
-    - [without-react-redux](./Redux/react-redux/without-react-redux)
-      - subscribe, unsubscribe
-    - [with-react-redux](./Redux/react-redux/with-react-redux)
-      - connect
-        - mapStateToProps, mapDispatchToProps, Defining mapDispatchToProps As An Object
-    - [Hooks](./Redux/react-redux/Hooks.md)
-      - reudx Hooks
-  - [reselect](./Redux/reselect) // \* !!
-    - [without-reselect](./Redux/reselect/without-reselect)
-    - [with-reselect](./Redux/reselect/with-reselect)
-      - when calculate in mapStateToProps, memozation
-    - [with-reselect-props](./Redux/reselect/with-reselect-props)
-      - when create Instance to common Component for select function occur bug, sol. closure Function(memozation)
-  - [redux-thunk](./Redux/redux-thunk)
-    - createReduxThunk, loading-Reducer
-  - [redux-saga](./Redux/redux-saga)
-    - [with-redux-saga](./Redux/redux-saga/with-redux-saga)
-    - [with-redux-saga-exception](./Redux/redux-saga/with-redux-saga-exception)
-
 - [(L) Babel](./lecture/Babel)
 
   - [Babel](./Babel/1.%20Babel.md)
@@ -168,3 +134,5 @@
 
   - reducer => async call, if sync call, use useEffect call
   - useMemo => can know component
+
+- [(P) MineSearch](./practice/MineSearch)
