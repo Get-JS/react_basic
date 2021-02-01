@@ -1,63 +1,64 @@
 # LECTURE
 
-- [(L) Component](./lecture/Component)
+- [(L) Component](lecture/Component)
 
-  - [React](./Component/1.%20React.md)
+  - [React](lecture/Component/1.%20React.md)
     - component, rendering(Mounted), reconciliation, Virtual DOM
-  - [JSX](./Component/2.%20JSX.md)
+  - [JSX](lecture/Component/2.%20JSX.md)
     - JSX, Fragment, JS expresstion, if-statement, &&-conditional-rendering, inline-styling, className
-  - [Component](./Component/3.%20Component.md)
+  - [Component](lecture/Component/3.%20Component.md)
     - function-Component, class-Component
-    - props, props-redering&value-config, defaultProps, propTypes, propTypes-Required
-    - state, state-config-constructor(), setState(), immutable, state-classField-config
-  - [Element](./Component/4.%20Element.md)
+    - props, props-rendering&value(props)-setting, defaultProps, propTypes, propTypes-Required
+    - state, state-setting-constructor(), setState(), immutable, state-classField-setting
+  - [Element](lecture/Component/4.%20Element.md)
     - element-structure
-  - [EventHandling](./Component/5.%20EventHandling.md)
+  - [EventHandling](lecture/Component/5.%20EventHandling.md)
     - Event Menual, bind-Function, Property-Initializer-Syntax-allowFunction, event of component trigger
-  - [ComponentKey](./Component/6.%20ComponentKey.md)
-    - key-config, use not index, concat, slice, filter
-  - [ComponentLifeCycle](./Component/7.%20ComponentLifeCycle.md)
+  - [ComponentKey](lecture/Component/6.%20ComponentKey.md)
+    - key-setting, use not index, concat, slice, filter
+  - [ComponentLifeCycle](lecture/Component/7.%20ComponentLifeCycle.md)
     - Mount, Update, UnMount, Exception
     - constructor, static-getDerivedStateFromProps, shouldComponentUpdate, render
     - getSnapshotBeforeUpdate, componentDidMount, componentDidUpdate, componentWillUnmount
-  - [ContextAPI](./Component/8.%20ContextAPI.md)
-  - [ref](./Component/9.%20ref.md)
+  - [ContextAPI](lecture/Component/8.%20ContextAPI.md)
+  - [ref](lecture/Component/9.%20ref.md)
     - createRef, function-component, ref-callback, forwardRef
-  - [module](./Component/모듈시스템.md)
+  - [module](lecture/Component/모듈시스템.md)
 
-- [(L) ComponentStyle](./lecture/ComponentStyle)
+- [(L) ComponentStyle](lecture/ComponentStyle)
 
-  - [CodeStyle](./ComponentStyle/1.%20CodeStyle.md)
-  - [dataset](./ComponentStyle/2.%20dataset.md)
-  - [liftingStateUp](./ComponentStyle/3.%20liftingStateUp.md)
-  - [higher order component](./ComponentStyle/4.%20higher%20order%20component.md)
-  - [render props](./ComponentStyle/5.%20render%20props.md)
-  - [render optimization](./ComponentStyle/6.%20render%20optimization.md)
+  - [CodeStyle](lecture/ComponentStyle/1.%20CodeStyle.md)
+  - [dataset](lecture/ComponentStyle/2.%20dataset.md)
+  - [liftingStateUp](lecture/ComponentStyle/3.%20liftingStateUp.md)
+  - [higher order component](lecture/ComponentStyle/4.%20higher%20order%20component.md)
+  - [render props](lecture/ComponentStyle/5.%20render%20props.md)
+  - [render optimization](lecture/ComponentStyle/6.%20render%20optimization.md)
 
-- [(L) Hook](./lecture/Hook)
+- [(L) Hook](lecture/Hook)
 
-  - [Hooks](./Hook/Hooks.md)
+  - [Hooks](lecture/Hook/Hooks.md)
     - useState, useEffect, rules, useContext, useRef, useMemo, useCallback, useReducer, useImperativeHandle, useLayoutEffect
     - useOnFirstRender like constructor (customHook), usePrevious, useOnUpdate (customHook), forceUpdate (customHook), useHasMounted (customHook), useDebounce (customHook)
 
-- [(L) Babel](./lecture/Babel)
+- [(L) Babel](lecture/Babel)
 
-  - [Babel](./Babel/1.%20Babel.md)
+  - [Babel](lecture/Babel/1.%20Babel.md)
     - @babel/cli, babel.config.js, webpack (babel-loader), @babel/core, Babel-compile
-  - [BabelConfig](./Babel/2.%20BabelConfig.md)
+  - [BabelConfig](lecture/Babel/2.%20BabelConfig.md)
     - extends, env, overrides
-  - [BabelConfigFile](./Babel/3.%20BabelConfigFile.md)
-  - [BabelPolyfillEnv](./Babel/4.%20BabelPolyfillEnv.md)
+  - [BabelConfigFile](lecture/Babel/3.%20BabelConfigFile.md)
+  - [BabelPolyfillEnv](lecture/Babel/4.%20BabelPolyfillEnv.md)
     - polyfill, core-js, @babel/preset-env
-  - [BabelCustomPlugin](./Babel/5.%20BabelCustomPlugin.md)
+  - [BabelCustomPlugin](lecture/Babel/5.%20BabelCustomPlugin.md)
     - AST, console.log-remove-plugin, console.log-add-plugin
 
-- [(L) Webpack](./lecture/Webpack) // \* !!
-  - [Webpack](./Webpack/1.%20Webpack.md)
-  - [TreeShaking](./Webpack/2.%20TreeShaking.md)
-  - [CodeSplit](./Webpack/3.%20CodeSplit.md)
-  - [CustomLoader](./Webpack/6.%20CustomLoader.md)
-  - [CustomPlugin](./Webpack/7.%20CustomPlugin.md)
+- [(L) Webpack](lecture/Webpack)
+
+  - [Webpack](lecture/Webpack/1.%20Webpack.md)
+  - [TreeShaking](lecture/Webpack/2.%20TreeShaking.md)
+  - [CodeSplit](lecture/Webpack/3.%20CodeSplit.md)
+  - [CustomLoader](lecture/Webpack/6.%20CustomLoader.md)
+  - [CustomPlugin](lecture/Webpack/7.%20CustomPlugin.md)
 
 # PRACTICE
 

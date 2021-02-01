@@ -200,7 +200,7 @@ function Fcomponent(props, ref) {
   return(<>{*....*}</>);
 }
 
-export default forwardRef(Fcomponent;)
+export default forwardRef(Fcomponent);
 ```
 
 ```jsx
