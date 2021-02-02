@@ -62,13 +62,13 @@
 
 # PRACTICE
 
-- [(P) reactComponent-without-webpack](./practice/reactComponent.html)
+- [(P) reactComponent-without-webpack](practice/reactComponent.html)
 
   - react Element
   - react JSX
   - babel -> JSX -> Element
 
-- [(P) class Component LifeCycle](./practice/LifeCycle)
+- [(P) class Component LifeCycle](practice/LifeCycle)
 
   - each life method parameter
     - prevState, prevProps value check
@@ -78,24 +78,24 @@
   - if just parent update state, children component work?
     - children component call cycle. => rendering(Virtual DOM), but don't work real DOM.
 
-- [(P) GuGuDan-without-webpack](./practice/GuGuDan)
+- [(P) GuGuDan-without-webpack](practice/GuGuDan)
 
-  - [GuGuDan](./GuGuDan/GuGuDan.html)
+  - [GuGuDan](practice/GuGuDan/GuGuDan.html)
     - bind `this`
       - allow function
       - class field
-  - [GuGuDan](./GuGuDan/GuGuDan_hooks.html)
+  - [GuGuDan](practice/GuGuDan/GuGuDan_hooks.html)
     - hook
       - pure fuction + useState function
 
-- [(P) WordRelay](./practice/WordRelay)
+- [(P) WordRelay](practice/WordRelay)
 
   - webpack.config
   - ref
     - function
     - useRef
 
-- [(P) NumberBaseBall](./practice/NumberBaseBall)
+- [(P) NumberBaseBall](practice/NumberBaseBall)
 
   - component separate
   - pureComponent
@@ -110,30 +110,32 @@
     - memo
   - useMemo
 
-- [(P) RSP](./practice/RSP)
+- [(P) RSP](practice/RSP)
 
   - async method setInterval
   - life cycle (class, hook)
   - Higher-Order-Component
 
-- [(P) ResponseCheck](./practice/ResponseCheck)
+- [(P) ResponseCheck](practice/ResponseCheck)
 
   - async method like setTimeout
     - why always use clearTimeout?
       - MountUpdate!! -> if don't use the clearTimeout, queue the async WEB API method
       - so, you don't have that you want it result
 
-- [(P) Higer order Component](./practice/Higher%20order%20Component)
+- [(P) Higer order Component](practice/Higher%20order%20Component)
 
   - inner Component has props that Higher order Component return value
 
-- [(P) Lotto](./practice/Lotto)
+- [(P) Lotto](practice/Lotto)
 
   - useEffect look up dependency props or state
 
-- [(P) TicTacToe](./practice/TicTacToe)
+- [(P) TicTacToe](practice/TicTacToe)
 
   - reducer => async call, if sync call, use useEffect call
   - useMemo => can know component
 
-- [(P) MineSearch](./practice/MineSearch)
+- [(P) MineSearch](practice/MineSearch)
+
+  - ContextAPI
