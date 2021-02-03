@@ -57,8 +57,8 @@
   - [Webpack](lecture/Webpack/1.%20Webpack.md)
   - [TreeShaking](lecture/Webpack/2.%20TreeShaking.md)
   - [CodeSplit](lecture/Webpack/3.%20CodeSplit.md)
-  - [CustomLoader](lecture/Webpack/6.%20CustomLoader.md)
-  - [CustomPlugin](lecture/Webpack/7.%20CustomPlugin.md)
+  - [CustomLoader](lecture/Webpack/4.%20CustomLoader.md)
+  - [CustomPlugin](lecture/Webpack/5.%20CustomPlugin.md)
 
 # PRACTICE
 
